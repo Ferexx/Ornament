@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class WeakMinion extends GameObject {
+    //This will be not-static when I fix it all 
     public static int WEAK_MINION_HEALTH = 100;
     private BufferedImage minionImage;
 
@@ -49,4 +50,11 @@ public class WeakMinion extends GameObject {
         }
     }
 
+    public int getWEAK_MINION_HEALTH() {
+        return WEAK_MINION_HEALTH;
+    }
+
+    public void setWEAK_MINION_HEALTH(int health) {
+        this.WEAK_MINION_HEALTH = health;
+    }
 }

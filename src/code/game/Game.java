@@ -7,6 +7,9 @@ import java.awt.image.BufferStrategy;
 // Make meilueghghg sword attacks be 1 quick swipe instead of a constant one
 // Add Sword powerup and sword image held by character
 // Optimize collision better - make it its own class and have 2 tempObject arrays instead of "this"
+// Move attacks from GameObjects to Attacks
+// Make minions their own enemy class instead of GameObject
+
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;
@@ -19,6 +22,7 @@ public class Game extends Canvas implements Runnable {
     private boolean running = false;
     public Player player;
     public Handler handler;
+    public Spawner spawner;
 
     public STATE gameState = STATE.Menu;
 
@@ -26,6 +30,7 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         menu = new Menu(this);
         hud = new HUD(this);
+        spawner = new Spawner(this);
 
         this.addKeyListener(new KeyInput(this));
         this.addMouseListener(menu);

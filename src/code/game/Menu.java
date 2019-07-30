@@ -56,7 +56,11 @@ public class Menu extends MouseAdapter {
             //Play game
             game.gameState = STATE.Game;
 
-            spawn.spawnTestGame();
+            try {
+                spawn.spawnTestGame();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
         if (mouseOver(mx, my, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {

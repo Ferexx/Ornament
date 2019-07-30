@@ -2,20 +2,20 @@ import java.io.*;
 
 public class Level {
 
-    File levelFile;
+    File levelFolder, entityFile;
     Handler handler;
     
-    public Level(String levelFile, Handler handler) {
-        this.levelFile = new File(levelFile);
+    public Level(String levelFolder, Handler handler) {
+        this.entityFile = new File("levelFolder"+"/entities.csv");
         this.handler = handler;
-        parseLevel(this.levelFile);
+        parseEntities(this.entityFile);
     }
 
 
-    private void parseLevel(File levelFile) {
+    private void parseEntities(File entitiesFile) {
         String line= "";
         try {
-            BufferedReader br = new BufferedReader(new FileReader(levelFile));
+            BufferedReader br = new BufferedReader(new FileReader(entityFile));
             while((line = br.readLine())!=null) {
                 String[] values = line.split(",");
                 for(int i=0;i<values.length;i++) {

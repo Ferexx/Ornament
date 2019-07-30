@@ -19,7 +19,7 @@ public class WeakMinion extends GameObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y - 32, 15, 32);
+        return new Rectangle(x, y - 32, width, height);
     }
 
     public void tick() {
@@ -38,15 +38,18 @@ public class WeakMinion extends GameObject {
         } catch (IOException e) {
             System.out.println("File not found");
             System.exit(0);
+            setWidth(minionImage.getWidth());
+            System.out.println(minionImage.getHeight());
+            setHeight(minionImage.getHeight());
         }
         if (this.velX < 0) {
             AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
             tx.translate(-minionImage.getWidth(null), 0);
             AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
             minionImage = op.filter(minionImage, null);
-            g.drawImage(minionImage, x, y - 32, null);
+            g.drawImage(minionImage, x, y - height, null);
         } else {
-            g.drawImage(minionImage, x, y - 32, null);
+            g.drawImage(minionImage, x, y - height, null);
         }
     }
 

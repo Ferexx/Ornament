@@ -34,7 +34,7 @@ public class Player extends GameObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y - playerHeight, playerWidth, playerHeight);
+        return new Rectangle(x, y - playerHeight, width, height);
     }
 
     public void tick() {
@@ -142,11 +142,13 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
         try {
-            playerImage = ImageIO.read(new File("assets/character.png"));
+            playerImage = ImageIO.read(new File("assets/Knight.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             System.exit(0);
         }
+        setWidth(playerImage.getWidth());
+        setHeight(playerImage.getHeight());
         if (x > 630) x = 631;
         if (x < 380) x = 379;
         if (this.velX < 0) {
@@ -154,9 +156,9 @@ public class Player extends GameObject {
             tx.translate(-playerImage.getWidth(null), 0);
             AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
             playerImage = op.filter(playerImage, null);
-            g.drawImage(playerImage, x, y - playerHeight, null);
+            g.drawImage(playerImage, x, y - height, null);
         } else {
-            g.drawImage(playerImage, x, y - playerHeight, null);
+            g.drawImage(playerImage, x, y - height, null);
         }
     }
 

@@ -5,6 +5,8 @@ public abstract class GameObject {
     protected Game game;
     protected int x;
     protected int y;
+    protected int width;
+    protected int height;
     protected double velX;
     protected double velY;
     public boolean isStandable = false;
@@ -64,5 +66,21 @@ public abstract class GameObject {
 
     public double getVelY() {
         return velY;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int var) {
+        this.height=var;
+    }
+
+    public void setWidth(int var) {
+        this.width = var;
     }
 }

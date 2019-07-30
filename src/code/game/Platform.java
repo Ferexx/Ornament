@@ -1,13 +1,19 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class Platform extends GameObject {
 
-    public Image texture;
+    public BufferedImage texture;
 
-    public Platform(int x, int y, ID id, String textureLocation, Game game) {
+    public Platform(int x, int y, ID id, String textureLocation, Game game) throws IOException {
         super(x, y, id, game);
 
-        texture = Toolkit.getDefaultToolkit().createImage(textureLocation);
+        texture = ImageIO.read(new File(textureLocation));
+        setWidth(texture.getWidth());
+        setHeight(texture.getHeight());
         isStandable = true;
     }
 

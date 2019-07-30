@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Spawner {
     Game game;
 
@@ -9,7 +11,7 @@ public class Spawner {
         //will be used to spawn in map loading and additional objects
     }
 
-    public void spawnTestGame() {
+    public void spawnTestGame() throws IOException {
         Handler handler = game.handler;
 
         handler.addObject(new Background(game));

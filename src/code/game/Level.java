@@ -12,7 +12,7 @@ public class Level {
     }
 
 
-    public static void parseLevel(File levelFile) {
+    private void parseLevel(File levelFile) {
         String line= "";
         try {
             BufferedReader br = new BufferedReader(new FileReader(levelFile));

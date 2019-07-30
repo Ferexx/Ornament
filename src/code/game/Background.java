@@ -9,8 +9,8 @@ public class Background extends GameObject {
     public Background(Game game) {
         super(game);
 
-        backgroundImage = Toolkit.getDefaultToolkit().createImage("assets/8-bit-background-4.jpg");
-        backgroundImage2 = Toolkit.getDefaultToolkit().createImage("assets/8-bit-background-4.jpg");
+        backgroundImage = Toolkit.getDefaultToolkit().createImage("assets/TownBackground.png");
+        backgroundImage2 = Toolkit.getDefaultToolkit().createImage("assets/TownBackground.png");
     }
 
     public void tick() {
@@ -28,8 +28,8 @@ public class Background extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.drawImage(backgroundImage, b1x, -400, null);
-        g.drawImage(backgroundImage2, b2x, -400, null);
+        g.drawImage(backgroundImage, b1x, 0, null);
+        g.drawImage(backgroundImage2, b2x, 0, null);
     }
 
     public Rectangle getBounds() {
@@ -37,14 +37,14 @@ public class Background extends GameObject {
     }
 
     public void scrollLTR() {
-        if (b1x < -600) b2x = b1x + 1920;
-        if (b2x < -600) b1x = b2x + 1920;
+        if (b1x < 0) b2x = b1x + 1280;
+        if (b2x < 0) b1x = b2x + 1280;
         updatePosition();
     }
 
     public void scrollRTL() {
-        if (b1x > -10) b2x = b1x - 1920;
-        if (b2x > -10) b1x = b2x - 1920;
+        if (b1x > -10) b2x = b1x - 1280;
+        if (b2x > -10) b1x = b2x - 1280;
         updatePosition();
     }
 

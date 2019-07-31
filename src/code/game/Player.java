@@ -17,8 +17,6 @@ public class Player extends GameObject {
     public boolean isFalling = false;
     public boolean isStanding = true;
     public boolean doubleJump = false;
-    public boolean rightAttackFade = false;
-    public boolean leftAttackFade = false;
     public boolean canLightningAttack = true;
     public boolean canSwordAttack = false;
     public int playerHealth = 100;
@@ -204,7 +202,7 @@ public class Player extends GameObject {
 
     public void leftAttack() {
         if (canLightningAttack) {
-            handler.addObject(new LightningAttack(x - LightningAttack.range, y - 24, ID.LightningAttack, game));
+            handler.addObject(new LightningAttack(x - LightningAttack.range, y - 24, ID.LightningAttack, game, false));
         } else if (canSwordAttack) {
             handler.addObject(new SwordAttack(x - SwordAttack.range, y - 24, ID.SwordAttack, game));
         } else {
@@ -215,7 +213,7 @@ public class Player extends GameObject {
 
     public void rightAttack() {
         if (canLightningAttack) {
-            handler.addObject(new LightningAttack(x, y - 24, ID.LightningAttack, game));
+            handler.addObject(new LightningAttack(x, y - 24, ID.LightningAttack, game, true));
         } else if (canSwordAttack) {
             handler.addObject(new SwordAttack(SwordAttack.range, y - 24, ID.SwordAttack, game));
         } else {

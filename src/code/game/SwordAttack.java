@@ -9,11 +9,7 @@ public class SwordAttack extends GameObject {
     }
 
     public void tick() {
-        if (game.player.rightAttackFade) {
-            fade();
-        } else if (game.player.leftAttackFade) {
-            fade();
-        }
+
     }
 
     public void render(Graphics g) {
@@ -35,8 +31,7 @@ public class SwordAttack extends GameObject {
 
     public void fade() {
         game.handler.removeObject(this);
-        game.player.rightAttackFade = false;
-        game.player.leftAttackFade = false;
+
     }
 
 

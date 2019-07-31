@@ -74,12 +74,10 @@ public class KeyInput extends KeyAdapter {
                 }
 
                 if (key == KeyEvent.VK_LEFT) {
-                    game.player.leftAttackFade = true;
                     leftDown = false;
                 }
 
                 if (key == KeyEvent.VK_RIGHT) {
-                    game.player.rightAttackFade = true;
                     rightDown = false;
                 }
 

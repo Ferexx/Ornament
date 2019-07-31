@@ -1,47 +1,42 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.util.TimerTask;
+import java.util.Timer;
 
 public class LightningAttack extends GameObject {
     public static int range = 100;
     public static int lightningDamage = 2;
     private Image attackImage;
+    private boolean rightFacing=true;
+    private LightningAttack self = this;
 
-    public LightningAttack(int x, int y, ID id, Game game) {
+    public LightningAttack(int x, int y, ID id, Game game, boolean facingRight) {
         super(x, y, id, game);
-        attackImage = new ImageIcon("assets/LightningAttack.gif").getImage();
         height = 23;
         width = 41;
+        rightFacing=facingRight;
+        if (rightFacing) setVelX(+7);
+        else setVelX(-7);
+        fade();
     }
 
     public void tick() {
-        if (game.player.rightAttackFade) {
-            fade();
-        } else if (game.player.leftAttackFade) {
-            fade();
-        }
+        x+=getVelX();
     }
 
     public void render(Graphics g) {
         g.setColor(new Color(52, 204, 255));
-        if (KeyInput.leftDown) {
-            /*AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
-            tx.translate(-attackImage.getWidth(null), 0);
-            AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-            attackImage = op.filter(attackImage, null);*/
-            g.drawImage(attackImage, game.player.getX() - width, game.player.getY() - 50, null);
+        if (!rightFacing) {
+            attackImage = new ImageIcon("assets/LightningAttackReverse.gif").getImage();
+            g.drawImage(attackImage, getX(), getY() - 40, null);
         } else {
-            g.drawImage(attackImage, game.player.getX() + 20, game.player.getY() - 50, null);
+            attackImage = new ImageIcon("assets/LightningAttack.gif").getImage();
+            g.drawImage(attackImage, getX() + 20, getY() - 40, null);
         }
     }
 
     public Rectangle getBounds() {
-        if (KeyInput.leftDown) {
+        if (!rightFacing) {
             return new Rectangle(x-width, y, width, height);
         } else {
             return new Rectangle(x, y, width, height);
@@ -49,9 +44,18 @@ public class LightningAttack extends GameObject {
     }
 
     public void fade() {
-        game.handler.removeObject(this);
-        game.player.rightAttackFade = false;
-        game.player.leftAttackFade = false;
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                if(getVelX()!=0&&rightFacing) setVelX(getVelX()-0.5);
+                else if(getVelX()!=0) setVelX(getVelX()+0.5);
+                else {
+                    game.handler.removeObject(self);
+                    timer.cancel();
+                }
+            }
+        },0,150);
     }
 
 }

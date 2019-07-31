@@ -36,11 +36,9 @@ public class Game extends Canvas implements Runnable {
         this.addMouseListener(menu);
         this.addMouseMotionListener(menu);
 
-        new Window(WIDTH, HEIGHT, "BudgetScrolls", this);
+        new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
 
         player = new Player(410, 250, ID.Player, handler, this);
-
-        System.out.println("Yes");
     }
 
     public synchronized void start() {

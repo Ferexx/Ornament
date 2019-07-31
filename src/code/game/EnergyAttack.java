@@ -25,7 +25,6 @@ public class EnergyAttack extends GameObject {
     }
 
     public void render(Graphics g) {
-        g.setColor(new Color(52, 204, 255));
         if (!rightFacing) {
             attackImage = new ImageIcon("assets/EnergyAttackReverse.gif").getImage();
             g.drawImage(attackImage, getX(), getY(), null);

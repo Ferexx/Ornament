@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.security.Key;
 
 public class SwordAttack extends GameObject {
     public static int range = 42;
@@ -6,6 +7,11 @@ public class SwordAttack extends GameObject {
 
     public SwordAttack(int x, int y, ID id, Game game) {
         super(x, y, id, game);
+
+        System.out.println("yoyo");
+
+        fade();
+
     }
 
     public void tick() {
@@ -30,9 +36,9 @@ public class SwordAttack extends GameObject {
     }
 
     public void fade() {
-        game.handler.removeObject(this);
-
+        if(!KeyInput.rightAttack || !KeyInput.leftAttack) {
+            System.out.println("heere");
+            game.handler.removeObject(this);
+        }
     }
-
-
 }

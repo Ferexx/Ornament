@@ -17,8 +17,8 @@ public class Player extends GameObject {
     public boolean isFalling = false;
     public boolean isStanding = true;
     public boolean doubleJump = false;
-    public boolean canLightningAttack = true;
-    public boolean canSwordAttack = false;
+    public boolean canLightningAttack = false;
+    public boolean canSwordAttack = true;
     public int playerHealth = 100;
     public int playerWidth = 22;
     public int playerHeight = 54;

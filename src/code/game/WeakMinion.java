@@ -38,10 +38,9 @@ public class WeakMinion extends GameObject {
         } catch (IOException e) {
             System.out.println("File not found");
             System.exit(0);
-            setWidth(minionImage.getWidth());
-            System.out.println(minionImage.getHeight());
-            setHeight(minionImage.getHeight());
         }
+        setWidth(minionImage.getWidth());
+        setHeight(minionImage.getHeight());
         if (this.velX < 0) {
             AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
             tx.translate(-minionImage.getWidth(null), 0);

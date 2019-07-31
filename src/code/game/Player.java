@@ -64,6 +64,7 @@ public class Player extends GameObject {
                 GameObject tempObject = handler.object.get(i);
                 if (tempObject.getID() == ID.WeakMinion) {
                     if (getBounds().intersects(tempObject.getBounds())) {
+                        System.out.println("minion");
                         //Player health declines when in contact with the minion
                         playerHealth -= 2;
                         //WeakMinion.WEAK_MINION_HEALTH -=2;

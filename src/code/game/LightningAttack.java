@@ -28,10 +28,10 @@ public class LightningAttack extends GameObject {
         g.setColor(new Color(52, 204, 255));
         if (!rightFacing) {
             attackImage = new ImageIcon("assets/LightningAttackReverse.gif").getImage();
-            g.drawImage(attackImage, getX(), getY() - 40, null);
+            g.drawImage(attackImage, getX(), getY(), null);
         } else {
             attackImage = new ImageIcon("assets/LightningAttack.gif").getImage();
-            g.drawImage(attackImage, getX() + 20, getY() - 40, null);
+            g.drawImage(attackImage, getX() + 20, getY(), null);
         }
     }
 

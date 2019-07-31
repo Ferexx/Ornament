@@ -203,9 +203,9 @@ public class Player extends GameObject {
 
     public void leftAttack() {
         if (canLightningAttack) {
-            handler.addObject(new LightningAttack(x - LightningAttack.range, y - 24, ID.LightningAttack, game, false));
+            handler.addObject(new LightningAttack(x - LightningAttack.range, y - 38, ID.LightningAttack, game, false));
         } else if (canSwordAttack) {
-            handler.addObject(new SwordAttack(x - SwordAttack.range, y - 24, ID.SwordAttack, game));
+            handler.addObject(new SwordAttack(x - SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {
             System.out.println("You cannot attack at this time");
         }
@@ -214,9 +214,9 @@ public class Player extends GameObject {
 
     public void rightAttack() {
         if (canLightningAttack) {
-            handler.addObject(new LightningAttack(x, y - 24, ID.LightningAttack, game, true));
+            handler.addObject(new LightningAttack(x, y - 38, ID.LightningAttack, game, true));
         } else if (canSwordAttack) {
-            handler.addObject(new SwordAttack(SwordAttack.range, y - 24, ID.SwordAttack, game));
+            handler.addObject(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {
             System.out.println("You cannot attack at this time");
         }

@@ -3,14 +3,14 @@ import java.awt.*;
 import java.util.TimerTask;
 import java.util.Timer;
 
-public class LightningAttack extends GameObject {
+public class EnergyAttack extends GameObject {
     public static int range = 100;
-    public static int lightningDamage = 2;
+    public static int energyDamage = 2;
     private Image attackImage;
     private boolean rightFacing=true;
-    private LightningAttack self = this;
+    private EnergyAttack self = this;
 
-    public LightningAttack(int x, int y, ID id, Game game, boolean facingRight) {
+    public EnergyAttack(int x, int y, ID id, Game game, boolean facingRight) {
         super(x, y, id, game);
         height = 23;
         width = 41;
@@ -27,10 +27,10 @@ public class LightningAttack extends GameObject {
     public void render(Graphics g) {
         g.setColor(new Color(52, 204, 255));
         if (!rightFacing) {
-            attackImage = new ImageIcon("assets/LightningAttackReverse.gif").getImage();
+            attackImage = new ImageIcon("assets/EnergyAttackReverse.gif").getImage();
             g.drawImage(attackImage, getX(), getY(), null);
         } else {
-            attackImage = new ImageIcon("assets/LightningAttack.gif").getImage();
+            attackImage = new ImageIcon("assets/EnergyAttack.gif").getImage();
             g.drawImage(attackImage, getX() + 20, getY(), null);
         }
     }

@@ -101,7 +101,7 @@ public class Player extends GameObject {
                 if (tempObject.getID() == ID.LightningAttack) {
                     if (handler.object.get(4).getBounds().intersects(tempObject.getBounds())) {
                         System.out.println("Hit!");
-                        WeakMinion.WEAK_MINION_HEALTH -= LightningAttack.lightningDamage;
+                        WeakMinion.WEAK_MINION_HEALTH -= EnergyAttack.energyDamage;
                         if (WeakMinion.WEAK_MINION_HEALTH <= 0) {
                             System.out.println("You killed a weak minion");
                             handler.object.remove(handler.object.get(4));
@@ -203,7 +203,7 @@ public class Player extends GameObject {
 
     public void leftAttack() {
         if (canLightningAttack) {
-            handler.addObject(new LightningAttack(x - LightningAttack.range, y - 38, ID.LightningAttack, game, false));
+            handler.addObject(new EnergyAttack(x - EnergyAttack.range, y - 38, ID.LightningAttack, game, false));
         } else if (canSwordAttack) {
             handler.addObject(new SwordAttack(x - SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {
@@ -214,7 +214,7 @@ public class Player extends GameObject {
 
     public void rightAttack() {
         if (canLightningAttack) {
-            handler.addObject(new LightningAttack(x, y - 38, ID.LightningAttack, game, true));
+            handler.addObject(new EnergyAttack(x, y - 38, ID.LightningAttack, game, true));
         } else if (canSwordAttack) {
             handler.addObject(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {

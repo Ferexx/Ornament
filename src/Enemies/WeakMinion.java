@@ -1,3 +1,9 @@
+package Enemies;
+
+import Main.Game;
+import Main.GameObject;
+import Main.ID;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -37,6 +43,7 @@ public class WeakMinion extends GameObject {
             minionImage = ImageIO.read(new File("assets/WeakMinion.png"));
         } catch (IOException e) {
             System.out.println("File not found");
+            e.printStackTrace();
             System.exit(0);
         }
         setWidth(minionImage.getWidth());

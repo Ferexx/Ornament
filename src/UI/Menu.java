@@ -1,3 +1,9 @@
+package UI;
+
+import Main.Game;
+import Main.STATE;
+import Main.Spawner;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -100,6 +106,7 @@ public class Menu extends MouseAdapter {
             menuImage = ImageIO.read(new File("assets/Menubackground.png"));
         } catch (IOException e) {
             System.out.println("File not found");
+            e.printStackTrace();
             System.exit(0);
         }
 

@@ -1,3 +1,8 @@
+package Main;
+
+import UI.HUD;
+import UI.Menu;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -8,7 +13,7 @@ import java.awt.image.BufferStrategy;
 // Add Sword powerup and sword image held by character
 // Optimize collision better - make it its own class and have 2 tempObject arrays instead of "this"
 // Move attacks from GameObjects to Attacks
-// Make minions their own enemy class instead of GameObject
+// Make minions their own enemy class instead of Main.GameObject
 
 
 public class Game extends Canvas implements Runnable {
@@ -17,7 +22,7 @@ public class Game extends Canvas implements Runnable {
 
     private Thread thread;
     private HUD hud;
-    private Menu menu;
+    private UI.Menu menu;
     private int fps;
     private boolean running = false;
     public Player player;

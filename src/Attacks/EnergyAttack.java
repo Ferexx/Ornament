@@ -1,19 +1,24 @@
+package Attacks;
+import Main.Game;
+import Main.ID;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.TimerTask;
 import java.util.Timer;
 
-public class EnergyAttack extends GameObject {
-    public static int range = 100;
-    public static int energyDamage = 2;
+public class EnergyAttack extends MagicAttack {
+    public static int energyAttackDamage = 2;
+    public static int energyAttackCost = 1;
     private Image attackImage;
-    private boolean rightFacing=true;
+    private Game game;
     private EnergyAttack self = this;
 
-    public EnergyAttack(int x, int y, ID id, Game game, boolean facingRight) {
-        super(x, y, id, game);
+    public EnergyAttack(int x, int y, Game game, boolean facingRight) {
+        super(x, y, energyAttackDamage, ID.EnergyAttack, game, energyAttackCost);
         height = 23;
         width = 41;
+        this.game=game;
         rightFacing=facingRight;
         if (rightFacing) setVelX(+7);
         else setVelX(-7);
@@ -61,7 +66,7 @@ public class EnergyAttack extends GameObject {
                 if(getVelX()!=0&&rightFacing) setVelX(getVelX()-0.5);
                 else if(getVelX()!=0) setVelX(getVelX()+0.5);
                 else {
-                    game.handler.removeObject(self);
+                    game.handler.removeAttack(self);
                     timer.cancel();
                 }
             }

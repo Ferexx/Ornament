@@ -1,3 +1,12 @@
+package Main;
+
+import Enemies.WeakMinion;
+import Powerups.DoubleJumpPowerup;
+import Powerups.HealthPowerUp;
+import UI.Background;
+import World.Ground;
+import World.Platform;
+
 import java.io.IOException;
 
 public class Spawner {

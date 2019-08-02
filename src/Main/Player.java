@@ -1,3 +1,10 @@
+package Main;
+
+import Attacks.EnergyAttack;
+import Attacks.SwordAttack;
+import Enemies.WeakMinion;
+import Main.*;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -65,9 +72,9 @@ public class Player extends GameObject {
                 if (tempObject.getID() == ID.WeakMinion) {
                     if (getBounds().intersects(tempObject.getBounds())) {
                         System.out.println("minion");
-                        //Player health declines when in contact with the minion
+                        //Main.Player health declines when in contact with the minion
                         playerHealth -= 2;
-                        //WeakMinion.WEAK_MINION_HEALTH -=2;
+                        //Enemies.WeakMinion.WEAK_MINION_HEALTH -=2;
                         if (WeakMinion.WEAK_MINION_HEALTH <= 0) {
                             System.out.println("You killed a weak minion");
                             handler.object.remove(tempObject);
@@ -98,10 +105,10 @@ public class Player extends GameObject {
                         else if (getY() > tempObject.getY() + 16) setVelY(getVelY() * -1);
                     }
                 }
-                if (tempObject.getID() == ID.LightningAttack) {
+                if (tempObject.getID() == ID.EnergyAttack) {
                     if (handler.object.get(4).getBounds().intersects(tempObject.getBounds())) {
                         System.out.println("Hit!");
-                        WeakMinion.WEAK_MINION_HEALTH -= EnergyAttack.energyDamage;
+                        WeakMinion.WEAK_MINION_HEALTH -= EnergyAttack.energyAttackDamage;
                         tempObject.setVelX(0);
                         if (WeakMinion.WEAK_MINION_HEALTH <= 0) {
                             System.out.println("You killed a weak minion");
@@ -145,6 +152,7 @@ public class Player extends GameObject {
             playerImage = ImageIO.read(new File("assets/Knight.png"));
         } catch (IOException e) {
             System.out.println("File not found");
+            e.printStackTrace();
             System.exit(0);
         }
         setWidth(playerImage.getWidth());
@@ -204,9 +212,9 @@ public class Player extends GameObject {
 
     public void leftAttack() {
         if (canLightningAttack) {
-            handler.addObject(new EnergyAttack(x - EnergyAttack.range, y - 38, ID.LightningAttack, game, false));
+            handler.addAttack(new EnergyAttack(x - EnergyAttack.width, y - 38, game, false));
         } else if (canSwordAttack) {
-            handler.addObject(new SwordAttack(x - SwordAttack.range, y - 38, ID.SwordAttack, game));
+            handler.addAttack(new SwordAttack(x - SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {
             System.out.println("You cannot attack at this time");
         }
@@ -215,9 +223,9 @@ public class Player extends GameObject {
 
     public void rightAttack() {
         if (canLightningAttack) {
-            handler.addObject(new EnergyAttack(x, y - 38, ID.LightningAttack, game, true));
+            handler.addAttack(new EnergyAttack(x, y - 38, game, true));
         } else if (canSwordAttack) {
-            handler.addObject(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
+            handler.addAttack(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {
             System.out.println("You cannot attack at this time");
         }

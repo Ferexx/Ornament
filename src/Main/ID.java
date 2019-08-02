@@ -1,9 +1,11 @@
+package Main;
+
 public enum ID {
     Player(),
     WeakMinion(),
     Ground(),
     DoubleJumpPowerup(),
-    LightningAttack(),
+    EnergyAttack(),
     SwordAttack(),
     HealthPowerup(),
     Platform(),

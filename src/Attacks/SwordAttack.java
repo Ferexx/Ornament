@@ -1,12 +1,18 @@
+package Attacks;
+
+import Main.Game;
+import Main.ID;
+import Main.KeyInput;
+
 import java.awt.*;
 import java.security.Key;
 
-public class SwordAttack extends GameObject {
+public class SwordAttack extends MeleeAttack {
     public static int range = 42;
     public static int swordDamage = 10;
 
     public SwordAttack(int x, int y, ID id, Game game) {
-        super(x, y, id, game);
+        super(x, y, swordDamage, id, game, range);
 
         System.out.println("yoyo");
 
@@ -38,7 +44,7 @@ public class SwordAttack extends GameObject {
     public void fade() {
         if(!KeyInput.rightAttack || !KeyInput.leftAttack) {
             System.out.println("heere");
-            game.handler.removeObject(this);
+            game.handler.removeAttack(this);
         }
     }
 }

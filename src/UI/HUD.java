@@ -1,3 +1,7 @@
+package UI;
+
+import Main.Game;
+
 import java.awt.*;
 
 public class HUD {
@@ -11,7 +15,7 @@ public class HUD {
     }
 
     public void tick() {
-        Player player = game.player;
+        Main.Player player = game.player;
 
         player.playerHealth = Game.clamp(player.playerHealth, 0, 100);
         greenValue = Game.clamp(greenValue, 0, 255);

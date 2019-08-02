@@ -1,3 +1,9 @@
+package World;
+
+import Main.Game;
+import Main.GameObject;
+import Main.ID;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;

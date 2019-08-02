@@ -1,21 +1,26 @@
+package Attacks;
+
+import Main.Game;
+import Main.ID;
+
 import java.awt.*;
 
 public abstract class Attack {
     protected int x;
     protected int y;
     protected int dmg;
-    protected int range;
-    protected ID id;
+    protected Main.ID id;
+    protected Game game;
+    public static int height;
+    public static int width;
+    protected boolean rightFacing;
 
-    public Attack(int x, int y, int dmg, int range, ID id) {
+    public Attack(int x, int y, int dmg, ID id, Game game) {
         this.x = x;
         this.y = y;
         this.dmg = dmg;
-        this.range = range;
         this.id = id;
-    }
-
-    public Attack() {
+        this.game = game;
     }
 
     public abstract void tick();
@@ -44,16 +49,8 @@ public abstract class Attack {
         this.dmg = dmg;
     }
 
-    public void setRange(int range) {
-        this.range = range;
-    }
-
     public int getDmg() {
         return dmg;
-    }
-
-    public int getRange() {
-        return range;
     }
 
     public void setID(ID id) {
@@ -62,5 +59,19 @@ public abstract class Attack {
 
     public ID getID() {
         return id;
+    }
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
     }
 }

@@ -1,3 +1,9 @@
+package Powerups;
+
+import Main.Game;
+import Main.GameObject;
+import Main.ID;
+
 import java.awt.*;
 
 public class HealthPowerUp extends GameObject {

@@ -1,3 +1,9 @@
+package UI;
+
+import Main.Game;
+import Main.GameObject;
+import Main.ID;
+
 import java.awt.*;
 
 public class Background extends GameObject {

@@ -1,3 +1,9 @@
+package World;
+
+import Main.Game;
+import Main.GameObject;
+import Main.ID;
+
 import java.awt.*;
 
 public class Ground extends GameObject {

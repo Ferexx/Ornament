@@ -1,7 +1,6 @@
 package Enemies;
 
 import Main.Game;
-import Main.GameObject;
 import Main.ID;
 
 import javax.imageio.ImageIO;
@@ -12,13 +11,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class WeakMinion extends GameObject {
-    //This will be not-static when I fix it all 
-    public static int WEAK_MINION_HEALTH = 100;
+public class WeakMinion extends Enemy {
+
     private BufferedImage minionImage;
 
     public WeakMinion(int x, int y, ID id, Game game) {
-        super(x, y, id, game);
+        super(x, y, id, game, 100);
 
         velX = 2;
         velY = 0;
@@ -57,13 +55,5 @@ public class WeakMinion extends GameObject {
         } else {
             g.drawImage(minionImage, x, y - height, null);
         }
-    }
-
-    public int getWEAK_MINION_HEALTH() {
-        return WEAK_MINION_HEALTH;
-    }
-
-    public void setWEAK_MINION_HEALTH(int health) {
-        this.WEAK_MINION_HEALTH = health;
     }
 }

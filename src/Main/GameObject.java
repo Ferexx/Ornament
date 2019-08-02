@@ -1,8 +1,5 @@
 package Main;
 
-import Main.Game;
-import Main.ID;
-
 import java.awt.*;
 
 public abstract class GameObject {

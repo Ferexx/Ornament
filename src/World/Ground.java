@@ -1,15 +1,13 @@
 package World;
 
 import Main.Game;
-import Main.GameObject;
 import Main.ID;
 
 import java.awt.*;
 
-public class Ground extends GameObject {
+public class Ground extends WorldObject {
     public Ground(int x, int y, ID id, Game game) {
-        super(x, y, id, game);
-        isStandable = true;
+        super(x, y, id, game, true);
     }
 
     public Rectangle getBounds() {

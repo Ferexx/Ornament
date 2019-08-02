@@ -2,8 +2,11 @@ package Main;
 
 import Attacks.EnergyAttack;
 import Attacks.SwordAttack;
+import Enemies.Enemy;
 import Enemies.WeakMinion;
 import Main.*;
+import Powerups.Powerup;
+import World.WorldObject;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -67,44 +70,56 @@ public class Player extends GameObject {
     private void collision() {
         synchronized (lock) {
             isStanding = false;
-            for (int i = 0; i < handler.object.size(); i++) {
-                GameObject tempObject = handler.object.get(i);
-                if (tempObject.getID() == ID.WeakMinion) {
-                    if (getBounds().intersects(tempObject.getBounds())) {
-                        System.out.println("minion");
-                        //Main.Player health declines when in contact with the minion
-                        playerHealth -= 2;
-                        //Enemies.WeakMinion.WEAK_MINION_HEALTH -=2;
-                        if (WeakMinion.WEAK_MINION_HEALTH <= 0) {
-                            System.out.println("You killed a weak minion");
-                            handler.object.remove(tempObject);
-                        }
+
+            //If player collides with enemy
+            for(int i = 0; i < handler.enemies.size(); i++) {
+                Enemy enemy = handler.enemies.get(i);
+                if(getBounds().intersects(enemy.getBounds())) {
+                    playerHealth-=2;
+                }
+            }
+
+            //If player collides with powerup
+            for(int i = 0; i < handler.powerups.size(); i++) {
+                Powerup powerup = handler.powerups.get(i);
+                if(getBounds().intersects(powerup.getBounds())) {
+                    switch(powerup.getPowerupName()) {
+                        case "doubleJump":
+                            this.canDoubleJump = true;
+                            handler.powerups.remove(powerup);
+                            break;
+                        case "health":
+                            playerHealth+=25;
+                            handler.powerups.remove(powerup);
+                            break;
                     }
                 }
-                if (tempObject.getID() == ID.DoubleJumpPowerup) {
-                    if (getBounds().intersects(tempObject.getBounds())) {
-                        canDoubleJump = true;
-                        handler.removeObject(tempObject);
-                    }
-                }
-                if (tempObject.getID() == ID.HealthPowerup) {
-                    if (getBounds().intersects(tempObject.getBounds())) {
-                        playerHealth += 25;
-                        handler.removeObject(tempObject);
-                    }
-                }
-                if (tempObject.isStandable) {
-                    if (getBounds().intersects(tempObject.getBounds())) {
-                        if (getY() < tempObject.getY() + 16) {
+            }
+
+            //If player collides with world
+            for(int i = 0; i < handler.world.size(); i++) {
+                WorldObject world = handler.world.get(i);
+                if(world.isStandable) {
+                    if(getBounds().intersects(world.getBounds())) {
+                        //If player hits top of object
+                        if(getY() < world.getY() + 16) {
                             setVelY(0);
-                            setY(tempObject.getY() + 1);
+                            setY(world.getY() + 1);
                             isFalling = false;
                             isStanding = true;
-                        } else if (getX() < tempObject.getX() && getY() > tempObject.getY() + 1) setVelX(0);
-                        else if (getX() > tempObject.getX() + 118 && getY() > tempObject.getY() + 1) setVelX(0);
-                        else if (getY() > tempObject.getY() + 16) setVelY(getVelY() * -1);
+                        }
+                        //If player hits left side of object
+                        else if (getX() < world.getX() && getY() > world.getY()+1) setVelX(0);
+                        //If player hits right side of object
+                        else if(getX() > world.getX() + world.getWidth()-10 && getY() > world.getY() + 1) setVelX(0);
+                        //If player hits underside of object
+                        else if (getY() > world.getY() + world.getHeight()) setVelY(getVelY() * -1);
                     }
                 }
+            }
+
+            /*for (int i = 0; i < handler.object.size(); i++) {
+                GameObject tempObject = handler.object.get(i);
                 if (tempObject.getID() == ID.EnergyAttack) {
                     if (handler.object.get(4).getBounds().intersects(tempObject.getBounds())) {
                         System.out.println("Hit!");
@@ -126,7 +141,8 @@ public class Player extends GameObject {
                         }
                     }
                 }
-            }
+            }*/
+
             if (!isStanding && !isFalling) {
                 isFalling = true;
                 isStanding = true;

@@ -1,16 +1,15 @@
 package Powerups;
 
 import Main.Game;
-import Main.GameObject;
 import Main.ID;
 
 import java.awt.*;
 
-public class HealthPowerUp extends GameObject {
+public class HealthPowerup extends Powerup {
     private boolean visible = true;
 
-    public HealthPowerUp(int x, int y, ID id, Game game) {
-        super(x, y, id, game);
+    public HealthPowerup(int x, int y, ID id, Game game, String name) {
+        super(x, y, id, game, name);
     }
 
     public void tick() {

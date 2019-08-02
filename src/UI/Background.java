@@ -1,8 +1,12 @@
 package UI;
 
+import Attacks.Attack;
+import Enemies.Enemy;
 import Main.Game;
 import Main.GameObject;
 import Main.ID;
+import Powerups.Powerup;
+import World.WorldObject;
 
 import java.awt.*;
 
@@ -62,6 +66,22 @@ public class Background extends GameObject {
             if (tempObject.getID() != ID.Player) {
                 tempObject.setX(tempObject.getX() - (int) game.player.getVelX());
             }
+        }
+        for (int i = 0; i < game.handler.attacks.size(); i++) {
+            Attack attackObject = game.handler.attacks.get(i);
+            attackObject.setX(attackObject.getX() - (int) game.player.getVelX());
+        }
+        for (int i = 0; i < game.handler.enemies.size(); i++) {
+            Enemy enemyObject = game.handler.enemies.get(i);
+            enemyObject.setX(enemyObject.getX() - (int) game.player.getVelX());
+        }
+        for (int i = 0; i < game.handler.powerups.size(); i++) {
+            Powerup powerupObject = game.handler.powerups.get(i);
+            powerupObject.setX(powerupObject.getX() - (int) game.player.getVelX());
+        }
+        for (int i = 0; i < game.handler.world.size(); i++) {
+            WorldObject worldObject = game.handler.world.get(i);
+            worldObject.setX(worldObject.getX() - (int) game.player.getVelX());
         }
     }
 }

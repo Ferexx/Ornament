@@ -1,9 +1,5 @@
 package Main;
 
-import Main.Game;
-import Main.GameObject;
-import Main.ID;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 

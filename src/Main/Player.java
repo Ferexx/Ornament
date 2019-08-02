@@ -3,8 +3,6 @@ package Main;
 import Attacks.EnergyAttack;
 import Attacks.SwordAttack;
 import Enemies.Enemy;
-import Enemies.WeakMinion;
-import Main.*;
 import Powerups.Powerup;
 import World.WorldObject;
 

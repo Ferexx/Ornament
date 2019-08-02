@@ -6,7 +6,7 @@ import Main.ID;
 
 import java.awt.*;
 
-public class WorldObject extends GameObject {
+public abstract class WorldObject extends GameObject {
 
     public WorldObject(int x, int y, ID id, Game game, boolean standable) {
         super(x, y, id, game);

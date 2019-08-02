@@ -5,7 +5,7 @@ import Main.ID;
 
 import java.awt.*;
 
-public class MeleeAttack extends Attack{
+public abstract class MeleeAttack extends Attack{
 
     protected int range;
 

@@ -5,7 +5,7 @@ import Main.ID;
 
 import java.awt.*;
 
-public class MagicAttack extends Attack {
+public abstract class MagicAttack extends Attack {
 
     protected double magicCost;
     protected double velX;

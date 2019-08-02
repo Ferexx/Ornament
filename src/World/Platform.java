@@ -1,7 +1,6 @@
 package World;
 
 import Main.Game;
-import Main.GameObject;
 import Main.ID;
 
 import javax.imageio.ImageIO;

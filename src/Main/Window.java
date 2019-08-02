@@ -1,7 +1,5 @@
 package Main;
 
-import Main.Game;
-
 import javax.swing.*;
 import java.awt.*;
 

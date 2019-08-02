@@ -5,7 +5,6 @@ import Main.ID;
 import Main.KeyInput;
 
 import java.awt.*;
-import java.security.Key;
 
 public class SwordAttack extends MeleeAttack {
     public static int range = 42;

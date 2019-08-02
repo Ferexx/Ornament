@@ -8,13 +8,7 @@ import java.awt.image.BufferStrategy;
 
 //TODO
 // fix it so that you can't go left further than where you spawned
-// Fix movement - double jump inconsistencies and velocity changes
-// Make meilueghghg sword attacks be 1 quick swipe instead of a constant one
-// Add Sword powerup and sword image held by character
-// Optimize collision better - make it its own class and have 2 tempObject arrays instead of "this"
-// Move attacks from GameObjects to Attacks
-// Make minions their own enemy class instead of Main.GameObject
-
+// Sword image held by character
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;

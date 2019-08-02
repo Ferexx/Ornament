@@ -17,8 +17,8 @@ public class Player extends GameObject {
     public boolean isFalling = false;
     public boolean isStanding = true;
     public boolean doubleJump = false;
-    public boolean canLightningAttack = false;
-    public boolean canSwordAttack = true;
+    public boolean canLightningAttack = true;
+    public boolean canSwordAttack = false;
     public int playerHealth = 100;
     public int playerWidth = 22;
     public int playerHeight = 54;
@@ -102,6 +102,7 @@ public class Player extends GameObject {
                     if (handler.object.get(4).getBounds().intersects(tempObject.getBounds())) {
                         System.out.println("Hit!");
                         WeakMinion.WEAK_MINION_HEALTH -= EnergyAttack.energyDamage;
+                        tempObject.setVelX(0);
                         if (WeakMinion.WEAK_MINION_HEALTH <= 0) {
                             System.out.println("You killed a weak minion");
                             handler.object.remove(handler.object.get(4));

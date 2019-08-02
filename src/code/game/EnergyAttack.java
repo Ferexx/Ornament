@@ -25,6 +25,17 @@ public class EnergyAttack extends GameObject {
     }
 
     public void render(Graphics g) {
+        if(getVelX()<1&&getVelX()>=0&&rightFacing) {
+            attackImage = new ImageIcon("assets/EnergyAttackEnd.png").getImage();
+            g.drawImage(attackImage, getX()+15, getY()-3, null);
+            return;
+        }
+        else if(getVelX()>-1&&getVelX()<=0&&!rightFacing) {
+            attackImage = new ImageIcon("assets/EnergyAttackEndReverse.png").getImage();
+            g.drawImage(attackImage, getX(), getY()-3, null);
+            return;
+        }
+
         if (!rightFacing) {
             attackImage = new ImageIcon("assets/EnergyAttackReverse.gif").getImage();
             g.drawImage(attackImage, getX(), getY(), null);
@@ -36,9 +47,9 @@ public class EnergyAttack extends GameObject {
 
     public Rectangle getBounds() {
         if (!rightFacing) {
-            return new Rectangle(x-width, y, width, height);
-        } else {
             return new Rectangle(x, y, width, height);
+        } else {
+            return new Rectangle(x+20, y, width, height);
         }
     }
 

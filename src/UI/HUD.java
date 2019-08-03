@@ -39,6 +39,7 @@ public class HUD {
             g.setColor(Color.gray);
             g.fillRect(15, 48, 200, 16);
             g.setColor(new Color(0, 125, 255));
+            if(game.player.playerMagic>100) game.player.playerMagic=100;
             g.fillRect(15, 48, (int) Math.abs(game.player.playerMagic * 2), 16);
             g.setColor(Color.black);
             g.drawRect(15, 48, 200, 16);

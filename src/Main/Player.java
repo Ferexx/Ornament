@@ -1,6 +1,7 @@
 package Main;
 
 import Attacks.EnergyAttack;
+import Attacks.LightningAttack;
 import Attacks.SwordAttack;
 import Enemies.Enemy;
 import Powerups.Powerup;
@@ -22,12 +23,16 @@ public class Player extends GameObject {
     private Timer timer;
     private BufferedImage playerImage;
 
+    //Attacks
+    private boolean canEnergyAttack = false;
+        private boolean energyBlocked = false;
+    private boolean canSwordAttack = false;
+    private boolean canLightningAttack = true;
+
     private boolean canDoubleJump = false;
     boolean isFalling = false;
     private boolean isStanding = true;
     private boolean doubleJump = false;
-    private boolean canEnergyAttack = true;
-    private boolean canSwordAttack = false;
     public boolean hasStamina = false;
     public boolean hasMagic = true;
     public int playerHealth = 100;
@@ -60,11 +65,13 @@ public class Player extends GameObject {
             playerMagic = maxMagic;
         }
 
-        if(playerMagic < EnergyAttack.energyAttackCost) {
-            canEnergyAttack = false;
-
-        } else {
-            canEnergyAttack = true;
+        //Have to have 2 booleans here or else either energy attack never gets set to true again, or energy attack always actives over other attacks
+        if(canEnergyAttack) {
+            if(playerMagic < EnergyAttack.energyAttackCost) {
+                energyBlocked = true;
+            } else {
+                energyBlocked = false;
+            }
         }
 
         x = Game.clamp(x, 0, Game.WIDTH - 32);
@@ -112,11 +119,13 @@ public class Player extends GameObject {
                             break;
                         case "magic":
                             playerMagic+=50;
+                            if(playerMagic > 100) {
+                                playerMagic = 100;
+                            }
                             handler.powerups.remove(powerup);
                     }
                 }
             }
-
             //If player collides with world
             for(int i = 0; i < handler.world.size(); i++) {
                 WorldObject world = handler.world.get(i);
@@ -230,11 +239,14 @@ public class Player extends GameObject {
     }
 
     public void leftAttack() {
-        if (canEnergyAttack) {
+        if (canEnergyAttack && !energyBlocked) {
             handler.addAttack(new EnergyAttack(x - EnergyAttack.width, y - 38, game, false));
             playerMagic -= EnergyAttack.energyAttackCost;
         } else if (canSwordAttack) {
             handler.addAttack(new SwordAttack(x - SwordAttack.range, y - 38, ID.SwordAttack, game));
+        } else if (canLightningAttack) {
+            handler.addAttack(new LightningAttack(x - LightningAttack.width, y - 32, game, false));
+            playerMagic -= LightningAttack.lightningAttackCost;
         } else {
             System.out.println("You cannot attack at this time");
         }
@@ -242,11 +254,13 @@ public class Player extends GameObject {
     }
 
     public void rightAttack() {
-        if (canEnergyAttack) {
+        if (canEnergyAttack && !energyBlocked) {
             handler.addAttack(new EnergyAttack(x, y - 38, game, true));
             playerMagic -= EnergyAttack.energyAttackCost;
         } else if (canSwordAttack) {
             handler.addAttack(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
+        } else if (canLightningAttack) {
+            handler.addAttack(new LightningAttack(x + 25, y - 38, game, true));
         } else {
             System.out.println("You cannot attack at this time");
         }

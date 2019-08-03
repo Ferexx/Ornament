@@ -29,6 +29,7 @@ public class EnergyAttack extends MagicAttack {
     }
 
     public void tick() {
+
         x+=getVelX();
         collision();
     }

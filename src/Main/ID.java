@@ -11,4 +11,5 @@ public enum ID {
     Platform(),
     MeleeAttack(),
     MagicPowerup(),
+    LightningAttack(),
 }

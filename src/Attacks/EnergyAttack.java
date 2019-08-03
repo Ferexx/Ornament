@@ -11,7 +11,7 @@ import java.util.Timer;
 
 public class EnergyAttack extends MagicAttack {
     public static int energyAttackDamage = 20;
-    public static int energyAttackCost = 1;
+    public static int energyAttackCost = 10;
     private Image attackImage;
     private Game game;
     private EnergyAttack self = this;

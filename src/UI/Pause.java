@@ -12,23 +12,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Menu extends MouseAdapter {
+public class Pause extends MouseAdapter {
 
-    private BufferedImage menuImage;
+    private BufferedImage pauseImage;
     private Game game;
-    private Spawner spawn;
     private static boolean playOutline = false, optionOutline = false, quitOutline = false;
 
     private int mX;
     private int mY;
 
-    public Menu(Game game) {
+    public Pause(Game game) {
         this.game = game;
-
-        game.addMouseListener(this);
-        game.addMouseMotionListener(this);
-
-        spawn = new Spawner(game);
     }
 
     public void mouseMoved(MouseEvent e) {
@@ -64,14 +58,7 @@ public class Menu extends MouseAdapter {
             //Play game
             game.gameState = STATE.Game;
             game.removeMouseListener(this);
-            game.removeMouseMotionListener(this);
-
-            try {
-                System.out.println("Spawning from menu play");
-                spawn.spawnTestGame();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            game.removeMouseListener(this);
         }
 
         if (mouseOver(mx, my, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {
@@ -108,24 +95,24 @@ public class Menu extends MouseAdapter {
         g.setColor(Color.black);
         g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
         try {
-            menuImage = ImageIO.read(new File("assets/Menubackground.png"));
+            pauseImage = ImageIO.read(new File("assets/PauseMenu.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();
             System.exit(0);
         }
 
-        g.drawImage(menuImage, 150, 0, null);
+        g.drawImage(pauseImage, 150, 0, null);
 
-        if (Menu.playOutline) {
+        if (playOutline) {
             g.setColor(Color.green);
             g.drawRect(Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 302, 88);
             g.drawRect(Game.WIDTH / 2 - 164, Game.HEIGHT / 2 - 88, 304, 88);
-        } else if (Menu.optionOutline) {
+        } else if (optionOutline) {
             g.setColor(Color.green);
             g.drawRect(Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 233, 72);
             g.drawRect(Game.WIDTH / 2 - 132, Game.HEIGHT / 2 + 8, 235, 72);
-        } else if (Menu.quitOutline) {
+        } else if (quitOutline) {
             g.setColor(Color.green);
             g.drawRect(Game.WIDTH / 2 - 97, Game.HEIGHT / 2 + 86, 165, 52);
             g.drawRect(Game.WIDTH / 2 - 98, Game.HEIGHT / 2 + 87, 167, 52);

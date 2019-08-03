@@ -2,6 +2,7 @@ package Main;
 
 import UI.HUD;
 import UI.Menu;
+import UI.Pause;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -15,7 +16,6 @@ import java.awt.image.BufferStrategy;
 // Sword swing
 // Options menu
 // Load button
-// Mana bar
 // Fix NullPointerEx for spamming energy attacks
 // Fix colliding with sides of platforms
 
@@ -25,7 +25,8 @@ public class Game extends Canvas implements Runnable {
 
     private Thread thread;
     private HUD hud;
-    private UI.Menu menu;
+    public UI.Menu menu;
+    public UI.Pause pause;
     private int fps;
     private boolean running = false;
     public Player player;
@@ -37,12 +38,11 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         handler = new Handler();
         menu = new Menu(this);
+        pause = new Pause(this);
         hud = new HUD(this);
         spawner = new Spawner(this);
 
         this.addKeyListener(new KeyInput(this));
-        this.addMouseListener(menu);
-        this.addMouseMotionListener(menu);
 
         new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
 
@@ -94,12 +94,16 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void tick() {
-        handler.tick();
+        if (gameState == STATE.Pause) {
+            pause.tick();
+        } else {
+            handler.tick();
 
-        if(gameState == STATE.Game) {
-            hud.tick();
-        } else if (gameState == STATE.Menu){
-            menu.tick();
+            if(gameState == STATE.Game) {
+                hud.tick();
+            } else if (gameState == STATE.Menu){
+                menu.tick();
+            }
         }
     }
 
@@ -121,6 +125,8 @@ public class Game extends Canvas implements Runnable {
             g.drawString( fps+" FPS", WIDTH-128,40);
         } else if (gameState == STATE.Menu){
             menu.render(g);
+        } else if (gameState == STATE.Pause) {
+            pause.render(g);
         }
 
         g.dispose();

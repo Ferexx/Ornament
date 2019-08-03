@@ -51,7 +51,19 @@ public class KeyInput extends KeyAdapter {
             }
         }
 
-        if (key == KeyEvent.VK_ESCAPE) System.exit(0);
+        if (key == KeyEvent.VK_ESCAPE) {
+            if(game.gameState == STATE.Menu) {
+                System.exit(0);
+            }else if(game.gameState == STATE.Game) {
+                game.gameState = STATE.Pause;
+                game.addMouseListener(game.pause);
+                game.addMouseMotionListener(game.pause);
+            } else if (game.gameState == STATE.Pause) {
+                game.gameState = STATE.Game;
+                game.removeMouseListener(game.pause);
+                game.removeMouseMotionListener(game.pause);
+            }
+        }
     }
 
     public void keyReleased(KeyEvent e) {

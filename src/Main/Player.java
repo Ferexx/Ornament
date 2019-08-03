@@ -60,6 +60,7 @@ public class Player extends GameObject {
 
         if(playerMagic < EnergyAttack.energyAttackCost) {
             canEnergyAttack = false;
+
         } else {
             canEnergyAttack = true;
         }
@@ -226,7 +227,7 @@ public class Player extends GameObject {
     public void leftAttack() {
         if (canEnergyAttack) {
             handler.addAttack(new EnergyAttack(x - EnergyAttack.width, y - 38, game, false));
-            playerMagic -= 10;
+            playerMagic -= EnergyAttack.energyAttackCost;
         } else if (canSwordAttack) {
             handler.addAttack(new SwordAttack(x - SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {
@@ -238,7 +239,7 @@ public class Player extends GameObject {
     public void rightAttack() {
         if (canEnergyAttack) {
             handler.addAttack(new EnergyAttack(x, y - 38, game, true));
-            playerMagic -= 10;
+            playerMagic -= EnergyAttack.energyAttackCost;
         } else if (canSwordAttack) {
             handler.addAttack(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {

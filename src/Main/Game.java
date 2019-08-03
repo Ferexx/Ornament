@@ -9,6 +9,9 @@ import java.awt.image.BufferStrategy;
 //TODO
 // fix it so that you can't go left further than where you spawned
 // Sword image held by character
+// Fix movement - sprinting
+// Fix holding space breaks doubleJump
+// Level parsing
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;

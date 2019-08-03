@@ -37,11 +37,11 @@ public class HUD {
         //Player Magic/Stamina bar
         if(player.hasMagic) {
             g.setColor(Color.gray);
-            g.fillRect(15, 48, 200, 32);
+            g.fillRect(15, 48, 200, 16);
             g.setColor(new Color(0, 125, 255));
-            g.fillRect(15, 48, (int) game.player.playerMagic * 2, 32);
+            g.fillRect(15, 48, (int) game.player.playerMagic * 2, 16);
             g.setColor(Color.black);
-            g.drawRect(15, 48, 200, 32);
+            g.drawRect(15, 48, 200, 16);
         }
     }
 }

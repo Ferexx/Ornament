@@ -53,11 +53,12 @@ public class Player extends GameObject {
         x += velX;
         y += velY;
 
+        //Magic regen
         if(playerMagic < maxMagic) {
             playerMagic += 0.1;
         }
 
-        if(playerMagic <= 1) {
+        if(playerMagic < EnergyAttack.energyAttackCost) {
             canEnergyAttack = false;
         } else {
             canEnergyAttack = true;

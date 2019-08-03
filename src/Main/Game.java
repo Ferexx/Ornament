@@ -13,7 +13,6 @@ import java.awt.image.BufferStrategy;
 // Fix holding space breaks doubleJump
 // Level parsing
 // Sword swing
-// Enemy Health Bars
 // Options menu
 // Load button
 // Mana bar

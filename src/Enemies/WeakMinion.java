@@ -30,6 +30,7 @@ public class WeakMinion extends Enemy {
         x += velX;
         y += velY;
 
+        //Changes the direction of the WeakMinion when "they" (gender neutral) hit the edge of the screen
         if (y <= 0 || y >= Game.HEIGHT - 140) velY *= -1;
 
         if (x <= 0 || x >= Game.WIDTH - 42) velX *= -1;

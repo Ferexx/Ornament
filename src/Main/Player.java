@@ -25,10 +25,15 @@ public class Player extends GameObject {
     boolean isFalling = false;
     private boolean isStanding = true;
     private boolean doubleJump = false;
-    private boolean canLightningAttack = true;
+    private boolean canEnergyAttack = true;
     private boolean canSwordAttack = false;
+    public boolean hasStamina = false;
+    public boolean hasMagic = true;
     public int playerHealth = 100;
-    public int playerWidth = 22;
+    public double playerMagic = 100;
+    public int maxMagic = 100;
+    public int playerStamina = 100;
+    private int playerWidth = 22;
     private int playerHeight = 54;
 
     private final Object lock = new Object();
@@ -46,6 +51,16 @@ public class Player extends GameObject {
     public void tick() {
         x += velX;
         y += velY;
+
+        if(playerMagic < maxMagic) {
+            playerMagic += 0.1;
+        }
+
+        if(playerMagic <= 1) {
+            canEnergyAttack = false;
+        } else {
+            canEnergyAttack = true;
+        }
 
         x = Game.clamp(x, 0, Game.WIDTH - 32);
 
@@ -201,8 +216,9 @@ public class Player extends GameObject {
     }
 
     public void leftAttack() {
-        if (canLightningAttack) {
+        if (canEnergyAttack) {
             handler.addAttack(new EnergyAttack(x - EnergyAttack.width, y - 38, game, false));
+            playerMagic -= 10;
         } else if (canSwordAttack) {
             handler.addAttack(new SwordAttack(x - SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {
@@ -212,8 +228,9 @@ public class Player extends GameObject {
     }
 
     public void rightAttack() {
-        if (canLightningAttack) {
+        if (canEnergyAttack) {
             handler.addAttack(new EnergyAttack(x, y - 38, game, true));
+            playerMagic -= 10;
         } else if (canSwordAttack) {
             handler.addAttack(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
         } else {

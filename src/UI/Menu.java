@@ -14,13 +14,13 @@ import java.io.IOException;
 
 public class Menu extends MouseAdapter {
 
-    public BufferedImage menuImage;
+    private BufferedImage menuImage;
     private Game game;
-    public Spawner spawn;
-    public static boolean playOutline = false, optionOutline = false, quitOutline = false;
+    private Spawner spawn;
+    private static boolean playOutline = false, optionOutline = false, quitOutline = false;
 
-    int mX;
-    int mY;
+    private int mX;
+    private int mY;
 
     public Menu(Game game) {
         this.game = game;

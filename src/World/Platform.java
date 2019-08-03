@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Platform extends WorldObject {
 
-    public BufferedImage texture;
+    private BufferedImage texture;
 
     public Platform(int x, int y, ID id, String textureLocation, Game game) throws IOException {
         super(x, y, id, game, true);

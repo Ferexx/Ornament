@@ -9,6 +9,7 @@ import java.awt.*;
 import java.util.LinkedList;
 
 public class Handler {
+    //Linked Lists for storing every object in the game
     public LinkedList<GameObject> object = new LinkedList<>();
     public LinkedList<Attack> attacks = new LinkedList<>();
     public LinkedList<Enemy> enemies = new LinkedList<>();

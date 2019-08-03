@@ -10,7 +10,7 @@ import World.Platform;
 import java.io.IOException;
 
 public class Spawner {
-    Game game;
+    private Game game;
 
     public Spawner(Game game) {
         this.game = game;

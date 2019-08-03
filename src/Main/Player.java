@@ -17,19 +17,19 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Player extends GameObject {
-    Handler handler;
+    private Handler handler;
     private Timer timer;
-    public BufferedImage playerImage;
+    private BufferedImage playerImage;
 
-    public boolean canDoubleJump = false;
-    public boolean isFalling = false;
-    public boolean isStanding = true;
-    public boolean doubleJump = false;
-    public boolean canLightningAttack = true;
-    public boolean canSwordAttack = false;
+    private boolean canDoubleJump = false;
+    boolean isFalling = false;
+    private boolean isStanding = true;
+    private boolean doubleJump = false;
+    private boolean canLightningAttack = true;
+    private boolean canSwordAttack = false;
     public int playerHealth = 100;
     public int playerWidth = 22;
-    public int playerHeight = 54;
+    private int playerHeight = 54;
 
     private final Object lock = new Object();
 
@@ -116,31 +116,6 @@ public class Player extends GameObject {
                 }
             }
 
-            /*for (int i = 0; i < handler.object.size(); i++) {
-                GameObject tempObject = handler.object.get(i);
-                if (tempObject.getID() == ID.EnergyAttack) {
-                    if (handler.object.get(4).getBounds().intersects(tempObject.getBounds())) {
-                        System.out.println("Hit!");
-                        WeakMinion.WEAK_MINION_HEALTH -= EnergyAttack.energyAttackDamage;
-                        tempObject.setVelX(0);
-                        if (WeakMinion.WEAK_MINION_HEALTH <= 0) {
-                            System.out.println("You killed a weak minion");
-                            handler.object.remove(handler.object.get(4));
-                        }
-                    }
-                }
-                if (tempObject.getID() == ID.SwordAttack) {
-                    if (handler.object.get(4).getBounds().intersects(tempObject.getBounds())) {
-                        System.out.println("Hit!");
-                        WeakMinion.WEAK_MINION_HEALTH -= SwordAttack.swordDamage;
-                        if (WeakMinion.WEAK_MINION_HEALTH <= 0) {
-                            System.out.println("You killed a weak minion");
-                            handler.object.remove(handler.object.get(4));
-                        }
-                    }
-                }
-            }*/
-
             if (!isStanding && !isFalling) {
                 isFalling = true;
                 isStanding = true;
@@ -173,6 +148,7 @@ public class Player extends GameObject {
         setHeight(playerImage.getHeight());
         if (x > 630) x = 631;
         if (x < 380) x = 379;
+        //Flip image if we are walking backwards
         if (this.velX < 0) {
             AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
             tx.translate(-playerImage.getWidth(null), 0);

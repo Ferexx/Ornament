@@ -1,6 +1,8 @@
 package Attacks;
+import Enemies.Enemy;
 import Main.Game;
 import Main.ID;
+import World.WorldObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +10,7 @@ import java.util.TimerTask;
 import java.util.Timer;
 
 public class EnergyAttack extends MagicAttack {
-    public static int energyAttackDamage = 2;
+    public static int energyAttackDamage = 20;
     public static int energyAttackCost = 1;
     private Image attackImage;
     private Game game;
@@ -20,6 +22,7 @@ public class EnergyAttack extends MagicAttack {
         width = 41;
         this.game=game;
         rightFacing=facingRight;
+        //Start attack moving, then slow it down gradually
         if (rightFacing) setVelX(+7);
         else setVelX(-7);
         fade();
@@ -27,9 +30,32 @@ public class EnergyAttack extends MagicAttack {
 
     public void tick() {
         x+=getVelX();
+        collision();
+    }
+
+    public void collision() {
+        //If attack collides with an enemy
+        for(int i = 0; i < game.handler.enemies.size(); i++) {
+            Enemy tempEnemy = game.handler.enemies.get(i);
+            if(getBounds().intersects(tempEnemy.getBounds())) {
+                tempEnemy.setHealth(tempEnemy.getHealth()-this.getDmg());
+                setDmg(0);
+                setVelX(0);
+                if(tempEnemy.getHealth()<1) game.handler.removeEnemy(tempEnemy);
+            }
+        }
+
+        //If attack collides with a world object
+        for(int i = 0; i < game.handler.world.size(); i++) {
+            WorldObject worldObject = game.handler.world.get(i);
+            if(worldObject.isStandable && getBounds().intersects(worldObject.getBounds())) {
+                setVelX(0);
+            }
+        }
     }
 
     public void render(Graphics g) {
+        //If the attack has reached the end of its life
         if(getVelX()<1&&getVelX()>=0&&rightFacing) {
             attackImage = new ImageIcon("assets/EnergyAttackEnd.png").getImage();
             g.drawImage(attackImage, getX()+15, getY()-3, null);
@@ -41,6 +67,7 @@ public class EnergyAttack extends MagicAttack {
             return;
         }
 
+        //Standard attack animation
         if (!rightFacing) {
             attackImage = new ImageIcon("assets/EnergyAttackReverse.gif").getImage();
             g.drawImage(attackImage, getX(), getY(), null);
@@ -59,6 +86,7 @@ public class EnergyAttack extends MagicAttack {
     }
 
     public void fade() {
+        //Decrease velocity until we come to a standstill, then attack explodes
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override

@@ -18,6 +18,7 @@ import java.awt.image.BufferStrategy;
 // Load button
 // Mana bar
 // Fix NullPointerEx for spamming energy attacks
+// Fix colliding with sides of platforms
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;

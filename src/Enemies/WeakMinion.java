@@ -46,6 +46,7 @@ public class WeakMinion extends Enemy {
         }
         setWidth(minionImage.getWidth());
         setHeight(minionImage.getHeight());
+        super.render(g);
 
         //Flip image if minion is traveling RTL
         if (this.velX < 0) {

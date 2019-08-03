@@ -92,8 +92,6 @@ public class Pause extends MouseAdapter {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.black);
-        g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
         try {
             pauseImage = ImageIO.read(new File("assets/PauseMenu.png"));
         } catch (IOException e) {

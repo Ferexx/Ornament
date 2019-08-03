@@ -61,6 +61,8 @@ public class Menu extends MouseAdapter {
         if (mouseOver(mx, my, Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 303, 89)) {
             //Play game
             game.gameState = STATE.Game;
+            game.removeMouseListener(this);
+            game.removeMouseListener(this);
 
             try {
                 spawn.spawnTestGame();

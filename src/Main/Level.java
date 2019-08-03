@@ -9,7 +9,7 @@ public class Level {
     Handler handler;
     
     public Level(String levelFolder, Handler handler) {
-        this.entityFile = new File("levelFolder"+"/entities.csv");
+        this.entityFile = new File(levelFolder+"/entities.csv");
         this.handler = handler;
         parseEntities(this.entityFile);
     }

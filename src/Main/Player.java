@@ -35,7 +35,7 @@ public class Player extends GameObject {
     public int maxMagic = 100;
     public int playerStamina = 100;
     private int playerWidth = 22;
-    private int playerHeight = 54;
+    private int playerHeight = 52;
 
     private final Object lock = new Object();
 
@@ -162,7 +162,7 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
         try {
-            playerImage = ImageIO.read(new File("assets/Knight.png"));
+            playerImage = ImageIO.read(new File("assets/WizardImageTemp.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();

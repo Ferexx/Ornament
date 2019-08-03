@@ -94,9 +94,12 @@ public class Game extends Canvas implements Runnable {
     }
 
     public void tick() {
+        //Paused game state stops handler from ticking
         if (gameState == STATE.Pause) {
             pause.tick();
+        //Else makes the game tick, or the menu tick (menu tick only happens at game launch)
         } else {
+
             handler.tick();
 
             if(gameState == STATE.Game) {

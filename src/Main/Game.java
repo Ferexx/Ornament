@@ -12,6 +12,12 @@ import java.awt.image.BufferStrategy;
 // Fix movement - sprinting
 // Fix holding space breaks doubleJump
 // Level parsing
+// Sword swing
+// Enemy Health Bars
+// Options menu
+// Load button
+// Mana bar
+// Fix NullPointerEx for spamming energy attacks
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;

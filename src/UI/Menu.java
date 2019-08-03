@@ -67,7 +67,6 @@ public class Menu extends MouseAdapter {
             game.removeMouseMotionListener(this);
 
             try {
-                System.out.println("Spawning from menu play");
                 spawn.spawnTestGame();
             } catch (IOException ex) {
                 ex.printStackTrace();

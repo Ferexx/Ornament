@@ -162,7 +162,7 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
         try {
-            playerImage = ImageIO.read(new File("assets/WizardImageTemp.png"));
+            playerImage = ImageIO.read(new File("assets/WizardImage.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();

@@ -37,6 +37,7 @@ public class WeakMinion extends Enemy {
     }
 
     public void render(Graphics g) {
+        super(g);
         try {
             minionImage = ImageIO.read(new File("assets/WeakMinion.png"));
         } catch (IOException e) {

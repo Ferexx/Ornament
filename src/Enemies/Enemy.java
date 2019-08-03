@@ -84,6 +84,12 @@ public abstract class Enemy extends GameObject {
     }
     public void render(Graphics g) {
 
+        //Minion health bar
+        g.setColor(new Color(220,20,60));
+        g.fillRect(x-getWidth()/2, y-getHeight()-10, getHealth()/3, 4);
+        g.setColor(Color.BLACK);
+        g.drawRect(x-getWidth()/2, y-getHeight()-10, (getHealth()/3) - 1, 4);
+
     }
     public Rectangle getBounds() {
         return new Rectangle(x, y, width, height);

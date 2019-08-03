@@ -24,11 +24,16 @@ public class HUD {
     }
 
     public void render(Graphics g) {
+        //Player health bar
         g.setColor(Color.gray);
         g.fillRect(15, 15, 200, 32);
         g.setColor(new Color(75, greenValue, 0));
         g.fillRect(15, 15, game.player.playerHealth * 2, 32);
         g.setColor(Color.BLACK);
         g.drawRect(15, 15, 200, 32);
+
+        //WeakMinion health bar
+
+
     }
 }

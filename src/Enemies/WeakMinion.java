@@ -37,7 +37,6 @@ public class WeakMinion extends Enemy {
     }
 
     public void render(Graphics g) {
-        super.render(g);
         try {
             minionImage = ImageIO.read(new File("assets/WeakMinion.png"));
         } catch (IOException e) {
@@ -47,6 +46,7 @@ public class WeakMinion extends Enemy {
         }
         setWidth(minionImage.getWidth());
         setHeight(minionImage.getHeight());
+        super.render(g);
 
         //Flip image if minion is traveling RTL
         if (this.velX < 0) {

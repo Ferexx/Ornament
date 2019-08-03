@@ -44,4 +44,12 @@ public abstract class MagicAttack extends Attack {
     public void setVelY(double velY) {
         this.velY = velY;
     }
+
+    public double getMagicCost() {
+        return magicCost;
+    }
+
+    public void setMagicCost(double magicCost) {
+        this.magicCost = magicCost;
+    }
 }

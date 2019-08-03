@@ -13,6 +13,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.security.Key;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -122,11 +123,17 @@ public class Player extends GameObject {
                             isStanding = true;
                         }
                         //If player hits left side of object
-                        else if (getX() < world.getX() && getY() > world.getY()+1) setVelX(0);
+                        else if (getX() < world.getX() + 10) {
+                            setVelX(0);
+                        }
                         //If player hits right side of object
-                        else if(getX() > world.getX() + world.getWidth()-10 && getY() > world.getY() + 1) setVelX(0);
+                        else if(getX() > world.getX() + world.getWidth() - 10) {
+                            setVelX(0);
+                        }
                         //If player hits underside of object
-                        else if (getY() > world.getY() + world.getHeight()) setVelY(getVelY() * -1);
+                        else if (getY() > world.getY() + world.getHeight()) {
+                            setVelY(getVelY() * -1);
+                        }
                     }
                 }
             }

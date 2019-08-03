@@ -9,6 +9,12 @@ import java.awt.image.BufferStrategy;
 //TODO
 // fix it so that you can't go left further than where you spawned
 // Sword image held by character
+// Sword swing
+// Enemy Health Bars
+// Options menu
+// Load button
+// Mana bar
+// Fix NullPointerEx for spamming energy attacks
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;

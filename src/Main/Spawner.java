@@ -3,6 +3,7 @@ package Main;
 import Enemies.WeakMinion;
 import Powerups.DoubleJumpPowerup;
 import Powerups.HealthPowerup;
+import Powerups.MagicPowerup;
 import UI.Background;
 import World.Ground;
 import World.Platform;
@@ -38,6 +39,7 @@ public class Spawner {
         for (int i = 600; i < 5601; i = i + 500) {
             handler.addEnemy(new WeakMinion(i, 580, ID.WeakMinion, game));
             handler.addPowerup(new HealthPowerup(i, 530, ID.HealthPowerup, game, "health"));
+            handler.addPowerup(new MagicPowerup(i+100, 530, ID.MagicPowerup, game, "magic"));
         }
     }
 }

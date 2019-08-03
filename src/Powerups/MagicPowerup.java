@@ -5,9 +5,9 @@ import Main.ID;
 
 import java.awt.*;
 
-public class HealthPowerup extends Powerup {
+public class MagicPowerup extends Powerup {
 
-    public HealthPowerup(int x, int y, ID id, Game game, String name) {
+    public MagicPowerup(int x, int y, ID id, Game game, String name) {
         super(x, y, id, game, name);
     }
 
@@ -15,7 +15,7 @@ public class HealthPowerup extends Powerup {
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.GREEN);
+        g.setColor(new Color(0, 125, 255));
         g.fillRect(x, y, 10, 10);
     }
 

@@ -56,6 +56,8 @@ public class Player extends GameObject {
         //Magic regen
         if(playerMagic < maxMagic) {
             playerMagic += 0.1;
+        } else {
+            playerMagic = maxMagic;
         }
 
         if(playerMagic < EnergyAttack.energyAttackCost) {
@@ -108,6 +110,9 @@ public class Player extends GameObject {
                             playerHealth+=25;
                             handler.powerups.remove(powerup);
                             break;
+                        case "magic":
+                            playerMagic+=50;
+                            handler.powerups.remove(powerup);
                     }
                 }
             }

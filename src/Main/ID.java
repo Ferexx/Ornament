@@ -10,4 +10,5 @@ public enum ID {
     HealthPowerup(),
     Platform(),
     MeleeAttack(),
+    MagicPowerup(),
 }

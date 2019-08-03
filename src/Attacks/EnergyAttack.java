@@ -33,7 +33,7 @@ public class EnergyAttack extends MagicAttack {
         collision();
     }
 
-    public void collision() {
+    private void collision() {
         //If attack collides with an enemy
         for(int i = 0; i < game.handler.enemies.size(); i++) {
             Enemy tempEnemy = game.handler.enemies.get(i);
@@ -85,7 +85,7 @@ public class EnergyAttack extends MagicAttack {
         }
     }
 
-    public void fade() {
+    private void fade() {
         //Decrease velocity until we come to a standstill, then attack explodes
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {

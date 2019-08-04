@@ -139,7 +139,7 @@ public class Game extends Canvas implements Runnable {
             g.setColor(Color.GREEN);    //FPS counter colour
             g.drawString( fps+" FPS", WIDTH-128,40);
 
-            alert.render(g);
+            //alert.render(g);
         } else if (gameState == STATE.Menu){
             menu.render(g);
         } else if (gameState == STATE.Pause) {

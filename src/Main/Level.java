@@ -23,6 +23,7 @@ public class Level {
         parsePlayer(playerFile);
         this.enemiesFile = new File(levelFolder+"\\Enemies.csv");
         parseEnemies(enemiesFile);
+        this.worldFile = new File(levelFolder+"\\worldObjects.csv");
     }
 
     public void parseBackground(File backgroundFile) {

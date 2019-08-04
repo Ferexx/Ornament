@@ -18,13 +18,13 @@ public class Spawner {
     }
 
     public void spawn() {
-        new Level("C:\\Users\\aerro\\IdeaProjects\\EPICGAMERGAME\\Levels\\Level1", game);
+        new Level("Levels/Level1", game);
     }
 
     public void spawnTestGame() throws IOException {
         Handler handler = game.handler;
 
-        handler.addObject(new Background(game, "C:\\Users\\aerro\\IdeaProjects\\EPICGAMERGAME\\assets\\TownBackground.png"));
+        handler.addObject(new Background(game, "assets/TownBackground.png"));
         handler.addWorldObject(new Platform(400, 500, ID.Platform, "assets/GrassPlatform.png", game));
 
 

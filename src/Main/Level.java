@@ -11,11 +11,11 @@ import World.Platform;
 
 import java.io.*;
 
-public class Level {
+class Level {
 
-    File levelFolder, enemiesFile, worldFile, powerupsFile, playerFile, backgroundFile;
-    Handler handler;
-    Game game;
+    private File levelFolder, enemiesFile, worldFile, powerupsFile, playerFile, backgroundFile;
+    private Handler handler;
+    private Game game;
     
     public Level(String levelFolder, Game game) {
         this.game = game;

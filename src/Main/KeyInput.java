@@ -100,10 +100,12 @@ public class KeyInput extends KeyAdapter {
                 }
 
                 if (key == KeyEvent.VK_LEFT) {
+                    game.player.isAttacking = false;
                     leftDown = false;
                 }
 
                 if (key == KeyEvent.VK_RIGHT) {
+                    game.player.isAttacking = false;
                     rightDown = false;
                 }
 

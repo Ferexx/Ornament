@@ -23,10 +23,10 @@ public class Player extends GameObject {
     private BufferedImage playerImage;
 
     //Attacks
-    private boolean canEnergyAttack = false;
+    private boolean canEnergyAttack = true;
         private boolean energyBlocked = false;
     private boolean canSwordAttack = false;
-    private boolean canLightningAttack = true;
+    private boolean canLightningAttack = false;
 
     private boolean canDoubleJump = false;
     boolean isFalling = false;
@@ -40,6 +40,7 @@ public class Player extends GameObject {
     public int playerStamina = 100;
     private int playerWidth = 22;
     private int playerHeight = 52;
+    public boolean isAttacking = false;
 
     private final Object lock = new Object();
 
@@ -81,10 +82,12 @@ public class Player extends GameObject {
         }
 
         if (KeyInput.rightAttack) {
+            isAttacking = true;
             rightAttack();
         }
 
         if (KeyInput.leftAttack) {
+            isAttacking = true;
             leftAttack();
         }
 
@@ -174,13 +177,24 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics g) {
-        try {
+
+        if(isAttacking) {
+            try {
+            playerImage = ImageIO.read(new File("assets/WizardAttackingStillRight.png"));
+        } catch (IOException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+            System.exit(0);
+        }
+
+        } else try {
             playerImage = ImageIO.read(new File("assets/WizardImage.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();
             System.exit(0);
         }
+
         setWidth(playerImage.getWidth());
         setHeight(playerImage.getHeight());
         if (x > 630) x = 631;
@@ -238,6 +252,7 @@ public class Player extends GameObject {
     }
 
     public void leftAttack() {
+
         if (canEnergyAttack && !energyBlocked) {
             handler.addAttack(new EnergyAttack(x - EnergyAttack.width, y - 38, game, false));
             playerMagic -= EnergyAttack.energyAttackCost;
@@ -253,6 +268,7 @@ public class Player extends GameObject {
     }
 
     public void rightAttack() {
+
         if (canEnergyAttack && !energyBlocked) {
             handler.addAttack(new EnergyAttack(x, y - 38, game, true));
             playerMagic -= EnergyAttack.energyAttackCost;

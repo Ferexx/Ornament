@@ -70,11 +70,9 @@ public class Level {
             BufferedReader br = new BufferedReader(new FileReader(enemiesFile));
             while((line = br.readLine())!=null) {
                 String[] values = line.split(",");
-                for(int i=0;i<values.length;i++) {
-                    switch(values[0]) {
-                        case "ID.WeakMinion":
-                            handler.addEnemy(new WeakMinion(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.WeakMinion, game));
-                    }
+                switch(values[0]) {
+                    case "ID.WeakMinion":
+                        handler.addEnemy(new WeakMinion(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.WeakMinion, game));
                 }
             }
         }
@@ -89,11 +87,9 @@ public class Level {
             BufferedReader br = new BufferedReader(new FileReader(worldFile));
             while((line = br.readLine())!=null) {
                 String[] values = line.split(",");
-                for(int i=0;i<values.length;i++) {
-                    switch(values[0]) {
-                        case "ID.Platform":
-                            handler.addWorldObject(new Platform(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.Platform, values[3], game));
-                    }
+                switch(values[0]) {
+                    case "ID.Platform":
+                        handler.addWorldObject(new Platform(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.Platform, values[3], game));
                 }
             }
         }
@@ -108,17 +104,16 @@ public class Level {
             BufferedReader br = new BufferedReader(new FileReader(powerupsFile));
             while((line = br.readLine())!=null) {
                 String[] values = line.split(",");
-                for(int i=0;i<values.length;i++) {
-                    switch(values[0]) {
-                        case "ID.DoubleJumpPowerup":
-                            handler.addPowerup(new DoubleJumpPowerup(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.DoubleJumpPowerup, game));
-                            break;
-                        case "ID.HealthPowerup":
-                            handler.addPowerup(new HealthPowerup(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.HealthPowerup, game));
-                            break;
-                        case "ID.MagicPowerup":
-                            handler.addPowerup(new MagicPowerup(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.MagicPowerup, game));
-                    }
+                switch(values[0]) {
+                    case "ID.DoubleJumpPowerup":
+                        handler.addPowerup(new DoubleJumpPowerup(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.DoubleJumpPowerup, game));
+                        break;
+                    case "ID.HealthPowerup":
+                        handler.addPowerup(new HealthPowerup(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.HealthPowerup, game));
+                        break;
+                    case "ID.MagicPowerup":
+                        handler.addPowerup(new MagicPowerup(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.MagicPowerup, game));
+                        break;
                 }
             }
         }

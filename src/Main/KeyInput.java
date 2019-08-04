@@ -64,6 +64,18 @@ public class KeyInput extends KeyAdapter {
                 game.removeMouseMotionListener(game.pause);
             }
         }
+
+        if (key == KeyEvent.VK_I) {
+            if(game.gameState == STATE.Game) {
+                game.addMouseListener(game.itemMenu);
+                game.addMouseMotionListener(game.itemMenu);
+                game.gameState = STATE.ItemSelect;
+            } else if (game.gameState == STATE.ItemSelect) {
+                game.gameState = STATE.Game;
+                game.removeMouseListener(game.itemMenu);
+                game.removeMouseMotionListener(game.itemMenu);
+            }
+        }
     }
 
     public void keyReleased(KeyEvent e) {

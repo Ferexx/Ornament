@@ -1,9 +1,7 @@
 package Main;
 
-import UI.Alert;
-import UI.HUD;
+import UI.*;
 import UI.Menu;
-import UI.Pause;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -29,6 +27,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private HUD hud;
     public UI.Menu menu;
+    public UI.ItemMenu itemMenu;
     public UI.Pause pause;
     private int fps;
     private boolean running = false;
@@ -44,15 +43,11 @@ public class Game extends Canvas implements Runnable {
         newGame = "Welcome to Rahau";
         handler = new Handler();
         menu = new Menu(this);
+        itemMenu = new ItemMenu(this);
         pause = new Pause(this);
         hud = new HUD(this);
         spawner = new Spawner(this);
         alert = new Alert(this, newGame, Color.WHITE, WIDTH/2 - 90, HEIGHT / 8, 2);
-
-        //g.fillRect(Game.WIDTH/2-90, Game.HEIGHT/8, 164, 20);
-        //        g.setColor(text);
-        //        g.setFont(new Font("Verdana", Font.ITALIC, 16));
-        //        g.drawString(message, Game.WIDTH/2-86, Game.HEIGHT/8 + 16);
 
         this.addKeyListener(new KeyInput(this));
 
@@ -110,6 +105,8 @@ public class Game extends Canvas implements Runnable {
         if (gameState == STATE.Pause) {
             pause.tick();
         //Else makes the game tick, or the menu tick (menu tick only happens at game launch)
+        }  else if(gameState == STATE.ItemSelect) {
+            itemMenu.tick();
         } else {
 
             handler.tick();
@@ -144,6 +141,8 @@ public class Game extends Canvas implements Runnable {
             menu.render(g);
         } else if (gameState == STATE.Pause) {
             pause.render(g);
+        } else if(gameState == STATE.ItemSelect) {
+            itemMenu.render(g);
         }
 
         g.dispose();

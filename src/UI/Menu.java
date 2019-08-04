@@ -56,11 +56,10 @@ public class Menu extends MouseAdapter {
     }
 
     public void mousePressed(MouseEvent e) {
+        mX = e.getX();
+        mY = e.getY();
 
-        int mx = e.getX();
-        int my = e.getY();
-
-        if (mouseOver(mx, my, Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 303, 89)) {
+        if (mouseOver(mX, mY, Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 303, 89)) {
             //Play game
             game.gameState = STATE.Game;
             game.removeMouseListener(this);
@@ -73,11 +72,11 @@ public class Menu extends MouseAdapter {
             }
         }
 
-        if (mouseOver(mx, my, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {
+        if (mouseOver(mX, mY, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {
             //Options
         }
 
-        if (mouseOver(mx, my, Game.WIDTH / 2 - 97, Game.HEIGHT / 2 + 86, 166, 53)) {
+        if (mouseOver(mX, mY, Game.WIDTH / 2 - 97, Game.HEIGHT / 2 + 86, 166, 53)) {
             //quit
             System.exit(0);
         }

@@ -2,8 +2,12 @@ package Main;
 
 
 import Enemies.WeakMinion;
+import Powerups.DoubleJumpPowerup;
+import Powerups.HealthPowerup;
+import Powerups.MagicPowerup;
 import UI.Background;
 import World.Ground;
+import World.Platform;
 
 import java.io.*;
 
@@ -24,9 +28,12 @@ public class Level {
         this.enemiesFile = new File(levelFolder+"\\Enemies.csv");
         parseEnemies(enemiesFile);
         this.worldFile = new File(levelFolder+"\\worldObjects.csv");
+        parseWorldObjects(worldFile);
+        this.powerupsFile = new File(levelFolder+"\\Powerups.csv");
+        parsePowerups(powerupsFile);
     }
 
-    public void parseBackground(File backgroundFile) {
+    private void parseBackground(File backgroundFile) {
         String line = "";
         try {
             BufferedReader br = new BufferedReader(new FileReader(backgroundFile));
@@ -41,7 +48,7 @@ public class Level {
         }
     }
 
-    public void parsePlayer(File backgroundFile) {
+    private void parsePlayer(File backgroundFile) {
         String line = "";
         try {
             BufferedReader br = new BufferedReader(new FileReader(backgroundFile));
@@ -67,6 +74,50 @@ public class Level {
                     switch(values[0]) {
                         case "ID.WeakMinion":
                             handler.addEnemy(new WeakMinion(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.WeakMinion, game));
+                    }
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void parseWorldObjects(File worldFile) {
+        String line= "";
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(worldFile));
+            while((line = br.readLine())!=null) {
+                String[] values = line.split(",");
+                for(int i=0;i<values.length;i++) {
+                    switch(values[0]) {
+                        case "ID.Platform":
+                            handler.addWorldObject(new Platform(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.Platform, values[3], game));
+                    }
+                }
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void parsePowerups(File powerupsFile) {
+        String line= "";
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(powerupsFile));
+            while((line = br.readLine())!=null) {
+                String[] values = line.split(",");
+                for(int i=0;i<values.length;i++) {
+                    switch(values[0]) {
+                        case "ID.DoubleJumpPowerup":
+                            handler.addPowerup(new DoubleJumpPowerup(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.DoubleJumpPowerup, game));
+                            break;
+                        case "ID.HealthPowerup":
+                            handler.addPowerup(new HealthPowerup(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.HealthPowerup, game));
+                            break;
+                        case "ID.MagicPowerup":
+                            handler.addPowerup(new MagicPowerup(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.MagicPowerup, game));
                     }
                 }
             }

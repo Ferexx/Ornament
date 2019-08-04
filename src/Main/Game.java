@@ -11,7 +11,6 @@ import java.awt.image.BufferStrategy;
 // Sword image held by character
 // Fix movement - sprinting
 // Fix holding space breaks doubleJump
-// Level parsing
 // Sword swing
 // Options menu
 // Load button

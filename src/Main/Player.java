@@ -22,6 +22,8 @@ public class Player extends GameObject {
     private Timer timer;
     private BufferedImage playerImage;
 
+    private boolean godMode = true;
+
     //Attacks
     private boolean canEnergyAttack = true;
         private boolean energyBlocked = false;
@@ -34,7 +36,8 @@ public class Player extends GameObject {
     private boolean doubleJump = false;
     public boolean hasStamina = false;
     public boolean hasMagic = true;
-    public int playerHealth = 100;
+    public int playerHealth = 100000;
+    public int maxHealth = 100000;
     public double playerMagic = 100;
     public int maxMagic = 100;
     public int playerStamina = 100;
@@ -57,6 +60,12 @@ public class Player extends GameObject {
     public void tick() {
         x += velX;
         y += velY;
+
+        if(godMode) {
+            playerMagic+=1000;
+            playerHealth+=1000;
+            playerStamina+=1000;
+        }
 
         //Magic regen
         if(playerMagic < maxMagic) {

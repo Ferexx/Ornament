@@ -1,5 +1,6 @@
 package Main;
 
+import UI.Alert;
 import UI.HUD;
 import UI.Menu;
 import UI.Pause;
@@ -18,6 +19,8 @@ import java.awt.image.BufferStrategy;
 // Load button
 // Fix NullPointerEx for spamming energy attacks
 // Fix colliding with sides of platforms
+// Make damage report above where player/mobs take damage
+// fix alert disappearing after 2 seconds
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;
@@ -32,15 +35,24 @@ public class Game extends Canvas implements Runnable {
     public Player player;
     public Handler handler;
     public Spawner spawner;
+    public Alert alert;
+    private String newGame;
 
     public STATE gameState = STATE.Menu;
 
     public Game() {
+        newGame = "Welcome to Rahau";
         handler = new Handler();
         menu = new Menu(this);
         pause = new Pause(this);
         hud = new HUD(this);
         spawner = new Spawner(this);
+        alert = new Alert(this, newGame, Color.WHITE, WIDTH/2 - 90, HEIGHT / 8, 2);
+
+        //g.fillRect(Game.WIDTH/2-90, Game.HEIGHT/8, 164, 20);
+        //        g.setColor(text);
+        //        g.setFont(new Font("Verdana", Font.ITALIC, 16));
+        //        g.drawString(message, Game.WIDTH/2-86, Game.HEIGHT/8 + 16);
 
         this.addKeyListener(new KeyInput(this));
 
@@ -126,6 +138,8 @@ public class Game extends Canvas implements Runnable {
             g.setFont(new Font("Verdana", 1, 16));
             g.setColor(Color.GREEN);    //FPS counter colour
             g.drawString( fps+" FPS", WIDTH-128,40);
+
+            alert.render(g);
         } else if (gameState == STATE.Menu){
             menu.render(g);
         } else if (gameState == STATE.Pause) {

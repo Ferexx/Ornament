@@ -27,7 +27,6 @@ public class WeakMinion extends Enemy {
     }
 
     public void tick() {
-        System.out.println(health);
         x += velX;
         y += velY;
 

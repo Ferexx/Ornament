@@ -25,10 +25,10 @@ public class Player extends GameObject {
     private boolean godMode = true;
 
     //Attacks
-    private boolean canEnergyAttack = true;
+    private boolean canEnergyAttack = false;
         private boolean energyBlocked = false;
     private boolean canSwordAttack = false;
-    private boolean canLightningAttack = false;
+    private boolean canLightningAttack = true;
 
     private boolean canDoubleJump = false;
     boolean isFalling = false;

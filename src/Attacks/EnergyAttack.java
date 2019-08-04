@@ -42,7 +42,10 @@ public class EnergyAttack extends MagicAttack {
                 tempEnemy.setHealth(tempEnemy.getHealth()-this.getDmg());
                 setDmg(0);
                 setVelX(0);
-                if(tempEnemy.getHealth()<1) game.handler.removeEnemy(tempEnemy);
+                if(tempEnemy.getHealth()<1) {
+                    game.handler.removeEnemy(tempEnemy);
+                    System.out.println("you kill");
+                }
             }
         }
 

@@ -14,7 +14,6 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.security.Key;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -44,10 +43,10 @@ public class Player extends GameObject {
 
     private final Object lock = new Object();
 
-    public Player(int x, int y, ID id, Handler handler, Game game) {
+    public Player(int x, int y, ID id, Game game) {
         super(x, y, id, game);
 
-        this.handler = handler;
+        this.handler = game.handler;
     }
 
     public Rectangle getBounds() {
@@ -108,16 +107,16 @@ public class Player extends GameObject {
             for(int i = 0; i < handler.powerups.size(); i++) {
                 Powerup powerup = handler.powerups.get(i);
                 if(getBounds().intersects(powerup.getBounds())) {
-                    switch(powerup.getPowerupName()) {
-                        case "doubleJump":
+                    switch(powerup.getID()) {
+                        case DoubleJumpPowerup:
                             this.canDoubleJump = true;
                             handler.powerups.remove(powerup);
                             break;
-                        case "health":
+                        case HealthPowerup:
                             playerHealth+=25;
                             handler.powerups.remove(powerup);
                             break;
-                        case "magic":
+                        case MagicPowerup:
                             playerMagic+=50;
                             if(playerMagic > 100) {
                                 playerMagic = 100;

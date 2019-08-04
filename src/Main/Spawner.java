@@ -18,28 +18,28 @@ public class Spawner {
     }
 
     public void spawn() {
-        //will be used to spawn in map loading and additional objects
+        new Level("C:\\Users\\aerro\\IdeaProjects\\EPICGAMERGAME\\Levels\\Level1", game);
     }
 
     public void spawnTestGame() throws IOException {
         Handler handler = game.handler;
 
-        handler.addObject(new Background(game));
+        handler.addObject(new Background(game, "C:\\Users\\aerro\\IdeaProjects\\EPICGAMERGAME\\assets\\TownBackground.png"));
         handler.addWorldObject(new Platform(400, 500, ID.Platform, "assets/GrassPlatform.png", game));
 
 
-        handler.addWorldObject(new Ground(0, 580, ID.Ground, game));
+        handler.addWorldObject(new Ground(ID.Ground, game, 80000));
         for(int i = 800; i < 6001; i += 800) {
             handler.addWorldObject(new Platform(i, 400, ID.Platform, "assets/GrassPlatform.png", game));
         }
 
         handler.addObject(game.player);
 
-        handler.addPowerup(new DoubleJumpPowerup(Game.WIDTH / 2, 530, ID.DoubleJumpPowerup, game, "doubleJump"));
+        handler.addPowerup(new DoubleJumpPowerup(Game.WIDTH / 2, 530, ID.DoubleJumpPowerup, game));
         for (int i = 600; i < 5601; i = i + 500) {
             handler.addEnemy(new WeakMinion(i, 580, ID.WeakMinion, game));
-            handler.addPowerup(new HealthPowerup(i, 530, ID.HealthPowerup, game, "health"));
-            handler.addPowerup(new MagicPowerup(i+100, 530, ID.MagicPowerup, game, "magic"));
+            handler.addPowerup(new HealthPowerup(i, 530, ID.HealthPowerup, game));
+            handler.addPowerup(new MagicPowerup(i+100, 530, ID.MagicPowerup, game));
         }
     }
 }

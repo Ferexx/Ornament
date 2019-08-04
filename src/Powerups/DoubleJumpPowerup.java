@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class DoubleJumpPowerup extends Powerup {
 
-    public DoubleJumpPowerup(int x, int y, ID id, Game game, String name) {
-        super(x, y, id, game, name);
+    public DoubleJumpPowerup(int x, int y, ID id, Game game) {
+        super(x, y, id, game);
     }
 
     public void tick() {

@@ -7,8 +7,8 @@ import java.awt.*;
 
 public class MagicPowerup extends Powerup {
 
-    public MagicPowerup(int x, int y, ID id, Game game, String name) {
-        super(x, y, id, game, name);
+    public MagicPowerup(int x, int y, ID id, Game game) {
+        super(x, y, id, game);
     }
 
     public void tick() {

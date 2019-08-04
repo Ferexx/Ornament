@@ -16,11 +16,11 @@ public class Background extends GameObject {
     public int b1x = 0;
     public int b2x;
 
-    public Background(Game game) {
+    public Background(Game game, String textureLocation) {
         super(game);
 
-        backgroundImage = Toolkit.getDefaultToolkit().createImage("assets/TownBackground.png");
-        backgroundImage2 = Toolkit.getDefaultToolkit().createImage("assets/TownBackground.png");
+        backgroundImage = Toolkit.getDefaultToolkit().createImage(textureLocation);
+        backgroundImage2 = Toolkit.getDefaultToolkit().createImage(textureLocation);
     }
 
     public void tick() {

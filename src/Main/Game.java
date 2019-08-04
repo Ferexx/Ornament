@@ -46,6 +46,7 @@ public class Game extends Canvas implements Runnable {
         itemMenu = new ItemMenu(this);
         pause = new Pause(this);
         hud = new HUD(this);
+        player = new Player(410, 250, ID.Player, this);
         spawner = new Spawner(this);
         alert = new Alert(this, newGame, Color.WHITE, WIDTH/2 - 90, HEIGHT / 8, 2);
 
@@ -53,7 +54,6 @@ public class Game extends Canvas implements Runnable {
 
         new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
 
-        player = new Player(410, 250, ID.Player, handler, this);
     }
 
     public synchronized void start() {

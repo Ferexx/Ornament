@@ -65,11 +65,7 @@ public class Menu extends MouseAdapter {
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
 
-            try {
-                spawn.spawnTestGame();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            spawn.spawn();
         }
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {

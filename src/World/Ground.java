@@ -6,12 +6,13 @@ import Main.ID;
 import java.awt.*;
 
 public class Ground extends WorldObject {
-    public Ground(int x, int y, ID id, Game game) {
-        super(x, y, id, game, true);
+    public Ground(ID id, Game game, int width) {
+        super(0, 580, id, game, true);
+        setWidth(width);
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y, 80000, 5);
+        return new Rectangle(x, y, width, 5);
     }
 
     public void tick() {

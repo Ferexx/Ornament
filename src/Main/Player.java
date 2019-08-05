@@ -38,7 +38,7 @@ public class Player extends GameObject {
     private boolean canDoubleJump = false;
     boolean isFalling = false;
     private boolean isStanding = true;
-    private boolean doubleJump = false;
+    public boolean doubleJump = false;
     private boolean facingRight=true;
 
     //Players position in the level. x and y are used for position on screen
@@ -82,6 +82,8 @@ public class Player extends GameObject {
         collision();
         x += velX;
         absoluteX+=velX;
+
+        System.out.println(doubleJump);
 
         if(velX < 0) facingRight=false;
         if(velX > 0) facingRight=true;
@@ -268,6 +270,7 @@ public class Player extends GameObject {
                         if (!isFalling) {
                             isStanding = true;
                             doubleJump = false;
+                            System.out.println("cancelled");
                             setVelY(0);
                             cancel();
                         } else {
@@ -278,6 +281,7 @@ public class Player extends GameObject {
             } else if (!isFalling) {
                 isFalling = true;
                 setVelY(-5);
+                doubleJump=false;
                 timer.cancel();
                 timer = new Timer();
                 timer.scheduleAtFixedRate(new TimerTask() {

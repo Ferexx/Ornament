@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 //TODO
-// Fix holding space breaks doubleJump
-// Fix colliding with sides of platforms
 // Make damage report above where player/mobs take damage
 // Fix random character flying off screen
 // Melee gameplay

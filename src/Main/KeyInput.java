@@ -116,7 +116,6 @@ public class KeyInput extends KeyAdapter {
                 }
 
                 if (key == KeyEvent.VK_SPACE) {
-                    //ground level is 460, make jump for key release work plz xx
                 }
 
                 if (key == KeyEvent.VK_SHIFT) {

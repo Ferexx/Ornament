@@ -54,10 +54,10 @@ public class LightningAttack extends MagicAttack{
     public void render(Graphics g) {
         //Standard attack animation
         if (!rightFacing) {
-            attackImage = new ImageIcon("assets/lightningAttack.gif").getImage();
+            attackImage = new ImageIcon("assets/Attacks/lightningAttack.gif").getImage();
             g.drawImage(attackImage, game.player.getX() - width, game.player.getY()-38, null);
         } else {
-            attackImage = new ImageIcon("assets/lightningAttack.gif").getImage();
+            attackImage = new ImageIcon("assets/Attacks/lightningAttack.gif").getImage();
             g.drawImage(attackImage, game.player.getX() + 25, game.player.getY()-38, null);
         }
     }

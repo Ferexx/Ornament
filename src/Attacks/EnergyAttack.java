@@ -60,22 +60,22 @@ public class EnergyAttack extends MagicAttack {
     public void render(Graphics g) {
         //If the attack has reached the end of its life
         if(getVelX()<1&&getVelX()>=0&&rightFacing) {
-            attackImage = new ImageIcon("assets/EnergyAttackEnd.png").getImage();
+            attackImage = new ImageIcon("assets/Attacks/EnergyAttackEnd.png").getImage();
             g.drawImage(attackImage, getX()+15, getY()-3, null);
             return;
         }
         else if(getVelX()>-1&&getVelX()<=0&&!rightFacing) {
-            attackImage = new ImageIcon("assets/EnergyAttackEndReverse.png").getImage();
+            attackImage = new ImageIcon("assets/Attacks/EnergyAttackEndReverse.png").getImage();
             g.drawImage(attackImage, getX(), getY()-3, null);
             return;
         }
 
         //Standard attack animation
         if (!rightFacing) {
-            attackImage = new ImageIcon("assets/EnergyAttackReverse.gif").getImage();
+            attackImage = new ImageIcon("assets/Attacks/EnergyAttackReverse.gif").getImage();
             g.drawImage(attackImage, getX(), getY(), null);
         } else {
-            attackImage = new ImageIcon("assets/EnergyAttack.gif").getImage();
+            attackImage = new ImageIcon("assets/Attacks/EnergyAttack.gif").getImage();
             g.drawImage(attackImage, getX() + 20, getY(), null);
         }
     }

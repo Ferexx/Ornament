@@ -120,7 +120,7 @@ public class KeyInput extends KeyAdapter {
                 }
 
                 if (key == KeyEvent.VK_SHIFT) {
-                    if (!game.player.isFalling) tempObject.setVelX(tempObject.getVelX() / 2);
+                    if (!game.player.isFalling && (game.player.getVelX() > 5 || game.player.getVelX() < -5)) tempObject.setVelX(tempObject.getVelX() / 2);
                 }
             }
         }

@@ -74,11 +74,11 @@ public class Player extends GameObject {
     }
 
     public void tick() {
+        //Updating relative position in window and also position in level
         x += velX;
         y += velY;
         absoluteX+=velX;
         absoluteY+=velY;
-        System.out.println(absoluteX);
 
         //Godmode traits
         if(godMode) {

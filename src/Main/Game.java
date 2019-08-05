@@ -13,11 +13,11 @@ import java.awt.image.BufferStrategy;
 // Fix holding space breaks doubleJump
 // Sword swing
 // Options menu
-// Load button
 // Fix NullPointerEx for spamming energy attacks
 // Fix colliding with sides of platforms
 // Make damage report above where player/mobs take damage
 // fix alert disappearing after 2 seconds
+// Cool swappy thing in itemMenu
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;

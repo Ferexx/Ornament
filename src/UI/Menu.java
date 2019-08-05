@@ -76,6 +76,10 @@ public class Menu extends MouseAdapter {
             //quit
             System.exit(0);
         }
+
+        if(mouseOver(mX, mY, Game.WIDTH / 2 + 148, Game.HEIGHT / 2 - 89, 66, 34)) {
+            //TODO Jack your load-code goes here
+        }
     }
 
     public void mouseReleased(MouseEvent e) {
@@ -102,7 +106,7 @@ public class Menu extends MouseAdapter {
         g.setColor(Color.black);
         g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
         try {
-            menuImage = ImageIO.read(new File("assets/Menubackground.png"));
+            menuImage = ImageIO.read(new File("assets/menuImage.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();
@@ -111,24 +115,27 @@ public class Menu extends MouseAdapter {
 
         g.drawImage(menuImage, 150, 0, null);
 
+        g.setColor(Color.green);
         if (playOutline) {
-            g.setColor(Color.green);
             g.drawRect(Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 302, 88);
-            g.drawRect(Game.WIDTH / 2 - 164, Game.HEIGHT / 2 - 88, 304, 88);
-            g.drawRect(Game.WIDTH / 2 - 165, Game.HEIGHT / 2 - 87, 306, 88);
-            g.drawRect(Game.WIDTH / 2 - 166, Game.HEIGHT / 2 - 86, 308, 88);
+            g.drawRect(Game.WIDTH / 2 - 164, Game.HEIGHT / 2 - 90, 304, 90);
+            g.drawRect(Game.WIDTH / 2 - 165, Game.HEIGHT / 2 - 91, 306, 92);
+            g.drawRect(Game.WIDTH / 2 - 166, Game.HEIGHT / 2 - 92, 308, 94);
         } else if (optionOutline) {
-            g.setColor(Color.green);
             g.drawRect(Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 233, 72);
-            g.drawRect(Game.WIDTH / 2 - 132, Game.HEIGHT / 2 + 8, 235, 72);
-            g.drawRect(Game.WIDTH / 2 - 133, Game.HEIGHT / 2 + 9, 237, 72);
-            g.drawRect(Game.WIDTH / 2 - 134, Game.HEIGHT / 2 + 10, 239, 72);
+            g.drawRect(Game.WIDTH / 2 - 132, Game.HEIGHT / 2 + 6, 235, 74);
+            g.drawRect(Game.WIDTH / 2 - 133, Game.HEIGHT / 2 + 5, 237, 76);
+            g.drawRect(Game.WIDTH / 2 - 134, Game.HEIGHT / 2 + 4, 239, 78);
         } else if (quitOutline) {
-            g.setColor(Color.green);
             g.drawRect(Game.WIDTH / 2 - 97, Game.HEIGHT / 2 + 86, 165, 52);
-            g.drawRect(Game.WIDTH / 2 - 98, Game.HEIGHT / 2 + 87, 167, 52);
-            g.drawRect(Game.WIDTH / 2 - 99, Game.HEIGHT / 2 + 88, 169, 52);
-            g.drawRect(Game.WIDTH / 2 - 100, Game.HEIGHT / 2 + 89, 171, 52);
+            g.drawRect(Game.WIDTH / 2 - 98, Game.HEIGHT / 2 + 85, 167, 54);
+            g.drawRect(Game.WIDTH / 2 - 99, Game.HEIGHT / 2 + 84, 169, 56);
+            g.drawRect(Game.WIDTH / 2 - 100, Game.HEIGHT / 2 + 83, 171, 58);
+        } else if(mouseOver(mX, mY, Game.WIDTH / 2 + 148, Game.HEIGHT / 2 - 89, 66, 34)) {
+            g.drawRect(Game.WIDTH / 2 + 148, Game.HEIGHT / 2 - 89, 66, 34);
+            g.drawRect(Game.WIDTH / 2 + 147, Game.HEIGHT / 2 - 90, 68, 36);
+            g.drawRect(Game.WIDTH / 2 + 146, Game.HEIGHT / 2 - 91, 70, 38);
+            g.drawRect(Game.WIDTH / 2 + 145, Game.HEIGHT / 2 - 92, 72, 40);
         }
 
     }

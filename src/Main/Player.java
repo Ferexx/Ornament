@@ -21,19 +21,22 @@ public class Player extends GameObject {
     private Handler handler;
     private Timer timer;
     private BufferedImage playerImage;
+    public Class classType;
 
-    private boolean godMode = true;
+    //Godmode - infinite health, stamina, mana
+    private boolean godMode = false;
 
     //Attacks
-    private boolean canEnergyAttack = false;
+    public boolean canEnergyAttack = false;
         private boolean energyBlocked = false;
-    private boolean canSwordAttack = false;
-    private boolean canLightningAttack = true;
+    public boolean canSwordAttack = false;
+    public boolean canLightningAttack = false;
 
     private boolean canDoubleJump = false;
     boolean isFalling = false;
     private boolean isStanding = true;
     private boolean doubleJump = false;
+
     public boolean hasStamina = false;
     public boolean hasMagic = true;
     public int playerHealth = 100000;
@@ -51,6 +54,7 @@ public class Player extends GameObject {
         super(x, y, id, game);
 
         this.handler = game.handler;
+        classType = Class.Mage;
     }
 
     public Rectangle getBounds() {

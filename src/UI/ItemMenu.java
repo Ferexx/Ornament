@@ -1,6 +1,7 @@
 package UI;
 
 import Main.Game;
+import Main.Player;
 import Main.STATE;
 
 import javax.imageio.ImageIO;
@@ -80,6 +81,17 @@ public class ItemMenu extends MouseAdapter {
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
         }
+
+        //Toggles between the different abilities
+        if(mouseOver(mX, mY, 326, 302, 177, 39)) {
+            game.player.canEnergyAttack = true;
+            game.player.canLightningAttack = false;
+            game.player.canSwordAttack = false;
+        } else if (mouseOver(mX, mY, 326, 350, 177, 39)) {
+            game.player.canEnergyAttack = false;
+            game.player.canLightningAttack = true;
+            game.player.canSwordAttack = false;
+        }
     }
 
     private boolean mouseOver(int mX, int mY, int x, int y, int width, int height) {
@@ -109,7 +121,11 @@ public class ItemMenu extends MouseAdapter {
 
         g.drawImage(itemSelectImage, 150, 0, null);
 
-
+        //Draws ability text
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Verdana", 1, 18));
+        g.drawString("Energy Attack", 330, 330);
+        g.drawString("Lightning Attack", 330, 378);
 
         if(overResume) {
             g.setColor(Color.blue);

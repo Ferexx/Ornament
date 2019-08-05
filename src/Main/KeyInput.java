@@ -51,6 +51,7 @@ public class KeyInput extends KeyAdapter {
             }
         }
 
+        //mainly exit menu and exit game type stuff
         if (key == KeyEvent.VK_ESCAPE) {
             if(game.gameState == STATE.Menu) {
                 System.exit(0);
@@ -62,9 +63,14 @@ public class KeyInput extends KeyAdapter {
                 game.gameState = STATE.Game;
                 game.removeMouseListener(game.pause);
                 game.removeMouseMotionListener(game.pause);
+            } else if (game.gameState == STATE.ItemSelect) {
+                game.gameState = STATE.Game;
+                game.removeMouseListener(game.itemMenu);
+                game.removeMouseMotionListener(game.itemMenu);
             }
         }
 
+        //Opens item menu when in game, closes it when in menu
         if (key == KeyEvent.VK_I) {
             if(game.gameState == STATE.Game) {
                 game.addMouseListener(game.itemMenu);

@@ -32,11 +32,13 @@ public class Player extends GameObject {
     public boolean canSwordAttack = false;
     public boolean canLightningAttack = false;
 
+    //Movement
     private boolean canDoubleJump = false;
     boolean isFalling = false;
     private boolean isStanding = true;
     private boolean doubleJump = false;
 
+    //Attributes
     public boolean hasStamina = false;
     public boolean hasMagic = true;
     public int playerHealth = 100000;
@@ -44,9 +46,11 @@ public class Player extends GameObject {
     public double playerMagic = 100;
     public int maxMagic = 100;
     public int playerStamina = 100;
+    public boolean isAttacking = false;
+
+    //Physical dimensions
     private int playerWidth = 22;
     private int playerHeight = 52;
-    public boolean isAttacking = false;
 
     private final Object lock = new Object();
 
@@ -65,6 +69,7 @@ public class Player extends GameObject {
         x += velX;
         y += velY;
 
+        //Godmode traits
         if(godMode) {
             playerMagic+=1000;
             playerHealth+=1000;
@@ -89,21 +94,25 @@ public class Player extends GameObject {
 
         x = Game.clamp(x, 0, Game.WIDTH - 32);
 
+        //Death case
         if (playerHealth <= 0) {
             System.out.println("You died!");
             handler.removeObject(this);
         }
 
+        //If right attacking
         if (KeyInput.rightAttack) {
             isAttacking = true;
             rightAttack();
         }
 
+        //if left attacking
         if (KeyInput.leftAttack) {
             isAttacking = true;
             leftAttack();
         }
 
+        //collision is called every tick
         collision();
     }
 
@@ -191,27 +200,31 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
 
+        //Animation stuff for attacking
         if(isAttacking) {
             try {
-            playerImage = ImageIO.read(new File("assets/WizardAttackingStillRight.png"));
-        } catch (IOException e) {
-            System.out.println("File not found");
-            e.printStackTrace();
-            System.exit(0);
-        }
-
-        } else try {
-            playerImage = ImageIO.read(new File("assets/WizardImage.png"));
-        } catch (IOException e) {
-            System.out.println("File not found");
-            e.printStackTrace();
-            System.exit(0);
+                playerImage = ImageIO.read(new File("assets/WizardAttackingStillRight.png"));
+            } catch (IOException e) {
+                System.out.println("File not found");
+                e.printStackTrace();
+                System.exit(0);
+            }
+            //Basic Mage image
+        } else {
+            try {
+                playerImage = ImageIO.read(new File("assets/WizardImage.png"));
+            } catch (IOException e) {
+                System.out.println("File not found");
+                e.printStackTrace();
+                System.exit(0);
+            }
         }
 
         setWidth(playerImage.getWidth());
         setHeight(playerImage.getHeight());
         if (x > 630) x = 631;
         if (x < 380) x = 379;
+
         //Flip image if we are walking backwards
         if (this.velX < 0) {
             AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
@@ -264,6 +277,23 @@ public class Player extends GameObject {
         }
     }
 
+    //right attack function
+    public void rightAttack() {
+
+        if (canEnergyAttack && !energyBlocked) {
+            handler.addAttack(new EnergyAttack(x, y - 38, game, true));
+            playerMagic -= EnergyAttack.energyAttackCost;
+        } else if (canSwordAttack) {
+            handler.addAttack(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
+        } else if (canLightningAttack) {
+            handler.addAttack(new LightningAttack(x + 25, y - 38, game, true));
+        } else {
+            System.out.println("You cannot attack at this time");
+        }
+        KeyInput.rightAttack = false;
+    }
+
+    //left attack function
     public void leftAttack() {
 
         if (canEnergyAttack && !energyBlocked) {
@@ -278,20 +308,5 @@ public class Player extends GameObject {
             System.out.println("You cannot attack at this time");
         }
         KeyInput.leftAttack = false;
-    }
-
-    public void rightAttack() {
-
-        if (canEnergyAttack && !energyBlocked) {
-            handler.addAttack(new EnergyAttack(x, y - 38, game, true));
-            playerMagic -= EnergyAttack.energyAttackCost;
-        } else if (canSwordAttack) {
-            handler.addAttack(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
-        } else if (canLightningAttack) {
-            handler.addAttack(new LightningAttack(x + 25, y - 38, game, true));
-        } else {
-            System.out.println("You cannot attack at this time");
-        }
-        KeyInput.rightAttack = false;
     }
 }

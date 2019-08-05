@@ -83,8 +83,6 @@ public class Player extends GameObject {
         x += velX;
         absoluteX+=velX;
 
-        System.out.println(doubleJump);
-
         if(velX < 0) facingRight=false;
         if(velX > 0) facingRight=true;
 
@@ -270,7 +268,6 @@ public class Player extends GameObject {
                         if (!isFalling) {
                             isStanding = true;
                             doubleJump = false;
-                            System.out.println("cancelled");
                             setVelY(0);
                             cancel();
                         } else {

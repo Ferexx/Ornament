@@ -8,7 +8,6 @@ import java.awt.image.BufferStrategy;
 
 //TODO
 // Make damage report above where player/mobs take damage
-// Fix random character flying off screen
 // Melee gameplay
 // Bow gameplay
 // Utilize Class Enum

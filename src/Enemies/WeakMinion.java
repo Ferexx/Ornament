@@ -18,7 +18,7 @@ public class WeakMinion extends Enemy {
     public WeakMinion(int x, int y, ID id, Game game) {
         super(x, y, id, game, 100);
 
-        velX = 2;
+        velX = 1;
         velY = 0;
     }
 

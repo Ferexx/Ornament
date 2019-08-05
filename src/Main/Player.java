@@ -39,6 +39,7 @@ public class Player extends GameObject {
     boolean isFalling = false;
     private boolean isStanding = true;
     private boolean doubleJump = false;
+    private boolean facingRight=true;
 
     //Players position in the level. x and y are used for position on screen
     public int absoluteX;
@@ -75,10 +76,15 @@ public class Player extends GameObject {
 
     public void tick() {
         //Updating relative position in window and also position in level
-        x += velX;
         y += velY;
-        absoluteX+=velX;
         absoluteY+=velY;
+        //Calling collision before changing x values to prevent glitching through objects.
+        collision();
+        x += velX;
+        absoluteX+=velX;
+
+        if(velX < 0) facingRight=false;
+        if(velX > 0) facingRight=true;
 
         //Godmode traits
         if(godMode) {
@@ -122,9 +128,6 @@ public class Player extends GameObject {
             isAttacking = true;
             leftAttack();
         }
-
-        //collision is called every tick
-        collision();
     }
 
     private void collision() {
@@ -211,45 +214,37 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
 
-        //If mage
-        if(characterTypeType == Mage) {
-            //Animation stuff for attacking
-            if (isAttacking) {
-                try {
-                    playerImage = ImageIO.read(new File("assets/WizardAttackingStillRight.png"));
-                } catch (IOException e) {
-                    System.out.println("File not found");
-                    e.printStackTrace();
-                    System.exit(0);
+        try {
+            //If mage
+            if (characterTypeType == Mage) {
+                //Animation stuff for attacking
+                if (isAttacking) {
+                    if (facingRight) {
+                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardAttackingStillRight.png"));
+                    } else {
+                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardAttackingStillLeft.png"));
+                    }
                 }
                 //Basic Mage image
-            } else {
-                try {
-                    playerImage = ImageIO.read(new File("assets/WizardImage.png"));
-                } catch (IOException e) {
-                    System.out.println("File not found");
-                    e.printStackTrace();
-                    System.exit(0);
+                else {
+                    if (facingRight) {
+                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardFacingRight.png"));
+                    }
+                    else {
+                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardFacingLeft.png"));
+                    }
                 }
+            } else if (characterTypeType == Tank) {
+                playerImage = ImageIO.read(new File("assets/Player/character.png"));
+            } else if (characterTypeType == Nobleman) {
+                playerImage = ImageIO.read(new File("assets/Player/Knight.png"));
+            } else if (characterTypeType == Archer) {
+
             }
-        } else if(characterTypeType == Tank) {try {
-            playerImage = ImageIO.read(new File("assets/character.png"));
-        } catch (IOException e) {
+        } catch(IOException e) {
             System.out.println("File not found");
             e.printStackTrace();
             System.exit(0);
-        }
-
-        } else if(characterTypeType == Nobleman) {
-            try {
-                playerImage = ImageIO.read(new File("assets/Knight.png"));
-            } catch (IOException e) {
-                System.out.println("File not found");
-                e.printStackTrace();
-                System.exit(0);
-            }
-        } else if(characterTypeType == Archer) {
-
         }
 
         setWidth(playerImage.getWidth());
@@ -258,16 +253,7 @@ public class Player extends GameObject {
         if (x < 380 && absoluteX > 380) x = 379;
         if (absoluteX < 0) absoluteX = 0;
 
-        //Flip image if we are walking backwards
-        if (this.velX < 0) {
-            AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
-            tx.translate(-playerImage.getWidth(null), 0);
-            AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-            playerImage = op.filter(playerImage, null);
-            g.drawImage(playerImage, x, y - height, null);
-        } else {
-            g.drawImage(playerImage, x, y - height, null);
-        }
+        g.drawImage(playerImage, x, y-height, null);
     }
 
     public void jump() {

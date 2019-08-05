@@ -127,16 +127,22 @@ public class ItemMenu extends MouseAdapter {
         g.drawString("Energy Attack", 330, 330);
         g.drawString("Lightning Attack", 330, 378);
 
-        g.setColor(Color.blue);
+        //Showing active power
+        g.setColor(Color.green);
         if(game.player.canEnergyAttack) {
             g.drawRect(326, 302, 177, 38);
             g.drawRect(325, 301, 179, 40);
+            g.drawRect(324, 300, 181, 42);
+            g.drawRect(323, 299, 183, 44);
         } else if(game.player.canLightningAttack) {
             g.drawRect(326, 350, 177, 40);
             g.drawRect(325, 351, 179, 38);
+            g.drawRect(324, 352, 181, 36);
+            g.drawRect(323, 353, 183, 34);
         }
 
-        g.setColor(Color.green);
+        //Showing button outline
+        g.setColor(Color.blue);
         if(overResume) {
             //847, 493, 88, 23
             g.drawRect(847, 493, 87, 22);
@@ -148,7 +154,7 @@ public class ItemMenu extends MouseAdapter {
         } else if (c1r1) {
             g.drawRect(326, 302, 177, 38);
             g.drawRect(325, 301, 179, 40);
-        }else if (c2r1) {
+        } else if (c2r1) {
             g.drawRect(541, 302, 177, 38);
             g.drawRect(540, 301, 179, 40);
         } else if (c3r1) {
@@ -160,7 +166,7 @@ public class ItemMenu extends MouseAdapter {
         } else if (c2r2) {
             g.drawRect(541, 350, 177, 39);
             g.drawRect(540, 349, 179, 41);
-        }  else if (c3r2) {
+        } else if (c3r2) {
             g.drawRect(756, 350, 177, 39);
             g.drawRect(755, 349, 179, 41);
         } else if (c1r3) {

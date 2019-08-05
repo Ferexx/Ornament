@@ -1,6 +1,6 @@
 package Main;
 
-public enum Class {
+public enum CharacterType {
     Mage,
     Nobleman,
     Tank,

@@ -17,11 +17,13 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static Main.CharacterType.*;
+
 public class Player extends GameObject {
     private Handler handler;
     private Timer timer;
     private BufferedImage playerImage;
-    public Class classType;
+    public CharacterType characterTypeType;
 
     //Godmode - infinite health, stamina, mana
     private boolean godMode = false;
@@ -58,7 +60,7 @@ public class Player extends GameObject {
         super(x, y, id, game);
 
         this.handler = game.handler;
-        classType = Class.Mage;
+        characterTypeType = Mage;
     }
 
     public Rectangle getBounds() {
@@ -200,24 +202,45 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
 
-        //Animation stuff for attacking
-        if(isAttacking) {
+        //If mage
+        if(characterTypeType == Mage) {
+            //Animation stuff for attacking
+            if (isAttacking) {
+                try {
+                    playerImage = ImageIO.read(new File("assets/WizardAttackingStillRight.png"));
+                } catch (IOException e) {
+                    System.out.println("File not found");
+                    e.printStackTrace();
+                    System.exit(0);
+                }
+                //Basic Mage image
+            } else {
+                try {
+                    playerImage = ImageIO.read(new File("assets/WizardImage.png"));
+                } catch (IOException e) {
+                    System.out.println("File not found");
+                    e.printStackTrace();
+                    System.exit(0);
+                }
+            }
+        } else if(characterTypeType == Tank) {try {
+            playerImage = ImageIO.read(new File("assets/character.png"));
+        } catch (IOException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+            System.exit(0);
+        }
+
+        } else if(characterTypeType == Nobleman) {
             try {
-                playerImage = ImageIO.read(new File("assets/WizardAttackingStillRight.png"));
+                playerImage = ImageIO.read(new File("assets/Knight.png"));
             } catch (IOException e) {
                 System.out.println("File not found");
                 e.printStackTrace();
                 System.exit(0);
             }
-            //Basic Mage image
-        } else {
-            try {
-                playerImage = ImageIO.read(new File("assets/WizardImage.png"));
-            } catch (IOException e) {
-                System.out.println("File not found");
-                e.printStackTrace();
-                System.exit(0);
-            }
+        } else if(characterTypeType == Archer) {
+
         }
 
         setWidth(playerImage.getWidth());

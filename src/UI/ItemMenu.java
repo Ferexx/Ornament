@@ -124,7 +124,7 @@ public class ItemMenu extends MouseAdapter {
         //Draws ability text
         g.setColor(Color.BLACK);
         g.setFont(new Font("Verdana", 1, 18));
-        g.drawString("Energy Attack", 330, 330);
+        g.drawString("Energy Attack", 344, 330);
         g.drawString("Lightning Attack", 330, 378);
 
         //Showing active power

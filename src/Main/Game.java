@@ -7,16 +7,15 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 //TODO
-// fix it so that you can't go left further than where you spawned
-// Sword image held by character
+// Fix it so that you can't go left further than where you spawned
 // Fix movement - sprinting
 // Fix holding space breaks doubleJump
-// Sword swing
-// Options menu
-// Fix NullPointerEx for spamming energy attacks
 // Fix colliding with sides of platforms
 // Make damage report above where player/mobs take damage
-// fix alert disappearing after 2 seconds
+// Fix random character flying off screen
+// Melee gameplay
+// Bow gameplay
+// Utilize Class Enum
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;

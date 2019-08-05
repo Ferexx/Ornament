@@ -40,6 +40,10 @@ public class Player extends GameObject {
     private boolean isStanding = true;
     private boolean doubleJump = false;
 
+    //Players position in the level. x and y are used for position on screen
+    public int absoluteX;
+    public int absoluteY;
+
     //Attributes
     public boolean hasStamina = false;
     public boolean hasMagic = true;
@@ -58,6 +62,8 @@ public class Player extends GameObject {
 
     public Player(int x, int y, ID id, Game game) {
         super(x, y, id, game);
+        absoluteX = x;
+        absoluteY = y;
 
         this.handler = game.handler;
         characterTypeType = Mage;
@@ -70,6 +76,9 @@ public class Player extends GameObject {
     public void tick() {
         x += velX;
         y += velY;
+        absoluteX+=velX;
+        absoluteY+=velY;
+        System.out.println(absoluteX);
 
         //Godmode traits
         if(godMode) {
@@ -246,7 +255,8 @@ public class Player extends GameObject {
         setWidth(playerImage.getWidth());
         setHeight(playerImage.getHeight());
         if (x > 630) x = 631;
-        if (x < 380) x = 379;
+        if (x < 380 && absoluteX > 380) x = 379;
+        if (absoluteX < 0) absoluteX = 0;
 
         //Flip image if we are walking backwards
         if (this.velX < 0) {

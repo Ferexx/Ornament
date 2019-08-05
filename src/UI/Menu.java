@@ -3,7 +3,6 @@ package UI;
 import Main.Game;
 import Main.STATE;
 import Main.Spawner;
-import Main.Level;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

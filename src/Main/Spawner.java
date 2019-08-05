@@ -8,6 +8,7 @@ import UI.Background;
 import World.Ground;
 import World.Platform;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Spawner {
@@ -17,8 +18,8 @@ public class Spawner {
         this.game = game;
     }
 
-    public void spawn() {
-        new Level("Levels/Level1", game);
+    public void spawn(File level) {
+        new Level(level, game);
     }
 
     public void spawnTestGame() throws IOException {

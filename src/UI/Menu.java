@@ -3,8 +3,10 @@ package UI;
 import Main.Game;
 import Main.STATE;
 import Main.Spawner;
+import Main.Level;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -65,7 +67,7 @@ public class Menu extends MouseAdapter {
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
 
-            spawn.spawn();
+            spawn.spawn(new File("Levels/Level1"));
         }
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {
@@ -77,8 +79,19 @@ public class Menu extends MouseAdapter {
             System.exit(0);
         }
 
+        //If the user selects load a level, then give them a file chooser dialog, and load the according level
         if(mouseOver(mX, mY, Game.WIDTH / 2 + 148, Game.HEIGHT / 2 - 89, 66, 34)) {
-            //TODO Jack your load-code goes here
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+            fileChooser.setDialogTitle("Choose Level Folder");
+            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int result = fileChooser.showOpenDialog(game.window);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                game.gameState = STATE.Game;
+                game.removeMouseListener(this);
+                game.removeMouseMotionListener(this);
+                game.spawner.spawn(fileChooser.getSelectedFile());
+            }
         }
     }
 

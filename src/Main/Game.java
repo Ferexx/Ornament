@@ -33,6 +33,7 @@ public class Game extends Canvas implements Runnable {
     public Spawner spawner;
     public Alert alert;
     private String newGame;
+    public Window window;
 
     public STATE gameState = STATE.Menu;
 
@@ -49,7 +50,7 @@ public class Game extends Canvas implements Runnable {
 
         this.addKeyListener(new KeyInput(this));
 
-        new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
+        window = new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
 
     }
 

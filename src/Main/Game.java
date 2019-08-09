@@ -6,12 +6,24 @@ import UI.Menu;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-//TODO
-// Make damage report above where player/mobs take damage
+//TODO - add anything at any time. This is not a suggestions space, this is for genuine priority features
+// ------------------------ Graphics needed: ------------------------------
+// Bow
+// Melee
+// Archer
+// Soldier
+// Nobleman
+// Cutscene imagery
+// ------------------------ Gameplay: -------------------------------------
 // Melee gameplay
 // Bow gameplay
-// Utilize Class Enum
 // cutscenes and dialogue
+// Upgradable items / new ability ideas
+// ------------------------ Misc: -----------------------------------------
+// Death screen and shit
+// Options screen and image resolution scaling
+// Timed messages on screen; you cannot attack at this time, welcome to (location), objectives, dialogue boxes
+// Make damage report above where player/mobs take damage
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;

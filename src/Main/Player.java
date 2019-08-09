@@ -88,9 +88,9 @@ public class Player extends GameObject {
 
         //Godmode traits
         if(godMode) {
-            playerMagic+=1000;
-            playerHealth+=1000;
-            playerStamina+=1000;
+            playerMagic+=100;
+            playerHealth+=100;
+            playerStamina+=100;
         }
 
         //Magic regen
@@ -115,6 +115,7 @@ public class Player extends GameObject {
         if (playerHealth <= 0) {
             System.out.println("You died!");
             handler.removeObject(this);
+            game.gameState = STATE.Menu;
         }
 
         //If right attacking

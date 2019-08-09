@@ -11,6 +11,7 @@ import java.awt.image.BufferStrategy;
 // Melee gameplay
 // Bow gameplay
 // Utilize Class Enum
+// cutscenes and dialogue
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;

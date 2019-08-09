@@ -5,4 +5,6 @@ public enum STATE {
     Menu,
     Pause,
     ItemSelect,
+    Cutscene,
+    Dialog
 }

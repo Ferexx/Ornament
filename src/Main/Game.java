@@ -108,6 +108,8 @@ public class Game extends Canvas implements Runnable {
                 hud.tick();
             } else if (gameState == STATE.Menu){
                 menu.tick();
+            } else if (gameState == STATE.Cutscene) {
+                //cutscene.tick();
             }
         }
     }

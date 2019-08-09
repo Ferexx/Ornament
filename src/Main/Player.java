@@ -120,12 +120,14 @@ public class Player extends GameObject {
         //If right attacking
         if (KeyInput.rightAttack) {
             isAttacking = true;
+            facingRight = true;
             rightAttack();
         }
 
         //if left attacking
         if (KeyInput.leftAttack) {
             isAttacking = true;
+            facingRight = false;
             leftAttack();
         }
     }

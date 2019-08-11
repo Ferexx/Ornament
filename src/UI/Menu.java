@@ -118,7 +118,7 @@ public class Menu extends MouseAdapter {
         g.setColor(Color.black);
         g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
         try {
-            menuImage = ImageIO.read(new File("assets/menuImage.png"));
+            menuImage = ImageIO.read(new File("assets/UI_Elements/menuImage.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();

@@ -2,7 +2,6 @@ package UI;
 
 import Main.Game;
 import Main.STATE;
-import Main.Spawner;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,16 +11,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Pause extends MouseAdapter {
+public class Dead extends MouseAdapter {
 
-    private BufferedImage pauseImage;
+    private BufferedImage deadScreenImage;
     private Game game;
-    private static boolean playOutline = false, optionOutline = false, quitOutline = false;
+    private static boolean respawnOutline = false, optionOutline = false, quitOutline = false;
 
     private int mX;
     private int mY;
 
-    public Pause(Game game) {
+    public Dead(Game game) {
         this.game = game;
     }
 
@@ -30,19 +29,19 @@ public class Pause extends MouseAdapter {
         mY = e.getY();
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 303, 89)) {
-            playOutline = true;
+            respawnOutline = true;
             optionOutline = false;
             quitOutline = false;
         } else if (mouseOver(mX, mY, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {
-            playOutline = false;
+            respawnOutline = false;
             optionOutline = true;
             quitOutline = false;
         } else if (mouseOver(mX, mY, Game.WIDTH / 2 - 97, Game.HEIGHT / 2 + 86, 166, 53)) {
-            playOutline = false;
+            respawnOutline = false;
             optionOutline = false;
             quitOutline = true;
         } else {
-            playOutline = false;
+            respawnOutline = false;
             optionOutline = false;
             quitOutline = false;
         }
@@ -56,9 +55,9 @@ public class Pause extends MouseAdapter {
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 303, 89)) {
             //Play game
-            game.gameState = STATE.Game;
             game.removeMouseListener(this);
             game.removeMouseListener(this);
+            respawn(game);
         }
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {
@@ -93,16 +92,16 @@ public class Pause extends MouseAdapter {
 
     public void render(Graphics g) {
         try {
-            pauseImage = ImageIO.read(new File("assets/UI_Elements/PauseMenu.png"));
+            deadScreenImage = ImageIO.read(new File("assets/UI_Elements/dieded.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();
             System.exit(0);
         }
 
-        g.drawImage(pauseImage, 150, 0, null);
+        g.drawImage(deadScreenImage, 150, 0, null);
 
-        if (playOutline) {
+        if (respawnOutline) {
             g.setColor(Color.green);
             g.drawRect(Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 302, 88);
             g.drawRect(Game.WIDTH / 2 - 164, Game.HEIGHT / 2 - 88, 304, 88);
@@ -122,5 +121,9 @@ public class Pause extends MouseAdapter {
             g.drawRect(Game.WIDTH / 2 - 100, Game.HEIGHT / 2 + 89, 171, 52);
         }
 
+    }
+
+    public void respawn(Game game) {
+        game.gameState = STATE.Menu;
     }
 }

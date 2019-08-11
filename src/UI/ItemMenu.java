@@ -112,7 +112,7 @@ public class ItemMenu extends MouseAdapter {
 
     public void render(Graphics g) {
         try {
-            itemSelectImage = ImageIO.read(new File("assets/ItemSelect.png"));
+            itemSelectImage = ImageIO.read(new File("assets/UI_Elements/ItemSelect.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();

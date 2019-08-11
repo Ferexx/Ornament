@@ -114,8 +114,10 @@ public class Player extends GameObject {
         //Death case
         if (playerHealth <= 0) {
             System.out.println("You died!");
+            game.gameState = STATE.Dead;
+            game.addMouseListener(game.dead);
+            game.addMouseMotionListener(game.dead);
             handler.removeObject(this);
-            game.gameState = STATE.Menu;
         }
 
         //If right attacking

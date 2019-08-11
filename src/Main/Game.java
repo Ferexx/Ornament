@@ -20,10 +20,16 @@ import java.awt.image.BufferStrategy;
 // cutscenes and dialogue
 // Upgradable items / new ability ideas
 // ------------------------ Misc: -----------------------------------------
-// Death screen and shit
+// Death screen and shit (respawn at level start)
 // Options screen and image resolution scaling
-// Timed messages on screen; you cannot attack at this time, welcome to (location), objectives, dialogue boxes
-// Make damage report above where player/mobs take damage
+// Timed messages on screen
+// ------------------------ Known Bugs: ------------------------------------
+// NullPointer when energy attacking - not reproducible yet
+// Teleporting on top of platforms when hitting the sides sometimes
+// Hitting edge of platform fully stops movement until key is repressed
+// Wild bounce off screen when switching back to gameState Game
+// ---------------------------- Tweaks: ------------------------------------
+// Letting go of shift produces unnatural/uncomfortable behaviour
 
 public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;
@@ -32,6 +38,7 @@ public class Game extends Canvas implements Runnable {
     private Thread thread;
     private HUD hud;
     public UI.Menu menu;
+    public UI.Dead dead;
     public UI.ItemMenu itemMenu;
     public UI.Pause pause;
     private int fps;
@@ -50,6 +57,7 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         menu = new Menu(this);
         itemMenu = new ItemMenu(this);
+        dead = new Dead(this);
         pause = new Pause(this);
         hud = new HUD(this);
         player = new Player(410, 250, ID.Player, this);
@@ -111,10 +119,11 @@ public class Game extends Canvas implements Runnable {
         if (gameState == STATE.Pause) {
             pause.tick();
         //Else makes the game tick, or the menu tick (menu tick only happens at game launch)
-        }  else if(gameState == STATE.ItemSelect) {
+        } else if(gameState == STATE.ItemSelect) {
             itemMenu.tick();
-        } else {
-
+        } else if(gameState == STATE.Dead) {
+            dead.tick();
+        } else if (gameState == STATE.Game){
             handler.tick();
 
             if(gameState == STATE.Game) {
@@ -143,14 +152,14 @@ public class Game extends Canvas implements Runnable {
             g.setFont(new Font("Verdana", 1, 16));
             g.setColor(Color.GREEN);    //FPS counter colour
             g.drawString( fps+" FPS", WIDTH-128,40);
-
-            //alert.render(g);
         } else if (gameState == STATE.Menu){
             menu.render(g);
         } else if (gameState == STATE.Pause) {
             pause.render(g);
         } else if(gameState == STATE.ItemSelect) {
             itemMenu.render(g);
+        } else if(gameState == STATE.Dead) {
+            dead.render(g);
         }
 
         g.dispose();
@@ -164,6 +173,6 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String[] args) {
-        new Game();
+        Game game = new Game();
     }
 }

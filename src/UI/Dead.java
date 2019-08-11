@@ -1,7 +1,11 @@
 package UI;
 
-import Main.Game;
-import Main.STATE;
+import Attacks.Attack;
+import Enemies.Enemy;
+import Main.*;
+import Main.Window;
+import Powerups.Powerup;
+import World.WorldObject;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -56,16 +60,20 @@ public class Dead extends MouseAdapter {
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 303, 89)) {
             //Play game
             game.removeMouseListener(this);
-            game.removeMouseListener(this);
+            game.removeMouseMotionListener(this);
             respawn(game);
         }
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {
             //Options
+            game.removeMouseListener(this);
+            game.removeMouseMotionListener(this);
         }
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 97, Game.HEIGHT / 2 + 86, 166, 53)) {
             //quit
+            game.removeMouseListener(this);
+            game.removeMouseMotionListener(this);
             System.exit(0);
         }
     }
@@ -99,6 +107,10 @@ public class Dead extends MouseAdapter {
             System.exit(0);
         }
 
+        //lowers the background color behind death scroll
+        g.setColor(new Color(0, 0, 0, 200));
+        g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+
         g.drawImage(deadScreenImage, 150, 0, null);
 
         if (respawnOutline) {
@@ -124,6 +136,8 @@ public class Dead extends MouseAdapter {
     }
 
     public void respawn(Game game) {
-        game.gameState = STATE.Menu;
+//        game.handler = new Handler();
+        game.window.frame.dispose();
+        game = new Game();
     }
 }

@@ -100,6 +100,10 @@ public class Pause extends MouseAdapter {
             System.exit(0);
         }
 
+        //lowers the background color behind pause scroll
+        g.setColor(new Color(0, 0, 0, 150));
+        g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+        //Draws pause image
         g.drawImage(pauseImage, 150, 0, null);
 
         if (playOutline) {

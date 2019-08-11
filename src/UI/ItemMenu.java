@@ -77,9 +77,9 @@ public class ItemMenu extends MouseAdapter {
         mX = e.getX();
         mY = e.getY();
         if(mouseOver(mX, mY, 847, 493, 88, 22)) {
-            game.gameState = STATE.Game;
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
+            game.gameState = STATE.Game;
         }
 
         //Toggles between the different abilities
@@ -118,6 +118,10 @@ public class ItemMenu extends MouseAdapter {
             e.printStackTrace();
             System.exit(0);
         }
+
+        //lowers the background color behind item scroll
+        g.setColor(new Color(0, 0, 0, 150));
+        g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 
         g.drawImage(itemSelectImage, 150, 0, null);
 

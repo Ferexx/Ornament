@@ -6,6 +6,7 @@ import UI.Menu;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.io.File;
 
 //TODO - add anything at any time. This is not a suggestions space, this is for genuine priority features
 // ------------------------ Graphics needed: ------------------------------
@@ -52,6 +53,7 @@ public class Game extends Canvas implements Runnable {
     public Window window;
     public Cutscene cutscene;
     public KeyInput keyInput = new KeyInput(this);
+    public SoundPlayer musicPlayer;
 
     public STATE gameState = STATE.Menu;
 
@@ -70,6 +72,7 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(keyInput);
 
         window = new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
+        musicPlayer = new SoundPlayer(new File("assets/Music/TitleConcept.wav"));
 
     }
 

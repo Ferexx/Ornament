@@ -63,6 +63,7 @@ public class Menu extends MouseAdapter {
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 303, 89)) {
             //Play game
             game.gameState = STATE.Game;
+            game.musicPlayer.clip.stop();
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
 

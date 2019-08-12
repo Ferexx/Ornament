@@ -49,6 +49,7 @@ public class Game extends Canvas implements Runnable {
     public Alert alert;
     private String newGame;
     public Window window;
+    public Cutscene cutscene;
 
     public STATE gameState = STATE.Menu;
 

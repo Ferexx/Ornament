@@ -23,6 +23,7 @@ public class Cutscene {
             game.window.frame.remove(game);
             game.window.frame.getContentPane().add(jfx);
             jfx.addKeyListener(new KeyInput(game));
+            jfx.requestFocus();
 
             Media media = new Media(url);
             player = new MediaPlayer(media);

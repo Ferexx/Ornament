@@ -82,6 +82,29 @@ public class KeyInput extends KeyAdapter {
                 game.removeMouseMotionListener(game.itemMenu);
             }
         }
+
+        if(key == KeyEvent.VK_C) {
+            if(game.gameState!=STATE.Cutscene) {
+                game.gameState = STATE.Cutscene;
+                game.window.frame.remove(game);
+                game.cutscene = new Cutscene("assets/Deag2k2.mp4", game);
+                game.window.frame.add(game.cutscene.jfx);
+                System.out.println("press");
+            }
+            else {
+                System.out.println("press2");
+                game.gameState=STATE.Game;
+                game.window.frame.remove(game.cutscene.jfx);
+                game.window.frame.add(game);
+            }
+        }
+
+        if(key == KeyEvent.VK_X) {
+            game.gameState = STATE.Cutscene;
+            game.window.frame.remove(game.cutscene.jfx);
+            game.window.frame.add(game);
+            System.out.println("x");
+        }
     }
 
     public void keyReleased(KeyEvent e) {
@@ -123,18 +146,6 @@ public class KeyInput extends KeyAdapter {
                 }
             }
         }
-        if(key == KeyEvent.VK_C) {
-            if(game.gameState!=STATE.Cutscene) {
-                game.gameState = STATE.Cutscene;
-                game.window.frame.remove(game);
-                game.cutscene = new Cutscene("assets/Deag2k2.mp4", game);
-                game.window.frame.add(game.cutscene.jfx);
-            }
-            else {
-                game.gameState=STATE.Game;
-                game.window.frame.remove(game.cutscene.jfx);
-                game.window.frame.add(game);
-            }
-        }
+
     }
 }

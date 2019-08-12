@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter {
     private Game game;
     public static boolean aDown = false, dDown = false, rightAttack = false, leftAttack = false, rightDown = false, leftDown = false;
+    private STATE previousState;
 
     public KeyInput(Game game) {
         this.game = game;
@@ -85,25 +86,20 @@ public class KeyInput extends KeyAdapter {
 
         if(key == KeyEvent.VK_C) {
             if(game.gameState!=STATE.Cutscene) {
+                previousState = game.gameState;
                 game.gameState = STATE.Cutscene;
                 game.window.frame.remove(game);
                 game.cutscene = new Cutscene("assets/Deag2k2.mp4", game);
                 game.window.frame.add(game.cutscene.jfx);
-                System.out.println("press");
-            }
-            else {
-                System.out.println("press2");
-                game.gameState=STATE.Game;
-                game.window.frame.remove(game.cutscene.jfx);
-                game.window.frame.add(game);
             }
         }
 
-        if(key == KeyEvent.VK_X) {
-            game.gameState = STATE.Cutscene;
-            game.window.frame.remove(game.cutscene.jfx);
-            game.window.frame.add(game);
-            System.out.println("x");
+        if(key == KeyEvent.VK_ENTER || key == KeyEvent.VK_SPACE) {
+            if(game.gameState==STATE.Cutscene) {
+                game.gameState = previousState;
+                game.window.frame.remove(game.cutscene.jfx);
+                game.window.frame.add(game);
+            }
         }
     }
 

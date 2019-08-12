@@ -3,6 +3,7 @@ package Main;
 import UI.*;
 import UI.Menu;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -145,9 +146,7 @@ public class Game extends Canvas implements Runnable {
 
         if(gameState!=STATE.Cutscene) {
             Graphics g = bs.getDrawGraphics();
-
             handler.render(g);
-
             if (gameState == STATE.Game) {
                 hud.render(g);
                 g.setFont(new Font("Verdana", 1, 16));

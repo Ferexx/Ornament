@@ -67,6 +67,7 @@ public class Game extends Canvas implements Runnable {
         this.addKeyListener(new KeyInput(this));
 
         window = new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
+        new Cutscene("assets/Deag2k2.mp4", this);
 
     }
 

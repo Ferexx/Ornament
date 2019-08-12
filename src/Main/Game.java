@@ -144,27 +144,29 @@ public class Game extends Canvas implements Runnable {
             return;
         }
 
-        Graphics g = bs.getDrawGraphics();
+        if(gameState!=STATE.Cutscene) {
+            Graphics g = bs.getDrawGraphics();
 
-        handler.render(g);
+            handler.render(g);
 
-        if(gameState == STATE.Game) {
-            hud.render(g);
-            g.setFont(new Font("Verdana", 1, 16));
-            g.setColor(Color.GREEN);    //FPS counter colour
-            g.drawString( fps+" FPS", WIDTH-128,40);
-        } else if (gameState == STATE.Menu){
-            menu.render(g);
-        } else if (gameState == STATE.Pause) {
-            pause.render(g);
-        } else if(gameState == STATE.ItemSelect) {
-            itemMenu.render(g);
-        } else if(gameState == STATE.Dead) {
-            dead.render(g);
+            if (gameState == STATE.Game) {
+                hud.render(g);
+                g.setFont(new Font("Verdana", 1, 16));
+                g.setColor(Color.GREEN);    //FPS counter colour
+                g.drawString(fps + " FPS", WIDTH - 128, 40);
+            } else if (gameState == STATE.Menu) {
+                menu.render(g);
+            } else if (gameState == STATE.Pause) {
+                pause.render(g);
+            } else if (gameState == STATE.ItemSelect) {
+                itemMenu.render(g);
+            } else if (gameState == STATE.Dead) {
+                dead.render(g);
+            }
+
+            g.dispose();
+            bs.show();
         }
-
-        g.dispose();
-        bs.show();
     }
 
     public static int clamp(int var, int min, int max) {

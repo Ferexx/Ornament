@@ -14,14 +14,15 @@ import java.net.MalformedURLException;
 
 public class Cutscene {
 
+    JFXPanel jfx = new JFXPanel();
+
     public Cutscene(String cutsceneFile, Game game) {
         File file = new File(cutsceneFile);
         try {
             String url = file.toURI().toURL().toString();
 
-            JFXPanel jfx = new JFXPanel();
+            game.window.frame.remove(game);
             game.window.frame.getContentPane().add(jfx);
-            game.window.frame.setVisible(true);
 
             Media media = new Media(url);
             MediaPlayer player = new MediaPlayer(media);

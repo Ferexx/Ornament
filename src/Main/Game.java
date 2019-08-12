@@ -50,6 +50,7 @@ public class Game extends Canvas implements Runnable {
     private String newGame;
     public Window window;
     public Cutscene cutscene;
+    public KeyInput keyInput = new KeyInput(this);
 
     public STATE gameState = STATE.Menu;
 
@@ -65,7 +66,7 @@ public class Game extends Canvas implements Runnable {
         spawner = new Spawner(this);
         alert = new Alert(this, newGame, Color.WHITE, WIDTH/2 - 90, HEIGHT / 8, 2);
 
-        this.addKeyListener(new KeyInput(this));
+        this.addKeyListener(keyInput);
 
         window = new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
 

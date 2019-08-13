@@ -47,14 +47,14 @@ public class Background extends GameObject {
     }
 
     public void scrollLTR() {
-        if (b1x < 0) b2x = b1x + 1280;
-        if (b2x < 0) b1x = b2x + 1280;
+        if (b1x < 0) b2x = b1x + 1270;
+        if (b2x < 0) b1x = b2x + 1270;
         updatePosition();
     }
 
     public void scrollRTL() {
-        if (b1x > -10) b2x = b1x - 1280;
-        if (b2x > -10) b1x = b2x - 1280;
+        if (b1x > -10) b2x = b1x - 1270;
+        if (b2x > -10) b1x = b2x - 1270;
         updatePosition();
     }
 

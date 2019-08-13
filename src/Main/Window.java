@@ -1,7 +1,5 @@
 package Main;
 
-import javafx.embed.swing.JFXPanel;
-
 import javax.swing.*;
 import java.awt.*;
 

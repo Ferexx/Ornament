@@ -42,7 +42,7 @@ public class KeyInput extends KeyAdapter {
                     rightDown = true;
                 }
 
-                if (key == KeyEvent.VK_SPACE) {
+                if (key == KeyEvent.VK_SPACE && game.gameState != STATE.Cutscene) {
                     game.player.jump();
                 }
 

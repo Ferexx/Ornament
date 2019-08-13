@@ -1,9 +1,9 @@
 package Main;
 
+import Sound.SoundPlayer;
 import UI.*;
 import UI.Menu;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.File;
@@ -25,6 +25,7 @@ import java.io.File;
 // Death screen and shit (respawn at level start)
 // Options screen and image resolution scaling
 // Timed messages on screen
+// Finish Alerts - fade etc
 // ------------------------ Known Bugs: ------------------------------------
 // NullPointer when energy attacking - not reproducible yet
 // Teleporting on top of platforms when hitting the sides sometimes
@@ -33,54 +34,73 @@ import java.io.File;
 // Letting go of shift produces unnatural/uncomfortable behaviour
 
 public class Game extends Canvas implements Runnable {
+    //Window
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
+    public Window window;
 
-    private Thread thread;
+    //UI
     private HUD hud;
     public UI.Menu menu;
     public UI.Dead dead;
     public UI.ItemMenu itemMenu;
     public UI.Pause pause;
+    public UI.Options options;
+
+    //Performance
+    private Thread thread;
     private int fps;
     private boolean running = false;
+
+    //Game engine
     public Player player;
     public Handler handler;
     public Spawner spawner;
+
+    //Video
     public Alert alert;
     private String newGame;
-    public Window window;
     public Cutscene cutscene;
+
+    //Input output
     public KeyInput keyInput = new KeyInput(this);
     public SoundPlayer musicPlayer;
 
+    //Initialised the gameState to the main menu
     public STATE gameState = STATE.Menu;
 
     public Game() {
+        //Initialising Game requirements
         newGame = "Welcome to Rahau";
-        handler = new Handler();
+        handler = new Handler();player = new Player(410, 250, ID.Player, this);
+        spawner = new Spawner(this);
+
+        //UI initialisations
+        alert = new Alert(this, newGame, Color.WHITE, WIDTH/2 - 90, HEIGHT / 8, 2);
         menu = new Menu(this);
         itemMenu = new ItemMenu(this);
+        options = new Options(this);
         dead = new Dead(this);
         pause = new Pause(this);
         hud = new HUD(this);
-        player = new Player(410, 250, ID.Player, this);
-        spawner = new Spawner(this);
-        alert = new Alert(this, newGame, Color.WHITE, WIDTH/2 - 90, HEIGHT / 8, 2);
 
+        //Key input is added to all aspects of the game
         this.addKeyListener(keyInput);
 
+        //Initialise window and music player
         window = new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
         musicPlayer = new SoundPlayer(new File("assets/Music/TitleConcept.wav"));
 
     }
 
+    //Starts the game thread
     public synchronized void start() {
         thread = new Thread(this);
         running = true;
         thread.start();
     }
 
+    //Stops the game thread
     public void stop() {
         try {
             running = false;
@@ -90,6 +110,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    //Runs the game
     public void run() {
         long lastTime = System.nanoTime();
         double amountOfTicks = 50.0;
@@ -119,6 +140,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    //Tick happens X amount of times per second - defined in run()
     public void tick() {
         //Paused game state stops handler from ticking
         if (gameState == STATE.Pause) {
@@ -129,13 +151,17 @@ public class Game extends Canvas implements Runnable {
         } else if(gameState == STATE.Dead) {
             dead.tick();
         } else if (gameState == STATE.Game) {
+            keyInput.inGame = true;
             handler.tick();
             hud.tick();
         } else if (gameState == STATE.Menu) {
             menu.tick();
+        } else if(gameState == STATE.Options) {
+            options.tick();
         }
     }
 
+    //Render loads everything onto the screen
     public void render() {
         BufferStrategy bs = this.getBufferStrategy();
         if(bs == null) {
@@ -143,6 +169,7 @@ public class Game extends Canvas implements Runnable {
             return;
         }
 
+        //Order of ticking checks is carefully optimised here - no unnecessary checks being done
         if(gameState!=STATE.Cutscene) {
             Graphics g = bs.getDrawGraphics();
             handler.render(g);
@@ -153,12 +180,21 @@ public class Game extends Canvas implements Runnable {
                 g.drawString(fps + " FPS", WIDTH - 128, 40);
             } else if (gameState == STATE.Menu) {
                 menu.render(g);
+                if (gameState == STATE.Options) {
+                    options.tick();
+                }
             } else if (gameState == STATE.Pause) {
                 pause.render(g);
+                if (gameState == STATE.Options) {
+                    options.tick();
+                }
             } else if (gameState == STATE.ItemSelect) {
                 itemMenu.render(g);
             } else if (gameState == STATE.Dead) {
                 dead.render(g);
+                if (gameState == STATE.Options) {
+                    options.tick();
+                }
             }
 
             g.dispose();
@@ -166,6 +202,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    //Clamp function is used for limiting things, stopping movement or progression
     public static int clamp(int var, int min, int max) {
         if (var >= max) {
             return max;

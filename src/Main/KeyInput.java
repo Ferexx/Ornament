@@ -7,7 +7,8 @@ import java.awt.event.KeyEvent;
 public class KeyInput extends KeyAdapter {
     private Game game;
     public static boolean aDown = false, dDown = false, rightAttack = false, leftAttack = false, rightDown = false, leftDown = false;
-    private STATE previousState;
+    private STATE previousState = STATE.Menu;
+    public boolean inGame = false;
 
     public KeyInput(Game game) {
         this.game = game;
@@ -55,9 +56,10 @@ public class KeyInput extends KeyAdapter {
 
         //mainly exit menu and exit game type stuff
         if (key == KeyEvent.VK_ESCAPE) {
+            //sets the previous game state before doing something
             if(game.gameState == STATE.Menu) {
                 System.exit(0);
-            }else if(game.gameState == STATE.Game) {
+            } else if(game.gameState == STATE.Game) {
                 game.gameState = STATE.Pause;
                 game.addMouseListener(game.pause);
                 game.addMouseMotionListener(game.pause);
@@ -69,6 +71,28 @@ public class KeyInput extends KeyAdapter {
                 game.gameState = STATE.Game;
                 game.removeMouseListener(game.itemMenu);
                 game.removeMouseMotionListener(game.itemMenu);
+            } else if (game.gameState == STATE.Options) {
+                if(inGame) {
+                    game.gameState = STATE.Game;
+                } else {
+                    game.gameState = STATE.Menu;
+                }
+            }
+        }
+
+        if(key == KeyEvent.VK_O) {
+            if(game.gameState == STATE.Game) {
+                inGame = true;
+                game.gameState = STATE.Options;
+            } else if (game.gameState == STATE.Menu) {
+                inGame = false;
+                game.gameState = STATE.Options;
+            } else if (game.gameState == STATE.Options) {
+                if(inGame) {
+                    game.gameState = STATE.Game;
+                } else {
+                    game.gameState = STATE.Menu;
+                }
             }
         }
 

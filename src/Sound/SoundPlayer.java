@@ -1,4 +1,4 @@
-package Main;
+package Sound;
 
 import javax.sound.sampled.*;
 import java.io.File;
@@ -8,6 +8,7 @@ public class SoundPlayer {
 
     private AudioInputStream audioInputStream;
     public Clip clip;
+    public double gain;
 
     public SoundPlayer(File audioFile) {
         try {
@@ -22,7 +23,7 @@ public class SoundPlayer {
         }
         assert clip != null;
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        double gain = 0.1;
+        gain = 0.1;
         float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
         gainControl.setValue(dB);
     }

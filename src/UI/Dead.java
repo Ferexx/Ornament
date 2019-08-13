@@ -137,7 +137,11 @@ public class Dead extends MouseAdapter {
 
     public void respawn(Game game) {
 //        game.handler = new Handler();
-        game.window.frame.dispose();
-        game = new Game();
+        try{
+            game.window.frame.dispose();
+            game = new Game();
+        } catch (Exception e) {
+            System.exit(-1);
+        }
     }
 }

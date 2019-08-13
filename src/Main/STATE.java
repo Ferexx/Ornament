@@ -7,5 +7,6 @@ public enum STATE {
     ItemSelect,
     Cutscene,
     Dialog,
-    Dead
+    Dead,
+    Options
 }

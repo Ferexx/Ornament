@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class InGameOptions extends MouseAdapter {
+public class IngameOptions extends MouseAdapter {
 
     private BufferedImage optionsImage;
     private Game game;
@@ -22,7 +22,7 @@ public class InGameOptions extends MouseAdapter {
     private int mX;
     private int mY;
 
-    public InGameOptions(Game game) {
+    public IngameOptions(Game game) {
 
     }
 

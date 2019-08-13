@@ -45,7 +45,7 @@ public class Game extends Canvas implements Runnable {
     public UI.Dead dead;
     public UI.ItemMenu itemMenu;
     public UI.Pause pause;
-    public InGameOptions inGameOptions;
+    public IngameOptions inGameOptions;
     public MenuOptions menuOptions;
 
     //Performance
@@ -80,7 +80,7 @@ public class Game extends Canvas implements Runnable {
         alert = new Alert(this, newGame, Color.WHITE, WIDTH/2 - 90, HEIGHT / 8, 2);
         menu = new Menu(this);
         itemMenu = new ItemMenu(this);
-        inGameOptions = new InGameOptions(this);
+        inGameOptions = new IngameOptions(this);
         menuOptions = new MenuOptions(this);
         dead = new Dead(this);
         pause = new Pause(this);

@@ -24,6 +24,7 @@ public class MenuOptions extends MouseAdapter {
 
     public MenuOptions(Game game) {
 
+        background = new Background(game, "assets/TownBackground.png");
     }
 
     public void mouseMoved(MouseEvent e) {
@@ -54,19 +55,22 @@ public class MenuOptions extends MouseAdapter {
     }
 
     public void tick() {
-
+        background.tick();
     }
 
     public void render(Graphics g) {
-        try {
-        optionsImage = ImageIO.read(new File("assets/UI_Elements/OptionsMenu.png"));
-    } catch (IOException e) {
-        System.out.println("File not found");
-        e.printStackTrace();
-        System.exit(0);
-    }
-        g.setColor(new Color(0, 0, 0, 150));
+        background.render(g);
+        Color transparent = new Color(0, 0, 0, 200);
+        g.setColor(transparent);
         g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+        try {
+            optionsImage = ImageIO.read(new File("assets/UI_Elements/OptionsMenu.png"));
+        } catch (IOException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+            System.exit(0);
+        }
+
         g.drawImage(optionsImage, 150, 0, null);
 
     }

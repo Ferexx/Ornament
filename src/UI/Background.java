@@ -36,7 +36,7 @@ public class Background extends GameObject {
                 }
             }
         }
-        if(game.gameState== STATE.Menu) {
+        if(game.gameState == STATE.Menu || game.gameState == STATE.MenuOptions) {
             menuScroll();
         }
     }

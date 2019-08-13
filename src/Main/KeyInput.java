@@ -1,6 +1,5 @@
 package Main;
 
-import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -8,7 +7,6 @@ public class KeyInput extends KeyAdapter {
     private Game game;
     public static boolean aDown = false, dDown = false, rightAttack = false, leftAttack = false, rightDown = false, leftDown = false;
     private STATE previousState = STATE.Menu;
-    public boolean inGame = false;
 
     public KeyInput(Game game) {
         this.game = game;
@@ -60,39 +58,65 @@ public class KeyInput extends KeyAdapter {
             if(game.gameState == STATE.Menu) {
                 System.exit(0);
             } else if(game.gameState == STATE.Game) {
+                game.addMouseListener(game.pause);
+                game.addMouseMotionListener(game.pause);
+                game.gameState = STATE.Pause;
+            } else if (game.gameState == STATE.Pause) {
+                game.removeMouseListener(game.pause);
+                game.removeMouseMotionListener(game.pause);
+                game.gameState = STATE.Game;
+            } else if (game.gameState == STATE.ItemSelect) {
+                game.removeMouseListener(game.itemMenu);
+                game.removeMouseMotionListener(game.itemMenu);
+                game.gameState = STATE.Game;
+            } else if (game.gameState == STATE.IngameOptions) {
+                game.removeMouseListener(game.inGameOptions);
+                game.removeMouseMotionListener(game.inGameOptions);
                 game.gameState = STATE.Pause;
                 game.addMouseListener(game.pause);
                 game.addMouseMotionListener(game.pause);
-            } else if (game.gameState == STATE.Pause) {
-                game.gameState = STATE.Game;
-                game.removeMouseListener(game.pause);
-                game.removeMouseMotionListener(game.pause);
-            } else if (game.gameState == STATE.ItemSelect) {
-                game.gameState = STATE.Game;
-                game.removeMouseListener(game.itemMenu);
-                game.removeMouseMotionListener(game.itemMenu);
-            } else if (game.gameState == STATE.Options) {
-                if(inGame) {
-                    game.gameState = STATE.Game;
-                } else {
-                    game.gameState = STATE.Menu;
-                }
+            } else if (game.gameState == STATE.MenuOptions) {
+                game.removeMouseListener(game.menuOptions);
+                game.removeMouseMotionListener(game.menuOptions);
+                game.gameState = STATE.Menu;
+                game.addMouseListener(game.menu);
+                game.addMouseMotionListener(game.menu);
             }
         }
 
         if(key == KeyEvent.VK_O) {
             if(game.gameState == STATE.Game) {
-                inGame = true;
-                game.gameState = STATE.Options;
+                game.gameState = STATE.IngameOptions;
+                game.addMouseListener(game.inGameOptions);
+                game.addMouseMotionListener(game.inGameOptions);
             } else if (game.gameState == STATE.Menu) {
-                inGame = false;
-                game.gameState = STATE.Options;
-            } else if (game.gameState == STATE.Options) {
-                if(inGame) {
-                    game.gameState = STATE.Game;
-                } else {
-                    game.gameState = STATE.Menu;
-                }
+                game.removeMouseListener(game.menu);
+                game.removeMouseMotionListener(game.menu);
+                game.gameState = STATE.MenuOptions;
+                game.addMouseListener(game.menuOptions);
+                game.addMouseMotionListener(game.menuOptions);
+            } else if (game.gameState == STATE.MenuOptions) {
+                game.removeMouseListener(game.inGameOptions);
+                game.removeMouseMotionListener(game.inGameOptions);
+                game.gameState = STATE.Menu;
+                game.addMouseListener(game.menu);
+                game.addMouseMotionListener(game.menu);
+            } else if (game.gameState == STATE.IngameOptions) {
+                game.removeMouseListener(game.inGameOptions);
+                game.removeMouseMotionListener(game.inGameOptions);
+                game.gameState = STATE.Game;
+            } else if (game.gameState == STATE.Pause) {
+                game.removeMouseListener(game.pause);
+                game.removeMouseMotionListener(game.pause);
+                game.gameState = STATE.IngameOptions;
+                game.addMouseListener(game.inGameOptions);
+                game.addMouseMotionListener(game.inGameOptions);
+            } else if (game.gameState == STATE.Dead) {
+                game.removeMouseListener(game.dead);
+                game.removeMouseMotionListener(game.dead);
+                game.gameState = STATE.IngameOptions;
+                game.addMouseListener(game.inGameOptions);
+                game.addMouseMotionListener(game.inGameOptions);
             }
         }
 

@@ -45,7 +45,8 @@ public class Game extends Canvas implements Runnable {
     public UI.Dead dead;
     public UI.ItemMenu itemMenu;
     public UI.Pause pause;
-    public UI.Options options;
+    public InGameOptions inGameOptions;
+    public MenuOptions menuOptions;
 
     //Performance
     private Thread thread;
@@ -79,7 +80,8 @@ public class Game extends Canvas implements Runnable {
         alert = new Alert(this, newGame, Color.WHITE, WIDTH/2 - 90, HEIGHT / 8, 2);
         menu = new Menu(this);
         itemMenu = new ItemMenu(this);
-        options = new Options(this);
+        inGameOptions = new InGameOptions(this);
+        menuOptions = new MenuOptions(this);
         dead = new Dead(this);
         pause = new Pause(this);
         hud = new HUD(this);
@@ -151,13 +153,14 @@ public class Game extends Canvas implements Runnable {
         } else if(gameState == STATE.Dead) {
             dead.tick();
         } else if (gameState == STATE.Game) {
-            keyInput.inGame = true;
             handler.tick();
             hud.tick();
         } else if (gameState == STATE.Menu) {
             menu.tick();
-        } else if(gameState == STATE.Options) {
-            options.tick();
+        } else if(gameState == STATE.IngameOptions) {
+            inGameOptions.tick();
+        } else if (gameState == STATE.MenuOptions) {
+            menuOptions.tick();
         }
     }
 
@@ -169,7 +172,6 @@ public class Game extends Canvas implements Runnable {
             return;
         }
 
-        //Order of ticking checks is carefully optimised here - no unnecessary checks being done
         if(gameState!=STATE.Cutscene) {
             Graphics g = bs.getDrawGraphics();
             handler.render(g);
@@ -180,21 +182,16 @@ public class Game extends Canvas implements Runnable {
                 g.drawString(fps + " FPS", WIDTH - 128, 40);
             } else if (gameState == STATE.Menu) {
                 menu.render(g);
-                if (gameState == STATE.Options) {
-                    options.tick();
-                }
             } else if (gameState == STATE.Pause) {
                 pause.render(g);
-                if (gameState == STATE.Options) {
-                    options.tick();
-                }
             } else if (gameState == STATE.ItemSelect) {
                 itemMenu.render(g);
             } else if (gameState == STATE.Dead) {
                 dead.render(g);
-                if (gameState == STATE.Options) {
-                    options.tick();
-                }
+            } else if (gameState == STATE.IngameOptions) {
+                inGameOptions.tick();
+            } else if (gameState == STATE.MenuOptions) {
+                menuOptions.tick();
             }
 
             g.dispose();

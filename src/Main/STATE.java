@@ -8,5 +8,6 @@ public enum STATE {
     Cutscene,
     Dialog,
     Dead,
-    Options
+    IngameOptions,
+    MenuOptions
 }

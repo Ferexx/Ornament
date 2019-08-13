@@ -75,6 +75,7 @@ public class Menu extends MouseAdapter {
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {
             //Options
+            game.gameState = STATE.MenuOptions;
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
         }

@@ -58,6 +58,16 @@ public class IngameOptions extends MouseAdapter {
     }
 
     public void render(Graphics g) {
+        try {
+            optionsImage = ImageIO.read(new File("assets/UI_Elements/OptionsMenu.png"));
+        } catch (IOException e) {
+            System.out.println("File not found");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        g.setColor(new Color(0, 0, 0, 150));
+        g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+        g.drawImage(optionsImage, 150, 0, null);
 
     }
 }

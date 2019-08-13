@@ -189,9 +189,9 @@ public class Game extends Canvas implements Runnable {
             } else if (gameState == STATE.Dead) {
                 dead.render(g);
             } else if (gameState == STATE.IngameOptions) {
-                inGameOptions.tick();
+                inGameOptions.render(g);
             } else if (gameState == STATE.MenuOptions) {
-                menuOptions.tick();
+                menuOptions.render(g);
             }
 
             g.dispose();

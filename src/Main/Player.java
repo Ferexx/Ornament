@@ -208,7 +208,7 @@ public class Player extends GameObject {
                             doubleJump = false;
                             setVelY(0);
                             timer.cancel();
-                        } else {
+                        } else if(game.gameState==STATE.Game){
                             setVelY(getVelY() + 0.5);
                         }
                     }
@@ -275,7 +275,7 @@ public class Player extends GameObject {
                             doubleJump = false;
                             setVelY(0);
                             cancel();
-                        } else {
+                        } else if(game.gameState==STATE.Game){
                             setVelY(getVelY() + 0.5);
                         }
                     }
@@ -293,7 +293,7 @@ public class Player extends GameObject {
                             isStanding = true;
                             setVelY(0);
                             cancel();
-                        } else {
+                        } else if(game.gameState==STATE.Game){
                             setVelY(getVelY() + 0.5);
                         }
                     }

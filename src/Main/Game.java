@@ -29,7 +29,6 @@ import java.io.File;
 // NullPointer when energy attacking - not reproducible yet
 // Teleporting on top of platforms when hitting the sides sometimes
 // Hitting edge of platform fully stops movement until key is repressed
-// Wild bounce off screen when switching back to gameState Game
 // ---------------------------- Tweaks: ------------------------------------
 // Letting go of shift produces unnatural/uncomfortable behaviour
 

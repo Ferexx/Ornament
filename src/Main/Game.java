@@ -36,7 +36,6 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
-    Game game = this;
     private Thread thread;
     private HUD hud;
     public UI.Menu menu;
@@ -129,14 +128,11 @@ public class Game extends Canvas implements Runnable {
             itemMenu.tick();
         } else if(gameState == STATE.Dead) {
             dead.tick();
-        } else if (gameState == STATE.Game){
+        } else if (gameState == STATE.Game) {
             handler.tick();
-
-            if(gameState == STATE.Game) {
-                hud.tick();
-            } else if (gameState == STATE.Menu){
-                menu.tick();
-            }
+            hud.tick();
+        } else if (gameState == STATE.Menu) {
+            menu.tick();
         }
     }
 

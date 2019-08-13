@@ -19,6 +19,7 @@ public class Menu extends MouseAdapter {
     private Game game;
     private Spawner spawn;
     private static boolean playOutline = false, optionOutline = false, quitOutline = false;
+    private Background background;
 
     private int mX;
     private int mY;
@@ -28,7 +29,7 @@ public class Menu extends MouseAdapter {
 
         game.addMouseListener(this);
         game.addMouseMotionListener(this);
-
+        background = new Background(game, "assets/TownBackground.png");
         spawn = new Spawner(game);
     }
 
@@ -118,11 +119,14 @@ public class Menu extends MouseAdapter {
     }
 
     public void tick() {
-
+        background.tick();
     }
 
     public void render(Graphics g) {
-        g.setColor(Color.black);
+        background.render(g);
+
+        Color transparent = new Color(0, 0, 0, 200);
+        g.setColor(transparent);
         g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
         try {
             menuImage = ImageIO.read(new File("assets/UI_Elements/menuImage.png"));

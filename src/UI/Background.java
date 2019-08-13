@@ -5,6 +5,7 @@ import Enemies.Enemy;
 import Main.Game;
 import Main.GameObject;
 import Main.ID;
+import Main.STATE;
 import Powerups.Powerup;
 import World.WorldObject;
 
@@ -34,6 +35,9 @@ public class Background extends GameObject {
                     scrollRTL();
                 }
             }
+        }
+        if(game.gameState== STATE.Menu) {
+            menuScroll();
         }
     }
 
@@ -83,5 +87,12 @@ public class Background extends GameObject {
             WorldObject worldObject = game.handler.world.get(i);
             worldObject.setX(worldObject.getX() - (int) game.player.getVelX());
         }
+    }
+
+    public void menuScroll() {
+        if (b1x < 0) b2x = b1x + 1270;
+        if (b2x < 0) b1x = b2x + 1270;
+        b1x--;
+        b2x--;
     }
 }

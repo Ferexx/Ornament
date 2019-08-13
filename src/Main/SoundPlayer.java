@@ -6,8 +6,9 @@ import java.io.IOException;
 
 public class SoundPlayer {
 
-    public AudioInputStream audioInputStream;
+    private AudioInputStream audioInputStream;
     public Clip clip;
+
     public SoundPlayer(File audioFile) {
         try {
             audioInputStream = AudioSystem.getAudioInputStream(audioFile.getAbsoluteFile());
@@ -15,8 +16,21 @@ public class SoundPlayer {
             clip.open(audioInputStream);
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
+
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
+        assert clip != null;
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        double gain = 0.1;
+        float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+        gainControl.setValue(dB);
+    }
+
+    public void setVolume(double newVolume) {
+        assert clip != null;
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);;
+        float dB = (float) (Math.log(newVolume) / Math.log(10.0) * 20.0);
+        gainControl.setValue(dB);
     }
 }

@@ -5,9 +5,8 @@ import javafx.embed.swing.JFXPanel;
 import javax.swing.*;
 import java.awt.*;
 
-public class Window extends Canvas {
+public class Window extends JPanel {
     public JFrame frame;
-    public JFXPanel fxPanel = new JFXPanel();
     public Window(int width, int height, String title, Game game) {
         frame = new JFrame();
         frame.setTitle(title);

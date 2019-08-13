@@ -1,5 +1,6 @@
 package Main;
 
+import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -99,6 +100,7 @@ public class KeyInput extends KeyAdapter {
                 game.gameState = previousState;
                 game.window.frame.remove(game.cutscene.jfx);
                 game.window.frame.add(game);
+                game.createBufferStrategy(3);
                 game.start();
             }
         }

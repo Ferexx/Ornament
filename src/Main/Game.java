@@ -37,6 +37,7 @@ public class Game extends Canvas implements Runnable {
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 720;
 
+    Game game = this;
     private Thread thread;
     private HUD hud;
     public UI.Menu menu;
@@ -142,7 +143,7 @@ public class Game extends Canvas implements Runnable {
 
     public void render() {
         BufferStrategy bs = this.getBufferStrategy();
-        if (bs == null) {
+        if(bs == null) {
             this.createBufferStrategy(3);
             return;
         }

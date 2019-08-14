@@ -13,7 +13,7 @@ import java.io.File;
 // Bow
 // Melee
 // Archer
-// Soldier
+// Tank
 // Nobleman
 // Cutscene imagery
 // ------------------------ Gameplay: -------------------------------------
@@ -23,13 +23,15 @@ import java.io.File;
 // Upgradable items / new ability ideas
 // ------------------------ Misc: -----------------------------------------
 // Death screen and shit (respawn at level start)
-// Options screen and image resolution scaling
+// Image resolution scaling
+// Config loading/parsing/saving
 // Timed messages on screen
 // Finish Alerts - fade etc
 // ------------------------ Known Bugs: ------------------------------------
 // NullPointer when energy attacking - not reproducible yet
 // Teleporting on top of platforms when hitting the sides sometimes
 // Hitting edge of platform fully stops movement until key is repressed
+// Background menuScrolls at different stages (menu and menuOptions)
 // ---------------------------- Tweaks: ------------------------------------
 // Letting go of shift produces unnatural/uncomfortable behaviour
 

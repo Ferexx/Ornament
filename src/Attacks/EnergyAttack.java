@@ -14,7 +14,6 @@ public class EnergyAttack extends MagicAttack {
     public static int energyAttackCost = 5;
     private Image attackImage;
     private Game game;
-    private EnergyAttack self = this;
 
     public EnergyAttack(int x, int y, Game game, boolean facingRight) {
         super(x, y, energyAttackDamage, ID.EnergyAttack, game, energyAttackCost);
@@ -97,11 +96,14 @@ public class EnergyAttack extends MagicAttack {
                 if(getVelX()!=0&&rightFacing) setVelX(getVelX()-0.5);
                 else if(getVelX()!=0) setVelX(getVelX()+0.5);
                 else {
-                    game.handler.removeAttack(self);
+                    game.handler.removeAttack(returnSelf());
                     timer.cancel();
                 }
             }
         },0,150);
+    }
+    private EnergyAttack returnSelf() {
+        return this;
     }
 
 }

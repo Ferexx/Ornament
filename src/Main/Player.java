@@ -316,6 +316,7 @@ public class Player extends GameObject {
             System.out.println("You cannot attack at this time");
         }
         KeyInput.rightAttack = false;
+        facingRight = true;
     }
 
     //left attack function
@@ -333,5 +334,6 @@ public class Player extends GameObject {
             System.out.println("You cannot attack at this time");
         }
         KeyInput.leftAttack = false;
+        facingRight=false;
     }
 }

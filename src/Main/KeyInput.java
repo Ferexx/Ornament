@@ -70,11 +70,19 @@ public class KeyInput extends KeyAdapter {
                 game.removeMouseMotionListener(game.itemMenu);
                 game.gameState = STATE.Game;
             } else if (game.gameState == STATE.IngameOptions) {
-                game.removeMouseListener(game.inGameOptions);
-                game.removeMouseMotionListener(game.inGameOptions);
-                game.gameState = STATE.Pause;
-                game.addMouseListener(game.pause);
-                game.addMouseMotionListener(game.pause);
+                if(game.player.playerHealth <= 0) {
+                    game.removeMouseListener(game.inGameOptions);
+                    game.removeMouseMotionListener(game.inGameOptions);
+                    game.gameState = STATE.Dead;
+                    game.addMouseMotionListener(game.dead);
+                    game.addMouseListener(game.dead);
+                } else {
+                    game.removeMouseListener(game.inGameOptions);
+                    game.removeMouseMotionListener(game.inGameOptions);
+                    game.gameState = STATE.Pause;
+                    game.addMouseListener(game.pause);
+                    game.addMouseMotionListener(game.pause);
+                }
             } else if (game.gameState == STATE.MenuOptions) {
                 game.removeMouseListener(game.menuOptions);
                 game.removeMouseMotionListener(game.menuOptions);
@@ -102,9 +110,19 @@ public class KeyInput extends KeyAdapter {
                 game.addMouseListener(game.menu);
                 game.addMouseMotionListener(game.menu);
             } else if (game.gameState == STATE.IngameOptions) {
-                game.removeMouseListener(game.inGameOptions);
-                game.removeMouseMotionListener(game.inGameOptions);
-                game.gameState = STATE.Game;
+                if(game.player.playerHealth <= 0) {
+                    game.removeMouseListener(game.inGameOptions);
+                    game.removeMouseMotionListener(game.inGameOptions);
+                    game.gameState = STATE.Dead;
+                    game.addMouseMotionListener(game.dead);
+                    game.addMouseListener(game.dead);
+                } else {
+                    game.removeMouseListener(game.inGameOptions);
+                    game.removeMouseMotionListener(game.inGameOptions);
+                    game.removeMouseListener(game.inGameOptions);
+                    game.removeMouseMotionListener(game.inGameOptions);
+                    game.gameState = STATE.Game;
+                }
             } else if (game.gameState == STATE.Pause) {
                 game.removeMouseListener(game.pause);
                 game.removeMouseMotionListener(game.pause);

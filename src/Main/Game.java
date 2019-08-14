@@ -28,6 +28,7 @@ import java.io.File;
 // Config loading/parsing/saving
 // Timed messages on screen
 // Finish Alerts - fade etc
+// Finish Respawning
 // ------------------------ Known Bugs: ------------------------------------
 // NullPointer when energy attacking - not reproducible yet
 // Teleporting on top of platforms when hitting the sides sometimes

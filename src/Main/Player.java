@@ -26,7 +26,7 @@ public class Player extends GameObject {
     public CharacterType characterTypeType;
 
     //Godmode - infinite health, stamina, mana
-    private boolean godMode = false;
+    private boolean godMode = true;
 
     //Attacks
     public boolean canEnergyAttack = false;

@@ -8,34 +8,6 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.File;
 
-//TODO - add anything at any time. This is not a suggestions space, this is for genuine priority features
-// Robyn
-// ------------------------ Graphics needed: ------------------------------
-// Bow
-// Melee
-// Archer
-// Tank
-// Nobleman
-// Cutscene imagery
-// ------------------------ Gameplay: -------------------------------------
-// Melee gameplay
-// Bow gameplay
-// cutscenes and dialogue
-// Upgradable items / new ability ideas
-// ------------------------ Misc: -----------------------------------------
-// Death screen and shit (respawn at level start)
-// Image resolution scaling
-// Config loading/parsing/saving
-// Timed messages on screen
-// Finish Alerts - fade etc
-// ------------------------ Known Bugs: ------------------------------------
-// NullPointer when energy attacking - not reproducible yet
-// Teleporting on top of platforms when hitting the sides sometimes
-// Hitting edge of platform fully stops movement until key is repressed
-// Background menuScrolls at different stages (menu and menuOptions)
-// ---------------------------- Tweaks: ------------------------------------
-// Letting go of shift produces unnatural/uncomfortable behaviour
-
 public class Game extends Canvas implements Runnable {
     //Window
     public static final int WIDTH = 1280;

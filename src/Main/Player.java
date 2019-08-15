@@ -26,7 +26,7 @@ public class Player extends GameObject {
     public CharacterType characterTypeType;
 
     //Godmode - infinite health, stamina, mana
-    private boolean godMode = true;
+    private boolean godMode = false;
 
     //Attacks
     public boolean canEnergyAttack = false;
@@ -56,8 +56,8 @@ public class Player extends GameObject {
     public boolean isAttacking = false;
 
     //Physical dimensions
-    private int playerWidth = 22;
-    private int playerHeight = 52;
+    private int playerWidth = 26;
+    private int playerHeight = 58;
 
     private final Object lock = new Object();
 
@@ -225,18 +225,18 @@ public class Player extends GameObject {
                 //Animation stuff for attacking
                 if (isAttacking) {
                     if (facingRight) {
-                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardAttackingStillRight.png"));
+                        playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTank.png"));
                     } else {
-                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardAttackingStillLeft.png"));
+                        playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTankLeft.png"));
                     }
                 }
                 //Basic Mage image
                 else {
                     if (facingRight) {
-                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardFacingRight.png"));
+                        playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTank.png"));
                     }
                     else {
-                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardFacingLeft.png"));
+                        playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTankLeft.png"));
                     }
                 }
             } else if (characterTypeType == Tank) {

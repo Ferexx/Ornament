@@ -66,6 +66,9 @@ public class Dead extends MouseAdapter {
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {
             //Options
+            game.addMouseListener(game.inGameOptions);
+            game.addMouseMotionListener(game.inGameOptions);
+            game.gameState = STATE.IngameOptions;
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
         }

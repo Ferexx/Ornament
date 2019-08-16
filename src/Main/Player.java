@@ -9,8 +9,6 @@ import World.WorldObject;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +21,7 @@ public class Player extends GameObject {
     private Handler handler;
     private Timer timer;
     private BufferedImage playerImage;
-    public CharacterType characterTypeType;
+    public CharacterType characterType;
 
     //Godmode - infinite health, stamina, mana
     private boolean godMode = false;
@@ -61,13 +59,13 @@ public class Player extends GameObject {
 
     private final Object lock = new Object();
 
-    public Player(int x, int y, ID id, Game game) {
+    public Player(int x, int y, ID id, Game game, CharacterType characterType) {
         super(x, y, id, game);
         absoluteX = x;
         absoluteY = y;
 
         this.handler = game.handler;
-        characterTypeType = Mage;
+        this.characterType = characterType;
     }
 
     public Rectangle getBounds() {
@@ -221,29 +219,41 @@ public class Player extends GameObject {
 
         try {
             //If mage
-            if (characterTypeType == Mage) {
+            if (characterType == Mage) {
+                //set dimensions
+                playerWidth = 22;
+                playerHeight = 52;
                 //Animation stuff for attacking
                 if (isAttacking) {
                     if (facingRight) {
-                        playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTank.png"));
+                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardAttackingStillRight.png"));
                     } else {
-                        playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTankLeft.png"));
+                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardAttackingStillLeft.png"));
                     }
                 }
                 //Basic Mage image
                 else {
                     if (facingRight) {
-                        playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTank.png"));
+                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardFacingRight.png"));
                     }
                     else {
-                        playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTankLeft.png"));
+                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardFacingLeft.png"));
                     }
                 }
-            } else if (characterTypeType == Tank) {
-                playerImage = ImageIO.read(new File("assets/Player/character.png"));
-            } else if (characterTypeType == Nobleman) {
-                playerImage = ImageIO.read(new File("assets/Player/Knight.png"));
-            } else if (characterTypeType == Archer) {
+            } else if (characterType == Tank) {
+                playerWidth = 50;
+                playerHeight = 59;
+                if (facingRight) {
+                    playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTank.png"));
+                }
+                else {
+                    playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTankLeft.png"));
+                }
+            } else if (characterType == Nobleman) {
+                playerWidth = 47;
+                playerHeight = 58;
+                playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1.png"));
+            } else if (characterType == Archer) {
 
             }
         } catch(IOException e) {

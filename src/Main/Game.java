@@ -48,7 +48,8 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         //Initialising Game requirements
         newGame = "Welcome to Rahau";
-        handler = new Handler();player = new Player(410, 250, ID.Player, this);
+        //set character position and type
+        handler = new Handler();player = new Player(410, 250, ID.Player, this, CharacterType.Nobleman);
         spawner = new Spawner(this);
 
         //UI initialisations

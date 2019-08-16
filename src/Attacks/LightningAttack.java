@@ -21,7 +21,7 @@ public class LightningAttack extends MagicAttack{
     private LightningAttack self = this;
 
     public LightningAttack(int x, int y, Game game, boolean facingRight) {
-        super(x, y, lightningAttackDamage, ID.EnergyAttack, game, lightningAttackCost);
+        super(x, y, lightningAttackDamage, ID.LightningAttack, game, lightningAttackCost);
         height = 16;
         width = 154;
         this.game=game;

@@ -7,11 +7,13 @@ import java.awt.*;
 
 public abstract class MeleeAttack extends Attack{
 
-    protected int range;
+    protected double staminaCost;
+    protected double velX;
+    protected double velY;
 
-    public MeleeAttack(int x, int y, int dmg, ID id, Game game, int range) {
+    public MeleeAttack(int x, int y, int dmg, ID id, Game game, int staminaCost) {
         super(x, y, dmg, id, game);
-        this.range = range;
+        this.staminaCost = staminaCost;
     }
     @Override
     public void tick() {
@@ -26,5 +28,28 @@ public abstract class MeleeAttack extends Attack{
     @Override
     public Rectangle getBounds() {
         return null;
+    }
+
+    public double getVelX() {
+        return velX;
+    }
+
+    public void setVelX(double velX) {
+        this.velX = velX;
+    }
+    public double getVelY() {
+        return velY;
+    }
+
+    public void setVelY(double velY) {
+        this.velY = velY;
+    }
+
+    public double getMagicCost() {
+        return staminaCost;
+    }
+
+    public void setMagicCost(double magicCost) {
+        this.staminaCost = staminaCost;
     }
 }

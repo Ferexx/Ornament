@@ -1,5 +1,7 @@
 package Main;
 
+import Attacks.SwordAttack;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -194,8 +196,12 @@ public class KeyInput extends KeyAdapter {
                 }
 
                 if (key == KeyEvent.VK_LEFT) {
-                    game.player.isAttacking = false;
-                    leftDown = false;
+                    if (game.characterType == CharacterType.Nobleman) {
+                        leftDown = false;
+                    } else {
+                        game.player.isAttacking = false;
+                        leftDown = false;
+                    }
                 }
 
                 if (key == KeyEvent.VK_RIGHT) {

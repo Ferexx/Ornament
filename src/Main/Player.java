@@ -29,7 +29,7 @@ public class Player extends GameObject {
     //Attacks
     public boolean canEnergyAttack = false;
         private boolean energyBlocked = false;
-    public boolean canSwordAttack = false;
+    public boolean canSwordAttack = true;
     public boolean canLightningAttack = false;
 
     //Movement
@@ -252,7 +252,21 @@ public class Player extends GameObject {
             } else if (characterType == Nobleman) {
                 playerWidth = 47;
                 playerHeight = 58;
-                playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1.png"));
+
+                while (isAttacking) {
+                    if (facingRight) {
+                        playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1RickAttack.gif"));
+                    } else {
+                        playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1LeftAttack.gif"));
+                    }
+                }
+
+                if (facingRight) {
+                    playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1.png"));
+                }
+                else {
+                    playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1Left.png"));
+                }
             } else if (characterType == Archer) {
 
             }
@@ -319,7 +333,7 @@ public class Player extends GameObject {
             handler.addAttack(new EnergyAttack(x, y - 38, game, true));
             playerMagic -= EnergyAttack.energyAttackCost;
         } else if (canSwordAttack) {
-            handler.addAttack(new SwordAttack(SwordAttack.range, y - 38, ID.SwordAttack, game));
+            handler.addAttack(new SwordAttack(SwordAttack.width, y - 38, game, true));
         } else if (canLightningAttack) {
             handler.addAttack(new LightningAttack(x + 25, y - 38, game, true));
         } else {
@@ -336,7 +350,7 @@ public class Player extends GameObject {
             handler.addAttack(new EnergyAttack(x - EnergyAttack.width, y - 38, game, false));
             playerMagic -= EnergyAttack.energyAttackCost;
         } else if (canSwordAttack) {
-            handler.addAttack(new SwordAttack(x - SwordAttack.range, y - 38, ID.SwordAttack, game));
+            handler.addAttack(new SwordAttack(x - SwordAttack.width, y - 38, game, false));
         } else if (canLightningAttack) {
             handler.addAttack(new LightningAttack(x - LightningAttack.width, y - 32, game, false));
             playerMagic -= LightningAttack.lightningAttackCost;

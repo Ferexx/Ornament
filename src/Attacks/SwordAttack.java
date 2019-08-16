@@ -68,7 +68,6 @@ public class SwordAttack extends MeleeAttack {
                 timer.cancel();
             }
         },375,375);
-
     }
     private SwordAttack returnSelf() {
         return this;

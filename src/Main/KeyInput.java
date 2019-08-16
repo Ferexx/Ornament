@@ -196,7 +196,7 @@ public class KeyInput extends KeyAdapter {
                 }
 
                 if (key == KeyEvent.VK_LEFT) {
-                    if (game.characterType == CharacterType.Nobleman) {
+                    if(game.characterType == CharacterType.Nobleman || game.characterType == CharacterType.Tank) {
                         leftDown = false;
                     } else {
                         game.player.isAttacking = false;
@@ -205,7 +205,7 @@ public class KeyInput extends KeyAdapter {
                 }
 
                 if (key == KeyEvent.VK_RIGHT) {
-                    if (game.characterType == CharacterType.Nobleman) {
+                    if(game.characterType == CharacterType.Nobleman || game.characterType == CharacterType.Tank) {
                         rightDown = false;
                     } else {
                         game.player.isAttacking = false;

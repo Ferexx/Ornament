@@ -7,13 +7,17 @@ import Powerups.HealthPowerup;
 import Powerups.MagicPowerup;
 import UI.Background;
 import World.Ground;
+import World.NPCs.NPC;
+import World.NPCs.Villager;
 import World.Platform;
 
 import java.io.*;
 
+import static Main.ID.NPC;
+
 public class Level {
 
-    private File levelFolder, enemiesFile, worldFile, powerupsFile, playerFile, backgroundFile;
+    private File levelFolder, enemiesFile, worldFile, powerupsFile, playerFile, backgroundFile, npcFile;
     private Handler handler;
     private Game game;
     
@@ -31,6 +35,8 @@ public class Level {
         parseWorldObjects(worldFile);
         this.powerupsFile = new File(levelFolder+"\\Powerups.csv");
         parsePowerups(powerupsFile);
+        this.npcFile = new File(levelFolder+"\\NPCs.csv");
+        parseNPCs(npcFile);
     }
 
     private void parseBackground(File backgroundFile) {
@@ -118,6 +124,22 @@ public class Level {
             }
         }
         catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void parseNPCs(File npcFile) {
+        String line= "";
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(npcFile));
+            while((line = br.readLine())!=null) {
+                String[] values = line.split(",");
+                switch(values[0]) {
+                    case "ID.Villager":
+                        handler.addNPC(new Villager(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.NPC, values[3], game));
+                }
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -48,8 +48,8 @@ public class EnergyAttack extends MagicAttack {
         }
 
         //If attack collides with a world object
-        for(int i = 0; i < game.handler.world.size(); i++) {
-            WorldObject worldObject = game.handler.world.get(i);
+        for(int i = 0; i < game.handler.worldObjects.size(); i++) {
+            WorldObject worldObject = game.handler.worldObjects.get(i);
             if(worldObject.isStandable && getBounds().intersects(worldObject.getBounds())) {
                 setVelX(0);
             }

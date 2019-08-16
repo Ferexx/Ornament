@@ -1,7 +1,5 @@
 package Main;
 
-import Attacks.SwordAttack;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -17,8 +15,8 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        for (int i = 0; i < game.handler.object.size(); i++) {
-            GameObject tempObject = game.handler.object.get(i);
+        for (int i = 0; i < game.handler.objects.size(); i++) {
+            GameObject tempObject = game.handler.objects.get(i);
 
             if (tempObject.getID() == ID.Player) {
                 //Key events for the player
@@ -177,8 +175,8 @@ public class KeyInput extends KeyAdapter {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
-        for (int i = 0; i < game.handler.object.size(); i++) {
-            GameObject tempObject = game.handler.object.get(i);
+        for (int i = 0; i < game.handler.objects.size(); i++) {
+            GameObject tempObject = game.handler.objects.get(i);
 
             if (tempObject.getID() == ID.Player) {
                 //Key events for the player

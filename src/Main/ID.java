@@ -12,4 +12,5 @@ public enum ID {
     MeleeAttack(),
     MagicPowerup(),
     LightningAttack(),
+    NPC(),
 }

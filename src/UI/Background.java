@@ -25,8 +25,8 @@ public class Background extends GameObject {
     }
 
     public void tick() {
-        for (int i = 0; i < game.handler.object.size(); i++) {
-            GameObject tempObject = game.handler.object.get(i);
+        for (int i = 0; i < game.handler.objects.size(); i++) {
+            GameObject tempObject = game.handler.objects.get(i);
             if (tempObject.getID() == ID.Player) {
                 if (tempObject.getX() > 630 && tempObject.getVelX() > 0) {
                     scrollLTR();
@@ -65,8 +65,8 @@ public class Background extends GameObject {
     private void updatePosition() {
         b1x -= game.player.getVelX();
         b2x -= game.player.getVelX();
-        for (int i = 0; i < game.handler.object.size(); i++) {
-            GameObject tempObject = game.handler.object.get(i);
+        for (int i = 0; i < game.handler.objects.size(); i++) {
+            GameObject tempObject = game.handler.objects.get(i);
             if (tempObject.getID() != ID.Player) {
                 tempObject.setX(tempObject.getX() - (int) game.player.getVelX());
             }
@@ -83,8 +83,8 @@ public class Background extends GameObject {
             Powerup powerupObject = game.handler.powerups.get(i);
             powerupObject.setX(powerupObject.getX() - (int) game.player.getVelX());
         }
-        for (int i = 0; i < game.handler.world.size(); i++) {
-            WorldObject worldObject = game.handler.world.get(i);
+        for (int i = 0; i < game.handler.worldObjects.size(); i++) {
+            WorldObject worldObject = game.handler.worldObjects.get(i);
             worldObject.setX(worldObject.getX() - (int) game.player.getVelX());
         }
     }

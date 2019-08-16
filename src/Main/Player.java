@@ -7,12 +7,8 @@ import Enemies.Enemy;
 import Powerups.Powerup;
 import World.WorldObject;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -169,8 +165,8 @@ public class Player extends GameObject {
                 }
             }
             //If player collides with world
-            for(int i = 0; i < handler.world.size(); i++) {
-                WorldObject world = handler.world.get(i);
+            for(int i = 0; i < handler.worldObjects.size(); i++) {
+                WorldObject world = handler.worldObjects.get(i);
                 if(world.isStandable) {
                     if(getBounds().intersects(world.getBounds())) {
                         //If player hits top of object

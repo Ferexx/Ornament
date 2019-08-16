@@ -3,6 +3,7 @@ package Main;
 import Attacks.Attack;
 import Enemies.Enemy;
 import Powerups.Powerup;
+import World.NPCs.NPC;
 import World.WorldObject;
 
 import java.awt.*;
@@ -10,15 +11,16 @@ import java.util.LinkedList;
 
 public class Handler {
     //Linked Lists for storing every object in the game
-    public LinkedList<GameObject> object = new LinkedList<>();
+    public LinkedList<GameObject> objects = new LinkedList<>();
     public LinkedList<Attack> attacks = new LinkedList<>();
     public LinkedList<Enemy> enemies = new LinkedList<>();
     public LinkedList<Powerup> powerups = new LinkedList<>();
-    public LinkedList<WorldObject> world = new LinkedList<>();
+    public LinkedList<WorldObject> worldObjects = new LinkedList<>();
+    public LinkedList<NPC> npcs = new LinkedList<>();
 
     public void tick() {
-        for (int i = 0; i < object.size(); i++) {
-            GameObject tempObject = object.get(i);
+        for (int i = 0; i < objects.size(); i++) {
+            GameObject tempObject = objects.get(i);
             tempObject.tick();
         }
         for (int i = 0; i < attacks.size(); i++) {
@@ -33,15 +35,19 @@ public class Handler {
             Powerup powerup = powerups.get(i);
             powerup.tick();
         }
-        for (int i = 0; i < world.size(); i++) {
-            WorldObject worlds = world.get(i);
-            worlds.tick();
+        for (int i = 0; i < worldObjects.size(); i++) {
+            WorldObject world = worldObjects.get(i);
+            world.tick();
+        }
+        for (int i = 0; i < npcs.size(); i++) {
+            NPC npc = npcs.get(i);
+            npc.tick();
         }
     }
 
     public void render(Graphics g) {
-        for (int i = 0; i < object.size(); i++) {
-            GameObject tempObject = object.get(i);
+        for (int i = 0; i < objects.size(); i++) {
+            GameObject tempObject = objects.get(i);
             tempObject.render(g);
         }
         for (int i = 0; i < attacks.size(); i++) {
@@ -56,9 +62,13 @@ public class Handler {
             Powerup powerup = powerups.get(i);
             powerup.render(g);
         }
-        for (int i = 0; i < world.size(); i++) {
-            WorldObject worlds = world.get(i);
-            worlds.render(g);
+        for (int i = 0; i < worldObjects.size(); i++) {
+            WorldObject world = worldObjects.get(i);
+            world.render(g);
+        }
+        for (int i = 0; i < npcs.size(); i++) {
+            NPC npc = npcs.get(i);
+            npc.render(g);
         }
     }
 
@@ -71,11 +81,11 @@ public class Handler {
     }
 
     public void addObject(GameObject object) {
-        this.object.add(object);
+        this.objects.add(object);
     }
 
     public void removeObject(GameObject object) {
-        this.object.remove(object);
+        this.objects.remove(object);
     }
 
     public void addEnemy(Enemy enemy) {this.enemies.add(enemy);}
@@ -86,7 +96,11 @@ public class Handler {
 
     public void removePowerup(Powerup powerup) {this.powerups.remove(powerup);}
 
-    public void addWorldObject(WorldObject worlds) {this.world.add(worlds);}
+    public void addWorldObject(WorldObject world) {this.worldObjects.add(world);}
 
-    public void removeWorldObject(WorldObject worlds) {this.world.remove(worlds);}
+    public void removeWorldObject(WorldObject world) {this.worldObjects.remove(world);}
+
+    public void addNPC(NPC npc) {this.npcs.add(npc);}
+
+    public void removeNPC(NPC npc) {this.npcs.remove(npc);}
 }

@@ -250,7 +250,6 @@ public class Player extends GameObject {
                 playerImage = new ImageIcon("assets/Player/Tank/ArmouredTankLeft.png");
             }
         } else if (characterType == Nobleman) {
-            System.out.println(isAttacking);
             if (isAttacking) {
                 if (facingRight) {
                     playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1RightAttack.gif");

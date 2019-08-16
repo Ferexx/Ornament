@@ -157,7 +157,7 @@ public class KeyInput extends KeyAdapter {
             if(game.gameState!=STATE.Cutscene) {
                 previousState = game.gameState;
                 game.gameState = STATE.Cutscene;
-                game.cutscene = new Cutscene("assets/Skyrim.mp4", game);
+                game.cutscene = new Cutscene("assets/FirstCutscene.mp4", game);
                 game.window.frame.add(game.cutscene.jfx);
                 game.stop();
             }

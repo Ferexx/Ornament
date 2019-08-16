@@ -8,6 +8,7 @@ import Powerups.Powerup;
 import World.WorldObject;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,7 +21,7 @@ import static Main.CharacterType.*;
 public class Player extends GameObject {
     private Handler handler;
     private Timer timer;
-    private BufferedImage playerImage;
+    private Image playerImage;
     public CharacterType characterType;
 
     //Godmode - infinite health, stamina, mana
@@ -253,11 +254,11 @@ public class Player extends GameObject {
                 playerWidth = 47;
                 playerHeight = 58;
 
-                while (isAttacking) {
+                if (isAttacking) {
                     if (facingRight) {
-                        playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1RightAttack.gif"));
+                        playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1RightAttack.gif").getImage();
                     } else {
-                        playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1LeftAttack.gif"));
+                        playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1LeftAttack.gif").getImage();
                     }
                 }
 

@@ -205,8 +205,12 @@ public class KeyInput extends KeyAdapter {
                 }
 
                 if (key == KeyEvent.VK_RIGHT) {
-                    game.player.isAttacking = false;
-                    rightDown = false;
+                    if (game.characterType == CharacterType.Nobleman) {
+                        rightDown = false;
+                    } else {
+                        game.player.isAttacking = false;
+                        rightDown = false;
+                    }
                 }
 
                 if (key == KeyEvent.VK_SPACE) {

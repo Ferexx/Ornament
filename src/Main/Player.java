@@ -21,7 +21,7 @@ import static Main.CharacterType.*;
 public class Player extends GameObject {
     private Handler handler;
     private Timer timer;
-    private Image playerImage;
+    private ImageIcon playerImage;
     public CharacterType characterType;
 
     //Godmode - infinite health, stamina, mana
@@ -218,73 +218,66 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
 
-        try {
-            //If mage
-            if (characterType == Mage) {
-                //set dimensions
-                playerWidth = 22;
-                playerHeight = 52;
-                //Animation stuff for attacking
-                if (isAttacking) {
-                    if (facingRight) {
-                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardAttackingStillRight.png"));
-                    } else {
-                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardAttackingStillLeft.png"));
-                    }
-                }
-                //Basic Mage image
-                else {
-                    if (facingRight) {
-                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardFacingRight.png"));
-                    }
-                    else {
-                        playerImage = ImageIO.read(new File("assets/Player/Mage/WizardFacingLeft.png"));
-                    }
-                }
-            } else if (characterType == Tank) {
-                playerWidth = 50;
-                playerHeight = 59;
+        //If mage
+        if (characterType == Mage) {
+            //set dimensions
+            playerWidth = 22;
+            playerHeight = 52;
+            //Animation stuff for attacking
+            if (isAttacking) {
                 if (facingRight) {
-                    playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTank.png"));
+                    playerImage = new ImageIcon("assets/Player/Mage/WizardAttackingStillRight.png");
+                } else {
+                    playerImage = new ImageIcon("assets/Player/Mage/WizardAttackingStillLeft.png");
                 }
-                else {
-                    playerImage = ImageIO.read(new File("assets/Player/Tank/ArmouredTankLeft.png"));
-                }
-            } else if (characterType == Nobleman) {
-                playerWidth = 47;
-                playerHeight = 58;
-
-                if (isAttacking) {
-                    if (facingRight) {
-                        playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1RightAttack.gif").getImage();
-                    } else {
-                        playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1LeftAttack.gif").getImage();
-                    }
-                }
-
-                if (facingRight) {
-                    playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1.png"));
-                }
-                else {
-                    playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1Left.png"));
-                }
-            } else if (characterType == Archer) {
-
             }
-        } catch(IOException e) {
-            System.out.println("File not found");
-            e.printStackTrace();
-            System.exit(0);
+            //Basic Mage image
+            else {
+                if (facingRight) {
+                    playerImage = new ImageIcon("assets/Player/Mage/WizardFacingRight.png");
+                }
+                else {
+                    playerImage = new ImageIcon("assets/Player/Mage/WizardFacingLeft.png");
+                }
+            }
+        } else if (characterType == Tank) {
+            playerWidth = 50;
+            playerHeight = 59;
+            if (facingRight) {
+                playerImage = new ImageIcon("assets/Player/Tank/ArmouredTank.png");
+            }
+            else {
+                playerImage = new ImageIcon("assets/Player/Tank/ArmouredTankLeft.png");
+            }
+        } else if (characterType == Nobleman) {
+            System.out.println(isAttacking);
+            if (isAttacking) {
+                if (facingRight) {
+                    playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1RightAttack.gif");
+                } else {
+                    playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1LeftAttack.gif");
+                }
+            }
+            else if (facingRight) {
+                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1.png");
+            }
+            else {
+                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1Left.png");
+            }
+        } else if (characterType == Archer) {
+
         }
 
-        setWidth(playerImage.getWidth());
-        setHeight(playerImage.getHeight());
+        setWidth(playerImage.getIconWidth());
+        setHeight(playerImage.getIconHeight());
         if (x > 630) x = 631;
         if (x < 380 && absoluteX > 380) x = 379;
         if (absoluteX < 0) absoluteX = 0;
 
-        g.drawImage(playerImage, x, y-height, null);
+
+        g.drawImage(playerImage.getImage(), x, y-height, null);
     }
+
 
     public void jump() {
         synchronized (lock) {

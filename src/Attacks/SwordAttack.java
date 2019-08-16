@@ -67,7 +67,7 @@ public class SwordAttack extends MeleeAttack {
                 game.player.isAttacking = false;
                 timer.cancel();
             }
-        },0,375);
+        },375,375);
 
     }
     private SwordAttack returnSelf() {

@@ -255,7 +255,7 @@ public class Player extends GameObject {
 
                 while (isAttacking) {
                     if (facingRight) {
-                        playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1RickAttack.gif"));
+                        playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1RightAttack.gif"));
                     } else {
                         playerImage = ImageIO.read(new File("assets/Player/Nobleman/NoblemanMark1LeftAttack.gif"));
                     }

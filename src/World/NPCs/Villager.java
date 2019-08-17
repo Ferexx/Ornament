@@ -20,7 +20,6 @@ public class Villager extends NPC {
         super(x, y, id, game);
 
         try {
-            System.out.println(textureLocation);
             villagerImage = ImageIO.read(new File(textureLocation));
         } catch (Exception e) {
             e.printStackTrace();

@@ -14,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static Main.CharacterType.*;
+import static World.NPCs.EssentialNPCs.Domino;
 
 public class Player extends GameObject {
     private Handler handler;

@@ -13,4 +13,5 @@ public enum ID {
     MagicPowerup(),
     LightningAttack(),
     NPC(),
+    Domino,
 }

@@ -34,5 +34,13 @@ public class Villager extends NPC {
 
     public void render(Graphics g) {
         g.drawImage(villagerImage, x, y - height, null);
+
+        setWidth(villagerImage.getWidth());
+        setHeight(villagerImage.getHeight());
+
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y - height, width, height);
     }
 }

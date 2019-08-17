@@ -92,6 +92,16 @@ public class KeyInput extends KeyAdapter {
             }
         }
 
+        if(key == KeyEvent.VK_E) {
+            if(game.player.touchingDomino) {
+                previousState = game.gameState;
+                game.gameState = STATE.Cutscene;
+                game.cutscene = new Cutscene("assets/FirstCutscene.mp4", game);
+                game.window.frame.add(game.cutscene.jfx);
+                game.stop();
+            }
+        }
+
         if(key == KeyEvent.VK_O) {
             if(game.gameState == STATE.Game) {
                 game.gameState = STATE.IngameOptions;
@@ -148,16 +158,6 @@ public class KeyInput extends KeyAdapter {
                 game.gameState = STATE.Game;
                 game.removeMouseListener(game.itemMenu);
                 game.removeMouseMotionListener(game.itemMenu);
-            }
-        }
-
-        if(key == KeyEvent.VK_C) {
-            if(game.gameState!=STATE.Cutscene) {
-                previousState = game.gameState;
-                game.gameState = STATE.Cutscene;
-                game.cutscene = new Cutscene("assets/FirstCutscene.mp4", game);
-                game.window.frame.add(game.cutscene.jfx);
-                game.stop();
             }
         }
 

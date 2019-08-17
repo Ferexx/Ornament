@@ -23,7 +23,7 @@ public class WeakMinion extends Enemy {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle(x, y - 32, width, height);
+        return new Rectangle(x, y - height, width, height);
     }
 
     public void tick() {

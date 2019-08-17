@@ -20,7 +20,6 @@ public class Villager extends NPC {
         super(x, y, id, game);
 
         try {
-            System.out.println(textureLocation);
             villagerImage = ImageIO.read(new File(textureLocation));
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,5 +33,13 @@ public class Villager extends NPC {
 
     public void render(Graphics g) {
         g.drawImage(villagerImage, x, y - height, null);
+
+        setWidth(villagerImage.getWidth());
+        setHeight(villagerImage.getHeight());
+
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y - height, width, height);
     }
 }

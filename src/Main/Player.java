@@ -5,6 +5,7 @@ import Attacks.LightningAttack;
 import Attacks.SwordAttack;
 import Enemies.Enemy;
 import Powerups.Powerup;
+import World.NPCs.NPC;
 import World.WorldObject;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static Main.CharacterType.*;
+import static World.NPCs.EssentialNPCs.Domino;
 
 public class Player extends GameObject {
     private Handler handler;
@@ -53,6 +55,9 @@ public class Player extends GameObject {
     //Physical dimensions
     private int playerWidth = 26;
     private int playerHeight = 58;
+
+    //Checks
+    boolean touchingDomino = false;
 
     private final Object lock = new Object();
 
@@ -139,6 +144,16 @@ public class Player extends GameObject {
                 Enemy enemy = handler.enemies.get(i);
                 if(getBounds().intersects(enemy.getBounds())) {
                     playerHealth-=2;
+                }
+            }
+
+            //if player collides with NPC Villager
+            for(int i = 0; i < handler.npcs.size(); i++) {
+                NPC npc = handler.npcs.get(i);
+                if(getBounds().intersects(npc.getBounds())) {
+                    touchingDomino = true;
+                } else {
+                    touchingDomino = false;
                 }
             }
 

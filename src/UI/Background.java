@@ -7,6 +7,7 @@ import Main.GameObject;
 import Main.ID;
 import Main.STATE;
 import Powerups.Powerup;
+import World.NPCs.NPC;
 import World.WorldObject;
 
 import java.awt.*;
@@ -86,6 +87,10 @@ public class Background extends GameObject {
         for (int i = 0; i < game.handler.worldObjects.size(); i++) {
             WorldObject worldObject = game.handler.worldObjects.get(i);
             worldObject.setX(worldObject.getX() - (int) game.player.getVelX());
+        }
+        for (int i = 0; i < game.handler.npcs.size(); i++) {
+            NPC npc = game.handler.npcs.get(i);
+            npc.setX(npc.getX() - (int) game.player.getVelX());
         }
     }
 

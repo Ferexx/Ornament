@@ -25,17 +25,17 @@ public class Level {
         this.game = game;
         this.handler = game.handler;
         this.levelFolder = levelFolder;
-        this.backgroundFile = new File(levelFolder+"\\Background.csv");
+        this.backgroundFile = new File(levelFolder+"/Background.csv");
         parseBackground(this.backgroundFile);
-        this.playerFile = new File(levelFolder+"\\Player.csv");
+        this.playerFile = new File(levelFolder+"/Player.csv");
         parsePlayer(playerFile);
-        this.enemiesFile = new File(levelFolder+"\\Enemies.csv");
+        this.enemiesFile = new File(levelFolder+"/Enemies.csv");
         parseEnemies(enemiesFile);
-        this.worldFile = new File(levelFolder+"\\worldObjects.csv");
+        this.worldFile = new File(levelFolder+"/worldObjects.csv");
         parseWorldObjects(worldFile);
-        this.powerupsFile = new File(levelFolder+"\\Powerups.csv");
+        this.powerupsFile = new File(levelFolder+"/Powerups.csv");
         parsePowerups(powerupsFile);
-        this.npcFile = new File(levelFolder+"\\NPCs.csv");
+        this.npcFile = new File(levelFolder+"/NPCs.csv");
         parseNPCs(npcFile);
     }
 

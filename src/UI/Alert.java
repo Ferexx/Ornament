@@ -37,13 +37,13 @@ public class Alert {
     }
 
     public void fade() {
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                    game.alert = null;
-            }
-        },0,t);
+//        Timer timer = new Timer();
+//        timer.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                game.alert = null;
+//            }
+//        },1000,t);
     }
 
 }

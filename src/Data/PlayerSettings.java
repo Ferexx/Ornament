@@ -4,8 +4,8 @@ import java.io.*;
 
 public class PlayerSettings {
     File settingsFile;
-    int volume=50;
-    int res=0;
+    public int volume=50;
+    public int res=0;
 
     public PlayerSettings(File settingsFile) {
         this.settingsFile = settingsFile;
@@ -20,6 +20,7 @@ public class PlayerSettings {
                         break;
                     case "resolution":
                         res = Integer.parseInt(split[1]);
+                        break;
                 }
             }
         } catch (IOException e) {

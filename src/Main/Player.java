@@ -3,6 +3,7 @@ package Main;
 import Attacks.EnergyAttack;
 import Attacks.LightningAttack;
 import Attacks.SwordAttack;
+import Data.PlayerSettings;
 import Enemies.Enemy;
 import Powerups.Powerup;
 import World.NPCs.NPC;
@@ -10,6 +11,8 @@ import World.WorldObject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -51,6 +54,7 @@ public class Player extends GameObject {
     public int maxMagic = 100;
     public int playerStamina = 100;
     public boolean isAttacking = false;
+    public PlayerSettings settings;
 
     //Physical dimensions
     private int playerWidth = 26;
@@ -68,6 +72,13 @@ public class Player extends GameObject {
 
         this.handler = game.handler;
         this.characterType = characterType;
+        File file = new File("./playerConfig.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        settings = new PlayerSettings(file);
     }
 
     public Rectangle getBounds() {

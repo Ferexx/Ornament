@@ -13,7 +13,6 @@ import java.net.MalformedURLException;
 public class Cutscene {
 
     JFXPanel jfx = new JFXPanel();
-    MediaPlayer player;
 
     public Cutscene(String cutsceneFile, Game game) {
         File file = new File(cutsceneFile);
@@ -26,8 +25,8 @@ public class Cutscene {
             jfx.requestFocus();
 
             Media media = new Media(url);
-            player = new MediaPlayer(media);
-            player.setVolume(0.1);
+            MediaPlayer player = new MediaPlayer(media);
+            player.setVolume((float) game.player.settings.volume/100);
             player.setAutoPlay(true);
 
             Group root = new Group();

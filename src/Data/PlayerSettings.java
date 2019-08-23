@@ -4,7 +4,7 @@ import java.io.*;
 
 public class PlayerSettings {
     File settingsFile;
-    public int volume=50;
+    public int volume=10;
     public int res=0;
 
     public PlayerSettings(File settingsFile) {
@@ -31,7 +31,8 @@ public class PlayerSettings {
         try {
             FileWriter fw = new FileWriter(settingsFile, false);
             fw.write("volume=" + volume);
-            fw.write("resolution=" + res);
+            fw.write("\nresolution=" + res);
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

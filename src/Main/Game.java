@@ -69,7 +69,7 @@ public class Game extends Canvas implements Runnable {
 
         //Initialise window and music player
         window = new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
-        musicPlayer = new SoundPlayer(new File("assets/Music/TitleConcept.wav"));
+        musicPlayer = new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this);
 
     }
 

@@ -79,6 +79,7 @@ public class Player extends GameObject {
             e.printStackTrace();
         }
         settings = new PlayerSettings(file);
+        settings.saveSettings();
     }
 
     public Rectangle getBounds() {

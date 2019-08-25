@@ -65,7 +65,7 @@ public class Menu extends MouseAdapter {
             //Play game
             game.gameState = STATE.Game;
 
-            game.musicPlayer.clip.stop();
+            game.soundPlayer.clip.stop();
 
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);

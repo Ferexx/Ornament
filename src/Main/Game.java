@@ -40,7 +40,7 @@ public class Game extends Canvas implements Runnable {
 
     //Input output
     public KeyInput keyInput = new KeyInput(this);
-    public SoundPlayer musicPlayer;
+    public SoundPlayer soundPlayer;
 
     //Initialised the gameState to the main menu
     public STATE gameState = STATE.Menu;
@@ -52,7 +52,7 @@ public class Game extends Canvas implements Runnable {
         //set character position and type
         handler = new Handler();
         player = new Player(410, 250, ID.Player, this, characterType);
-        musicPlayer = new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this);
+        soundPlayer = new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this);
         spawner = new Spawner(this);
 
         //UI initialisations

@@ -17,25 +17,23 @@ import static Main.ID.NPC;
 
 public class Level {
 
-    private File levelFolder, enemiesFile, worldFile, powerupsFile, playerFile, backgroundFile, npcFile;
     private Handler handler;
     private Game game;
     
     public Level(File levelFolder, Game game) {
         this.game = game;
         this.handler = game.handler;
-        this.levelFolder = levelFolder;
-        this.backgroundFile = new File(levelFolder+"/Background.csv");
-        parseBackground(this.backgroundFile);
-        this.playerFile = new File(levelFolder+"/Player.csv");
+        File backgroundFile = new File(levelFolder + "/Background.csv");
+        parseBackground(backgroundFile);
+        File playerFile = new File(levelFolder + "/Player.csv");
         parsePlayer(playerFile);
-        this.enemiesFile = new File(levelFolder+"/Enemies.csv");
+        File enemiesFile = new File(levelFolder + "/Enemies.csv");
         parseEnemies(enemiesFile);
-        this.worldFile = new File(levelFolder+"/worldObjects.csv");
+        File worldFile = new File(levelFolder + "/worldObjects.csv");
         parseWorldObjects(worldFile);
-        this.powerupsFile = new File(levelFolder+"/Powerups.csv");
+        File powerupsFile = new File(levelFolder + "/Powerups.csv");
         parsePowerups(powerupsFile);
-        this.npcFile = new File(levelFolder+"/NPCs.csv");
+        File npcFile = new File(levelFolder + "/NPCs.csv");
         parseNPCs(npcFile);
     }
 

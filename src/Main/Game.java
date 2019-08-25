@@ -44,7 +44,7 @@ public class Game extends Canvas implements Runnable {
 
     //Initialised the gameState to the main menu
     public STATE gameState = STATE.Menu;
-    public CharacterType characterType = CharacterType.Nobleman;
+    public CharacterType characterType = CharacterType.Mage;
 
     public Game() {
         //Initialising Game requirements

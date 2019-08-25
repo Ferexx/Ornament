@@ -79,11 +79,7 @@ public class IngameOptions extends MouseInputAdapter {
         //Volume slider bounds
         //g.setColor(Color.green);
         //g.drawRect(WIDTH/2-10, HEIGHT/4+39, 250, 33);
-        if(volumeListener) {
-            if(mX < WIDTH/2-10 + 250 - sliderLength/2 && mX > WIDTH/2-10 + sliderLength/2) {
-                sliderX = mX - sliderLength/2;
-            }
-        }
+
         g.setColor(Color.yellow);
         g.fillRect(sliderX, sliderY, sliderLength, sliderThickness);
         g.setColor(Color.black);

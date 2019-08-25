@@ -66,6 +66,8 @@ public class Pause extends MouseAdapter {
             game.gameState = STATE.IngameOptions;
             game.removeMouseListener(this);
             game.removeMouseListener(this);
+            game.addMouseListener(game.inGameOptions);
+            game.addMouseMotionListener(game.inGameOptions);
         }
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 97, Game.HEIGHT / 2 + 86, 166, 53)) {

@@ -5,6 +5,7 @@ import Main.Game;
 import Sound.SoundPlayer;
 
 import javax.imageio.ImageIO;
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import static Main.Game.HEIGHT;
 import static Main.Game.WIDTH;
 
-public class MenuOptions extends MouseAdapter {
+public class MenuOptions extends MouseInputAdapter {
 
     private BufferedImage optionsImage;
     private Game game;
@@ -35,27 +36,22 @@ public class MenuOptions extends MouseAdapter {
         background = new Background(game, "assets/TownBackground.png");
     }
 
-    public void mouseMoved(MouseEvent e) {
-        mX = e.getX();
-        mY = e.getY();
-
-    }
-
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
     public void mousePressed(MouseEvent e) {
         mX = e.getX();
         mY = e.getY();
 
-        mouseIsPressed = true;
+        if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
+            sliderX = mX - sliderLength/2;
+        }
     }
 
-    public void mouseReleased(MouseEvent e) {
+    public void mouseDragged(MouseEvent e) {
         mX = e.getX();
         mY = e.getY();
 
+        if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
+            sliderX = mX - sliderLength/2;
+        }
     }
 
     private boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
@@ -72,14 +68,6 @@ public class MenuOptions extends MouseAdapter {
 
     public void tick() {
         background.tick();
-
-        if(mouseIsPressed) {
-            if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
-                sliderX = mX - sliderLength/2;
-            } else {
-                mouseIsPressed = false;
-            }
-        }
     }
 
     public void render(Graphics g) {

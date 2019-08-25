@@ -3,6 +3,7 @@ package UI;
 import Main.Game;
 
 import javax.imageio.ImageIO;
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,11 +15,12 @@ import static Main.Game.HEIGHT;
 import static Main.Game.WIDTH;
 import static UI.MenuOptions.*;
 
-public class IngameOptions extends MouseAdapter {
+public class IngameOptions extends MouseInputAdapter {
 
     private BufferedImage optionsImage;
     private Game game;
     private boolean volumeListener = false;
+    private boolean mouseIsPressed = false;
 
     private int mX;
     private int mY;
@@ -27,33 +29,21 @@ public class IngameOptions extends MouseAdapter {
 
     }
 
-    public void mouseMoved(MouseEvent e) {
-        mX = e.getX();
-        mY = e.getY();
-    }
-
-    public void mouseDragged(MouseEvent e) {
-        if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
-            volumeListener = true;
-        } else {
-            volumeListener = false;
-        }
-    }
-
     public void mousePressed(MouseEvent e) {
         mX = e.getX();
         mY = e.getY();
+
         if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
-            volumeListener = true;
+            sliderX = mX - sliderLength/2;
         }
     }
 
-    public void mouseReleased(MouseEvent e) {
+    public void mouseDragged(MouseEvent e) {
         mX = e.getX();
         mY = e.getY();
 
-        if(volumeListener = true) {
-            volumeListener = false;
+        if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
+            sliderX = mX - sliderLength/2;
         }
     }
 

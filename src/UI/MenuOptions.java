@@ -32,7 +32,7 @@ public class MenuOptions extends MouseInputAdapter {
     public static int sliderX = WIDTH/2-10, sliderY = HEIGHT/4+39, sliderThickness = 34, sliderLength = 16, volumeModifier = 0;
 
     public MenuOptions(Game game) {
-
+        this.game = game;
         background = new Background(game, "assets/TownBackground.png");
     }
 

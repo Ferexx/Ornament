@@ -109,5 +109,8 @@ public class MenuOptions extends MouseAdapter {
         }
         g.setColor(Color.yellow);
         g.fillRect(sliderX, sliderY, sliderLength, sliderThickness);
+        g.setColor(Color.black);
+        g.drawRect(sliderX-1, sliderY-1, sliderLength+1, sliderThickness+1);
+        g.drawRect(sliderX-2, sliderY-2, sliderLength+3, sliderThickness+3);
     }
 }

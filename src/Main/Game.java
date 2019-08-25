@@ -52,6 +52,7 @@ public class Game extends Canvas implements Runnable {
         //set character position and type
         handler = new Handler();
         player = new Player(410, 250, ID.Player, this, characterType);
+        musicPlayer = new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this);
         spawner = new Spawner(this);
 
         //UI initialisations
@@ -69,7 +70,6 @@ public class Game extends Canvas implements Runnable {
 
         //Initialise window and music player
         window = new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
-        musicPlayer = new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this);
 
     }
 

@@ -29,7 +29,7 @@ public class MenuOptions extends MouseInputAdapter {
 
     //TODO
     //SliderX is the volume control. This is what you need to save in the player config file @Jack
-    public static int sliderX = WIDTH/2-10, sliderY = HEIGHT/4+39, sliderThickness = 34, sliderLength = 16, volumeModifier;
+    public static int sliderX = WIDTH/2-10, sliderY = HEIGHT/4+39, sliderThickness = 34, sliderLength = 16, volumeModifier = 0;
 
     public MenuOptions(Game game) {
 
@@ -42,6 +42,10 @@ public class MenuOptions extends MouseInputAdapter {
 
         if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
             sliderX = mX - sliderLength/2;
+            volumeModifier = sliderX - WIDTH/2-10;
+            game.player.settings.volume = volumeModifier;
+
+            game.player.settings.saveSettings();
         }
     }
 
@@ -51,6 +55,10 @@ public class MenuOptions extends MouseInputAdapter {
 
         if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
             sliderX = mX - sliderLength/2;
+            volumeModifier = sliderX - WIDTH/2-10;
+            game.player.settings.volume = volumeModifier;
+
+            game.player.settings.saveSettings();
         }
     }
 

@@ -2,6 +2,7 @@ package UI;
 
 import Data.PlayerSettings;
 import Main.Game;
+import Main.STATE;
 import Sound.SoundPlayer;
 
 import javax.imageio.ImageIO;
@@ -27,7 +28,6 @@ public class MenuOptions extends MouseInputAdapter {
     private int mY;
 
     //TODO
-    //SliderX is the volume control. This is what you need to save in the player config file @Jack
     public static int sliderX = WIDTH/2-10, sliderY = HEIGHT/4+39, sliderThickness = 34, sliderLength = 16, volumeModifier = 0;
 
     public MenuOptions(Game game) {
@@ -54,7 +54,12 @@ public class MenuOptions extends MouseInputAdapter {
             volumeModifier = sliderX - WIDTH/2-10;
             game.player.settings.volume = volumeModifier;
         } else if (mouseOver(mX, mY, 812, 450, 109, 32)) {
+            game.gameState = STATE.Menu;
+            game.removeMouseListener(this);
+            game.removeMouseMotionListener(this);
             game.player.settings.saveSettings();
+            game.addMouseMotionListener(game.menu);
+            game.addMouseListener(game.menu);
         }
     }
 
@@ -105,7 +110,9 @@ public class MenuOptions extends MouseInputAdapter {
 
         if(saveButton) {
             g.setColor(Color.green);
+            g.drawRect(813, 451, 107, 30);
             g.drawRect(812, 450, 109, 32);
+            g.drawRect(811, 449, 111, 34);
         }
 
         g.setColor(Color.yellow);

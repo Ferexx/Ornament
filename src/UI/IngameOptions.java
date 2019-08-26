@@ -1,6 +1,7 @@
 package UI;
 
 import Main.Game;
+import Main.STATE;
 
 import javax.imageio.ImageIO;
 import javax.swing.event.MouseInputAdapter;
@@ -19,8 +20,7 @@ public class IngameOptions extends MouseInputAdapter {
 
     private BufferedImage optionsImage;
     private Game game;
-    private boolean volumeListener = false;
-    private boolean mouseIsPressed = false;
+    private boolean saveButton;
 
     private int mX;
     private int mY;
@@ -29,12 +29,31 @@ public class IngameOptions extends MouseInputAdapter {
         this.game = game;
     }
 
+    public void mouseMoved(MouseEvent e) {
+        mX = e.getX();
+        mY = e.getY();
+        if(mouseOver(mX, mY, 812, 450, 109, 32)) {
+            saveButton = true;
+        } else {
+            saveButton = false;
+        }
+    }
+
     public void mousePressed(MouseEvent e) {
         mX = e.getX();
         mY = e.getY();
 
         if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
             sliderX = mX - sliderLength/2;
+            volumeModifier = sliderX - WIDTH/2-10;
+            game.player.settings.volume = volumeModifier;
+        } else if (mouseOver(mX, mY, 812, 450, 109, 32)) {
+            game.gameState = STATE.Pause;
+            game.removeMouseListener(this);
+            game.removeMouseMotionListener(this);
+            game.player.settings.saveSettings();
+            game.addMouseMotionListener(game.pause);
+            game.addMouseListener(game.pause);
         }
     }
 
@@ -79,6 +98,13 @@ public class IngameOptions extends MouseInputAdapter {
         //Volume slider bounds
         //g.setColor(Color.green);
         //g.drawRect(WIDTH/2-10, HEIGHT/4+39, 250, 33);
+
+        if(saveButton) {
+            g.setColor(Color.green);
+            g.drawRect(813, 451, 107, 30);
+            g.drawRect(812, 450, 109, 32);
+            g.drawRect(811, 449, 111, 34);
+        }
 
         g.setColor(Color.yellow);
         g.fillRect(sliderX, sliderY, sliderLength, sliderThickness);

@@ -1,4 +1,4 @@
-# EPICGAMERGAME
+# Budget Scrolls
 2D Platformer programmed by Evin Kierans and Jack Price.
 
 Additional credits to;

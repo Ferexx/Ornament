@@ -26,7 +26,7 @@ public class IngameOptions extends MouseInputAdapter {
     private int mY;
 
     public IngameOptions(Game game) {
-
+        this.game = game;
     }
 
     public void mousePressed(MouseEvent e) {

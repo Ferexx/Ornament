@@ -33,6 +33,7 @@ public class MenuOptions extends MouseInputAdapter {
         this.game = game;
         background = new Background(game, "assets/TownBackground.png");
         sliderX = (int) (630 + game.player.settings.volume*2.5);
+
         if(sliderX>880) sliderX=870;
         if(sliderX<630) sliderX=630;
     }
@@ -91,11 +92,7 @@ public class MenuOptions extends MouseInputAdapter {
 
     private boolean mouseOver(int mx, int my, int x, int y, int width, int height) {
         if (mx > x && mx < x + width) {
-            if (my > y && my < y + height) {
-                return true;
-            } else {
-                return false;
-            }
+            return my > y && my < y + height;
         } else {
             return false;
         }

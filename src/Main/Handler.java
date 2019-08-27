@@ -3,6 +3,7 @@ package Main;
 import Attacks.Attack;
 import Enemies.Enemy;
 import Powerups.Powerup;
+import Sound.SoundPlayer;
 import World.NPCs.NPC;
 import World.WorldObject;
 
@@ -17,6 +18,7 @@ public class Handler {
     public LinkedList<Powerup> powerups = new LinkedList<>();
     public LinkedList<WorldObject> worldObjects = new LinkedList<>();
     public LinkedList<NPC> npcs = new LinkedList<>();
+    public LinkedList<SoundPlayer> sounds = new LinkedList<>();
 
     public void tick() {
         for (int i = 0; i < objects.size(); i++) {
@@ -103,4 +105,19 @@ public class Handler {
     public void addNPC(NPC npc) {this.npcs.add(npc);}
 
     public void removeNPC(NPC npc) {this.npcs.remove(npc);}
+
+    public void addSound(SoundPlayer sound) {this.sounds.add(sound);}
+
+    public void removeSound(SoundPlayer sound) {this.sounds.remove(sound);}
+    public void removeSound(String soundName) {
+        for(int i = 0; i < sounds.size(); i++) {
+            if(sounds.get(i).name.equals(soundName))
+                sounds.remove(sounds.get(i));
+        }
+    }
+    public void changeVolume(float newVolume) {
+        for(int i = 0; i < sounds.size(); i++) {
+            sounds.get(i).setVolume(newVolume);
+        }
+    }
 }

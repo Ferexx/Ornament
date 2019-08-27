@@ -1,9 +1,7 @@
 package UI;
 
-import Data.PlayerSettings;
 import Main.Game;
 import Main.STATE;
-import Sound.SoundPlayer;
 
 import javax.imageio.ImageIO;
 import javax.swing.event.MouseInputAdapter;
@@ -23,41 +21,57 @@ public class MenuOptions extends MouseInputAdapter {
     private Background background;
 
     private boolean saveButton;
+    private boolean discardButton;
 
     private int mX;
     private int mY;
 
     //TODO
-    public static int sliderX = WIDTH/2-10, sliderY = HEIGHT/4+39, sliderThickness = 34, sliderLength = 16, volumeModifier = 0;
+    public static int sliderX, sliderY = HEIGHT/4+39, sliderThickness = 34, sliderLength = 16, volumeModifier = 0;
 
     public MenuOptions(Game game) {
         this.game = game;
         background = new Background(game, "assets/TownBackground.png");
+        sliderX = (int) (630 + game.player.settings.volume*2.5);
     }
 
     public void mouseMoved(MouseEvent e) {
         mX = e.getX();
         mY = e.getY();
-        if(mouseOver(mX, mY, 812, 450, 109, 32)) {
-            saveButton = true;
-        } else {
-            saveButton = false;
-        }
+        saveButton = mouseOver(mX, mY, 812, 450, 109, 32);
+        discardButton = mouseOver(mX, mY, 694, 450, 109, 32);
     }
 
     public void mousePressed(MouseEvent e) {
         mX = e.getX();
         mY = e.getY();
 
+        //Slider
         if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
             sliderX = mX - sliderLength/2;
-            volumeModifier = sliderX - WIDTH/2-10;
-            game.player.settings.volume = volumeModifier;
-        } else if (mouseOver(mX, mY, 812, 450, 109, 32)) {
+            volumeModifier = (int) ((sliderX - 630)/2.5);
+            game.handler.changeVolume(volumeModifier);
+        }
+        //Save button
+        else if (mouseOver(mX, mY, 812, 450, 109, 32)) {
             game.gameState = STATE.Menu;
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
+
+            game.player.settings.volume = volumeModifier;
             game.player.settings.saveSettings();
+
+            game.addMouseMotionListener(game.menu);
+            game.addMouseListener(game.menu);
+        }
+        //Discard button
+        else if (mouseOver(mX, mY, 694, 450, 109, 32)) {
+            game.gameState = STATE.Menu;
+            game.removeMouseListener(this);
+            game.removeMouseListener(this);
+
+            game.handler.changeVolume(game.player.settings.volume);
+
             game.addMouseMotionListener(game.menu);
             game.addMouseListener(game.menu);
         }
@@ -70,7 +84,6 @@ public class MenuOptions extends MouseInputAdapter {
         if(mouseOver(mX, mY, WIDTH/2-10, HEIGHT/4+39, 250, 33)) {
             sliderX = mX - sliderLength/2;
             volumeModifier = sliderX - WIDTH/2-10;
-            game.player.settings.volume = volumeModifier;
         }
     }
 
@@ -113,6 +126,12 @@ public class MenuOptions extends MouseInputAdapter {
             g.drawRect(813, 451, 107, 30);
             g.drawRect(812, 450, 109, 32);
             g.drawRect(811, 449, 111, 34);
+        }
+        if(discardButton) {
+            g.setColor(Color.RED);
+            g.drawRect(695, 451, 107, 30);
+            g.drawRect(694, 450, 109, 32);
+            g.drawRect(693, 449, 111, 34);
         }
 
         g.setColor(Color.yellow);

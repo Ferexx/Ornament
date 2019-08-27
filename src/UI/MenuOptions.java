@@ -33,6 +33,8 @@ public class MenuOptions extends MouseInputAdapter {
         this.game = game;
         background = new Background(game, "assets/TownBackground.png");
         sliderX = (int) (630 + game.player.settings.volume*2.5);
+        if(sliderX>880) sliderX=870;
+        if(sliderX<630) sliderX=630;
     }
 
     public void mouseMoved(MouseEvent e) {

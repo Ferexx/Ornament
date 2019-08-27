@@ -30,8 +30,8 @@ public class IngameOptions extends MouseInputAdapter {
         this.game = game;
         sliderX = (int) (630 + game.player.settings.volume*2.5);
 
-        if(sliderX>880) sliderX=870;
-        if(sliderX<630) sliderX=630;
+        if(game.player.settings.volume>100) game.player.settings.volume=100;
+        if(game.player.settings.volume<0) game.player.settings.volume=0;
     }
 
     public void mouseMoved(MouseEvent e) {

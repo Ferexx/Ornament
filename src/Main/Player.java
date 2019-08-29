@@ -56,9 +56,9 @@ public class Player extends GameObject {
     public boolean isAttacking = false;
     public PlayerSettings settings;
 
-    //Physical dimensions
-    private int playerWidth = 26;
-    private int playerHeight = 58;
+    //Dimensions
+    private int playerWidth;
+    private int playerHeight;
 
     //Checks
     boolean touchingDomino = false;
@@ -273,6 +273,10 @@ public class Player extends GameObject {
                 playerImage = new ImageIcon("assets/Player/Tank/ArmouredTankLeft.png");
             }
         } else if (characterType == Nobleman) {
+
+            //Physical dimensions
+            playerWidth = 42;
+            playerHeight = 57;
             if (isAttacking) {
                 if (facingRight) {
                     playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1RightAttack.gif");
@@ -281,10 +285,10 @@ public class Player extends GameObject {
                 }
             }
             else if (facingRight) {
-                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1.png");
+                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark2.png");
             }
             else {
-                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1Left.png");
+                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark2Left.png");
             }
         } else if (characterType == Archer) {
 

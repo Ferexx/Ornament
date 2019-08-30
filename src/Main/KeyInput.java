@@ -99,6 +99,8 @@ public class KeyInput extends KeyAdapter {
                 game.cutscene = new Cutscene("assets/FirstCutscene.mp4", game);
                 game.window.frame.add(game.cutscene.jfx);
                 game.stop();
+            } else if (game.player.touchingDoor) {
+                System.out.println("You opened this door");
             }
         }
 

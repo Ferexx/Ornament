@@ -50,7 +50,7 @@ public class Game extends Canvas implements Runnable {
         newGame = "Welcome to Rahau";
         //set character position and type
         handler = new Handler();
-        player = new Player(410, 250, ID.Player, this, characterType);
+        player = new Player(0, 0, ID.Player, this, characterType);
         handler.addSound(new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this, "titleMusic"));
         spawner = new Spawner(this);
 

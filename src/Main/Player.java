@@ -23,7 +23,7 @@ public class Player extends GameObject {
     private Handler handler;
     private Timer timer;
     private ImageIcon playerImage;
-    public CharacterType characterType;
+    private CharacterType characterType;
 
     //Godmode - infinite health, stamina, mana
     private boolean godMode = false;
@@ -38,7 +38,7 @@ public class Player extends GameObject {
     private boolean canDoubleJump = false;
     boolean isFalling = false;
     private boolean isStanding = true;
-    public boolean doubleJump = false;
+    private boolean doubleJump = false;
     private boolean facingRight=true;
 
     //Players position in the level. x and y are used for position on screen
@@ -62,6 +62,7 @@ public class Player extends GameObject {
 
     //Checks
     boolean touchingDomino = false;
+    boolean touchingDoor = false;
 
     private final Object lock = new Object();
 
@@ -215,6 +216,12 @@ public class Player extends GameObject {
                         else if (getY() > world.getY() + world.getHeight()) {
                             setVelY(getVelY() * -1);
                         }
+                    }
+                }else if (getBounds().intersects(world.getBounds())) {
+                    switch (world.getID()) {
+                        case Door:
+                            game.player.touchingDoor = true;
+                            break;
                     }
                 }
             }

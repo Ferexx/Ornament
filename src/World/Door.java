@@ -9,12 +9,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Platform extends WorldObject {
+public class Door extends WorldObject{
 
     private BufferedImage texture;
 
-    public Platform(int x, int y, ID id, String textureLocation, Game game) throws IOException {
+    public Door(int x, int y, ID id, String textureLocation, Game game) throws IOException {
         super(x, y, id, game, true);
+        isStandable = false;
 
         texture = ImageIO.read(new File(textureLocation));
         setWidth(texture.getWidth());

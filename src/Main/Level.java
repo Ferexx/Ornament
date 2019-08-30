@@ -6,6 +6,7 @@ import Powerups.DoubleJumpPowerup;
 import Powerups.HealthPowerup;
 import Powerups.MagicPowerup;
 import UI.Background;
+import World.Door;
 import World.Ground;
 import World.NPCs.NPC;
 import World.NPCs.Villager;
@@ -94,11 +95,13 @@ public class Level {
                 switch(values[0]) {
                     case "ID.Platform":
                         handler.addWorldObject(new Platform(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.Platform, values[3], game));
-                }
-            }
+                    case "ID.Door":
+                        handler.addWorldObject(new Door(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.Door, values[3], game));
         }
+    }
+}
         catch (IOException e) {
-            e.printStackTrace();
+                e.printStackTrace();
         }
     }
 

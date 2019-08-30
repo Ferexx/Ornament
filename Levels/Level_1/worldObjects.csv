@@ -1,11 +1,3 @@
 ID.Platform,800,500,assets/GrassPlatform.png
 ID.Platform,1200,400,assets/GrassPlatform.png
-ID.Platform,1600,500,assets/GrassPlatform.png
-ID.Platform,2000,400,assets/GrassPlatform.png
-ID.Platform,2400,500,assets/GrassPlatform.png
-ID.Platform,2800,400,assets/GrassPlatform.png
-ID.Platform,3200,500,assets/GrassPlatform.png
-ID.Platform,3600,400,assets/GrassPlatform.png
-ID.Platform,4000,500,assets/GrassPlatform.png
-ID.Platform,4400,400,assets/GrassPlatform.png
-ID.Platform,4800,500,assets/GrassPlatform.png
+ID.Door,2000,518,assets/WoodenDoorStoneOutline.png

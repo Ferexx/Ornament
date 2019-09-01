@@ -248,8 +248,29 @@ public class Player extends GameObject {
 
     public void render(Graphics g) {
 
-        //If mage
+        //If nobleman
         if (game.characterType == 0) {
+
+            //Physical dimensions
+            playerWidth = 42;
+            playerHeight = 57;
+            canSwordAttack = true;
+            if (isAttacking) {
+                if (facingRight) {
+                    playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1RightAttack.gif");
+                } else {
+                    playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1LeftAttack.gif");
+                }
+            }
+            else if (facingRight) {
+                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark2.png");
+            }
+            else {
+                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark2Left.png");
+            }
+
+            //if mage
+        } else if (game.characterType == 1) {
             //set dimensions
             playerWidth = 22;
             playerHeight = 52;
@@ -271,25 +292,7 @@ public class Player extends GameObject {
                     playerImage = new ImageIcon("assets/Player/Mage/WizardFacingLeft.png");
                 }
             }
-        } else if (game.characterType == 1) {
-
-            //Physical dimensions
-            playerWidth = 42;
-            playerHeight = 57;
-            canSwordAttack = true;
-            if (isAttacking) {
-                if (facingRight) {
-                    playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1RightAttack.gif");
-                } else {
-                    playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1LeftAttack.gif");
-                }
-            }
-            else if (facingRight) {
-                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark2.png");
-            }
-            else {
-                playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark2Left.png");
-            }
+            //if tank
         } else if (game.characterType == 2) {
             playerWidth = 50;
             playerHeight = 59;
@@ -300,6 +303,7 @@ public class Player extends GameObject {
             else {
                 playerImage = new ImageIcon("assets/Player/Tank/ArmouredTankLeft.png");
             }
+            //if archer
         } else if (game.characterType == 3) {
 
         } else {

@@ -3,6 +3,7 @@ package Main;
 import Sound.SoundPlayer;
 import UI.*;
 import UI.Menu;
+import javafx.scene.control.Alert;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -32,10 +33,9 @@ public class Game extends Canvas implements Runnable {
     public Player player;
     public Handler handler;
     public Spawner spawner;
+    private AlertEngine alerter;
 
     //Video
-    public Alert alert;
-    private String newGame;
     public Cutscene cutscene;
 
     //Input output
@@ -47,15 +47,12 @@ public class Game extends Canvas implements Runnable {
 
     public Game() {
         //Initialising Game requirements
-        newGame = "Welcome to Rahau";
-        //set character position and type
         handler = new Handler();
         player = new Player(0, 0, ID.Player, this, characterType);
         handler.addSound(new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this, "titleMusic"));
         spawner = new Spawner(this);
 
         //UI initialisations
-        alert = new Alert(this, newGame, Color.WHITE, WIDTH/2 - 90, HEIGHT / 8, 2);
         menu = new Menu(this);
         itemMenu = new ItemMenu(this);
         inGameOptions = new IngameOptions(this);
@@ -69,7 +66,6 @@ public class Game extends Canvas implements Runnable {
 
         //Initialise window and music player
         window = new Window(WIDTH, HEIGHT, "Budget Scrolls", this);
-
     }
 
     //Starts the game thread
@@ -154,9 +150,12 @@ public class Game extends Canvas implements Runnable {
             handler.render(g);
             if (gameState == STATE.Game) {
                 hud.render(g);
+
+                //FPS counter
                 g.setFont(new Font("Verdana", 1, 16));
-                g.setColor(Color.GREEN);    //FPS counter colour
+                g.setColor(Color.GREEN);
                 g.drawString(fps + " FPS", WIDTH - 128, 40);
+
             } else if (gameState == STATE.Menu) {
                 menu.render(g);
             } else if (gameState == STATE.Pause) {

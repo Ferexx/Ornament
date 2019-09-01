@@ -3,11 +3,11 @@ package UI;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Notification {
+public class CountDown {
     Timer timer;
     public static boolean finished = false;
 
-    public Notification(int seconds) {
+    public CountDown(int seconds) {
         finished = false;
         timer = new Timer();
         timer.schedule(new RemindTask(), seconds*1000);

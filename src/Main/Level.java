@@ -59,9 +59,10 @@ public class Level {
             BufferedReader br = new BufferedReader(new FileReader(backgroundFile));
             while((line = br.readLine())!=null) {
                 String[] values = line.split(",");
-                handler.addObject(game.player);
+                game.characterType = Integer.parseInt(values[0]);
                 game.player.setX(Integer.parseInt(values[1]));
                 game.player.setY(Integer.parseInt(values[2]));
+                handler.addObject(game.player);
             }
         } catch(IOException e) {
             e.printStackTrace();

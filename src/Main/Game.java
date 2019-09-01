@@ -43,17 +43,17 @@ public class Game extends Canvas implements Runnable {
 
     //Initialised the gameState to the main menu
     public STATE gameState = STATE.Menu;
-    public CharacterType characterType = CharacterType.Nobleman;
+    public int characterType;
 
     public Game() {
         //Initialising Game requirements
+        menu = new Menu(this);
         handler = new Handler();
         player = new Player(0, 0, ID.Player, this, characterType);
         handler.addSound(new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this, "titleMusic"));
         spawner = new Spawner(this);
 
         //UI initialisations
-        menu = new Menu(this);
         itemMenu = new ItemMenu(this);
         inGameOptions = new IngameOptions(this);
         menuOptions = new MenuOptions(this);

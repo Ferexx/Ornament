@@ -8,6 +8,7 @@ import Enemies.Enemy;
 import Powerups.Powerup;
 import World.NPCs.NPC;
 import World.WorldObject;
+import jdk.nashorn.internal.runtime.regexp.joni.encoding.CharacterType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,14 +17,13 @@ import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static Main.CharacterType.*;
 import static World.NPCs.EssentialNPCs.Domino;
 
 public class Player extends GameObject {
     private Handler handler;
     private Timer timer;
     private ImageIcon playerImage;
-    private CharacterType characterType;
+    private int characterType;
 
     //Godmode - infinite health, stamina, mana
     private boolean godMode = false;
@@ -31,7 +31,7 @@ public class Player extends GameObject {
     //Attacks
     public boolean canEnergyAttack = false;
         private boolean energyBlocked = false;
-    public boolean canSwordAttack = true;
+    public boolean canSwordAttack = false;
     public boolean canLightningAttack = false;
 
     //Movement
@@ -66,7 +66,7 @@ public class Player extends GameObject {
 
     private final Object lock = new Object();
 
-    public Player(int x, int y, ID id, Game game, CharacterType characterType) {
+    public Player(int x, int y, ID id, Game game, int characterType) {
         super(x, y, id, game);
         absoluteX = x;
         absoluteY = y;
@@ -249,10 +249,11 @@ public class Player extends GameObject {
     public void render(Graphics g) {
 
         //If mage
-        if (characterType == Mage) {
+        if (game.characterType == 0) {
             //set dimensions
             playerWidth = 22;
             playerHeight = 52;
+            canSwordAttack = false;
             //Animation stuff for attacking
             if (isAttacking) {
                 if (facingRight) {
@@ -270,20 +271,12 @@ public class Player extends GameObject {
                     playerImage = new ImageIcon("assets/Player/Mage/WizardFacingLeft.png");
                 }
             }
-        } else if (characterType == Tank) {
-            playerWidth = 50;
-            playerHeight = 59;
-            if (facingRight) {
-                playerImage = new ImageIcon("assets/Player/Tank/ArmouredTank.png");
-            }
-            else {
-                playerImage = new ImageIcon("assets/Player/Tank/ArmouredTankLeft.png");
-            }
-        } else if (characterType == Nobleman) {
+        } else if (game.characterType == 1) {
 
             //Physical dimensions
             playerWidth = 42;
             playerHeight = 57;
+            canSwordAttack = true;
             if (isAttacking) {
                 if (facingRight) {
                     playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark1RightAttack.gif");
@@ -297,8 +290,20 @@ public class Player extends GameObject {
             else {
                 playerImage = new ImageIcon("assets/Player/Nobleman/NoblemanMark2Left.png");
             }
-        } else if (characterType == Archer) {
+        } else if (game.characterType == 2) {
+            playerWidth = 50;
+            playerHeight = 59;
+            canSwordAttack = true;
+            if (facingRight) {
+                playerImage = new ImageIcon("assets/Player/Tank/ArmouredTank.png");
+            }
+            else {
+                playerImage = new ImageIcon("assets/Player/Tank/ArmouredTankLeft.png");
+            }
+        } else if (game.characterType == 3) {
 
+        } else {
+            System.out.println("Please enter a valid character number");
         }
 
         setWidth(playerImage.getIconWidth());

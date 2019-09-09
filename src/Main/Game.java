@@ -33,7 +33,6 @@ public class Game extends Canvas implements Runnable {
     public Player player;
     public Handler handler;
     public Spawner spawner;
-    private AlertEngine alerter;
 
     //Video
     public Cutscene cutscene;

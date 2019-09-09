@@ -6,6 +6,7 @@ import Powerups.DoubleJumpPowerup;
 import Powerups.HealthPowerup;
 import Powerups.MagicPowerup;
 import UI.Background;
+import UI.Notif;
 import World.Door;
 import World.Ground;
 import World.NPCs.NPC;
@@ -20,6 +21,7 @@ public class Level {
 
     private Handler handler;
     private Game game;
+    private String message;
     
     public Level(File levelFolder, Game game) {
         this.game = game;
@@ -98,6 +100,9 @@ public class Level {
                         handler.addWorldObject(new Platform(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.Platform, values[3], game));
                     case "ID.Door":
                         handler.addWorldObject(new Door(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.Door, values[3], game));
+                    case "ID.Message":
+                        //handler.addWorldObject(new Notif(100, 200, Integer.parseInt(values[2]), Integer.parseInt(values[3]), game));
+                        //TODO parse message here by some means or other, it's not working and I give up for now
         }
     }
 }

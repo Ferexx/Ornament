@@ -14,5 +14,6 @@ public enum ID {
     LightningAttack,
     NPC,
     Domino,
-    Door
+    Door,
+    Notif
 }

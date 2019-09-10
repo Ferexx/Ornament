@@ -1,12 +1,20 @@
 package Main;
 
+import Attacks.Attack;
+import Enemies.Enemy;
+import Powerups.Powerup;
+import World.NPCs.NPC;
+import World.WorldObject;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 public class KeyInput extends KeyAdapter {
     private Game game;
     public static boolean aDown = false, dDown = false, rightAttack = false, leftAttack = false, rightDown = false, leftDown = false;
     private STATE previousState = STATE.Menu;
+    private Spawner spawn;
 
     public KeyInput(Game game) {
         this.game = game;
@@ -100,7 +108,7 @@ public class KeyInput extends KeyAdapter {
                 game.window.frame.add(game.cutscene.jfx);
                 game.stop();
             } else if (game.player.touchingDoor) {
-                System.out.println("You opened this door");
+                loopBack();
             }
         }
 
@@ -222,5 +230,33 @@ public class KeyInput extends KeyAdapter {
             }
         }
 
+    }
+    public void loopBack() {
+        for (int i = 0; i < game.handler.objects.size(); i++) {
+            GameObject tempObject = game.handler.objects.get(i);
+            if (tempObject.getID() != ID.Player) {
+                tempObject.setX(tempObject.getX() + game.player.absoluteX);
+            }
+        }
+        for (int i = 0; i < game.handler.attacks.size(); i++) {
+            Attack attackObject = game.handler.attacks.get(i);
+            attackObject.setX(attackObject.getX() + game.player.absoluteX);
+        }
+        for (int i = 0; i < game.handler.enemies.size(); i++) {
+            Enemy enemyObject = game.handler.enemies.get(i);
+            enemyObject.setX(enemyObject.getX() + game.player.absoluteX);
+        }
+        for (int i = 0; i < game.handler.powerups.size(); i++) {
+            Powerup powerupObject = game.handler.powerups.get(i);
+            powerupObject.setX(powerupObject.getX() + game.player.absoluteX);
+        }
+        for (int i = 0; i < game.handler.worldObjects.size(); i++) {
+            WorldObject worldObject = game.handler.worldObjects.get(i);
+            worldObject.setX(worldObject.getX() + game.player.absoluteX);
+        }
+        for (int i = 0; i < game.handler.npcs.size(); i++) {
+            NPC npc = game.handler.npcs.get(i);
+            npc.setX(npc.getX() + game.player.absoluteX);
+        }
     }
 }

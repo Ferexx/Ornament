@@ -126,4 +126,14 @@ public class Handler {
             sounds.get(i).setVolume(newVolume);
         }
     }
+
+    public void clearAll() {
+        objects = new LinkedList<>();
+        attacks = new LinkedList<>();
+        enemies = new LinkedList<>();
+        powerups = new LinkedList<>();
+        worldObjects = new LinkedList<>();
+        npcs = new LinkedList<>();
+        sounds = new LinkedList<>();
+    }
 }

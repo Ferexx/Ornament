@@ -20,6 +20,11 @@ public class Handler {
     public LinkedList<NPC> npcs = new LinkedList<>();
     public LinkedList<SoundPlayer> sounds = new LinkedList<>();
 
+    Game game;
+
+    public Handler(Game game) {
+        this.game=game;
+    }
     public void tick() {
         for (int i = 0; i < objects.size(); i++) {
             GameObject tempObject = objects.get(i);
@@ -72,6 +77,7 @@ public class Handler {
             NPC npc = npcs.get(i);
             npc.render(g);
         }
+        game.player.render(g);
     }
 
     public void addAttack(Attack attack) {

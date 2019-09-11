@@ -27,7 +27,7 @@ public class SoundPlayer {
         }
         assert clip != null;
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gain = (float) game.player.settings.volume/1000;
+        gain = (float) game.settings.volume/1000;
         float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
         gainControl.setValue(dB);
     }

@@ -27,7 +27,7 @@ public class Cutscene {
 
             Media media = new Media(url);
             player = new MediaPlayer(media);
-            player.setVolume((float) game.player.settings.volume/100);
+            player.setVolume((float) game.settings.volume/100);
             player.setAutoPlay(true);
 
             Group root = new Group();

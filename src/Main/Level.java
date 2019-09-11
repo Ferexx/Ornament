@@ -57,7 +57,7 @@ public class Level {
     }
 
     private void parsePlayer(File backgroundFile) {
-        String line = "";
+        String line;
         try {
             BufferedReader br = new BufferedReader(new FileReader(backgroundFile));
             while((line = br.readLine())!=null) {

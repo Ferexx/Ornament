@@ -32,10 +32,10 @@ public class MenuOptions extends MouseInputAdapter {
     public MenuOptions(Game game) {
         this.game = game;
         background = new Background(game, "assets/TownBackground.png");
-        sliderX = (int) (630 + game.player.settings.volume*2.5);
+        sliderX = (int) (630 + game.settings.volume*2.5);
 
-        if(game.player.settings.volume>100) game.player.settings.volume=100;
-        if(game.player.settings.volume<0) game.player.settings.volume=0;
+        if(game.settings.volume>100) game.settings.volume=100;
+        if(game.settings.volume<0) game.settings.volume=0;
     }
 
     public void mouseMoved(MouseEvent e) {
@@ -61,8 +61,8 @@ public class MenuOptions extends MouseInputAdapter {
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
 
-            game.player.settings.volume = volumeModifier;
-            game.player.settings.saveSettings();
+            game.settings.volume = volumeModifier;
+            game.settings.saveSettings();
 
             game.addMouseMotionListener(game.menu);
             game.addMouseListener(game.menu);
@@ -73,7 +73,7 @@ public class MenuOptions extends MouseInputAdapter {
             game.removeMouseListener(this);
             game.removeMouseListener(this);
 
-            game.handler.changeVolume(game.player.settings.volume);
+            game.handler.changeVolume(game.settings.volume);
 
             game.addMouseMotionListener(game.menu);
             game.addMouseListener(game.menu);

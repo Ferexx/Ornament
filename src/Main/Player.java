@@ -73,14 +73,6 @@ public class Player extends GameObject {
 
         this.handler = game.handler;
         this.characterType = characterType;
-        File file = new File("./playerConfig.txt");
-        try {
-            file.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        settings = new PlayerSettings(file);
-        settings.saveSettings();
     }
 
     public Rectangle getBounds() {

@@ -1,5 +1,6 @@
 package Main;
 
+import Data.PlayerSettings;
 import Sound.SoundPlayer;
 import UI.*;
 import UI.Menu;
@@ -8,6 +9,7 @@ import javafx.scene.control.Alert;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.io.File;
+import java.io.IOException;
 
 public class Game extends Canvas implements Runnable {
     //Window
@@ -33,6 +35,7 @@ public class Game extends Canvas implements Runnable {
     public Player player;
     public Handler handler;
     public Spawner spawner;
+    public PlayerSettings settings;
 
     //Video
     public Cutscene cutscene;
@@ -49,6 +52,17 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu(this);
         handler = new Handler(this);
         spawner = new Spawner(this);
+
+        //Creating player settings file if one doesn't already exist
+        File file = new File("./playerConfig.txt");
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        settings = new PlayerSettings(file);
+        settings.saveSettings();
+
         handler.addSound(new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this, "titleMusic"));
 
         //UI initialisations

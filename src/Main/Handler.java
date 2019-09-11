@@ -77,7 +77,6 @@ public class Handler {
             NPC npc = npcs.get(i);
             npc.render(g);
         }
-        game.player.render(g);
     }
 
     public void addAttack(Attack attack) {

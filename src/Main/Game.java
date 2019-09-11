@@ -48,9 +48,8 @@ public class Game extends Canvas implements Runnable {
         //Initialising Game requirements
         menu = new Menu(this);
         handler = new Handler(this);
-        player = new Player(0, 0, ID.Player, this, characterType);
-        handler.addSound(new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this, "titleMusic"));
         spawner = new Spawner(this);
+        handler.addSound(new SoundPlayer(new File("assets/Music/TitleConcept.wav"), this, "titleMusic"));
 
         //UI initialisations
         itemMenu = new ItemMenu(this);

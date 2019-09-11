@@ -22,6 +22,7 @@ public class Level {
     private Handler handler;
     private Game game;
     private String message;
+    private int characterType;
     
     public Level(File levelFolder, Game game) {
         this.game = game;
@@ -62,8 +63,7 @@ public class Level {
             while((line = br.readLine())!=null) {
                 String[] values = line.split(",");
                 game.characterType = Integer.parseInt(values[0]);
-                game.player.setX(Integer.parseInt(values[1]));
-                game.player.setY(Integer.parseInt(values[2]));
+                game.player = new Player(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.Player, game, game.characterType);
                 handler.addObject(game.player);
             }
         } catch(IOException e) {

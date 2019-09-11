@@ -57,6 +57,10 @@ public class Handler {
             GameObject tempObject = objects.get(i);
             tempObject.render(g);
         }
+        for (int i = 0; i < worldObjects.size(); i++) {
+            WorldObject world = worldObjects.get(i);
+            world.render(g);
+        }
         for (int i = 0; i < attacks.size(); i++) {
             Attack tempAttack = attacks.get(i);
             tempAttack.render(g);
@@ -68,10 +72,6 @@ public class Handler {
         for (int i = 0; i < powerups.size(); i++) {
             Powerup powerup = powerups.get(i);
             powerup.render(g);
-        }
-        for (int i = 0; i < worldObjects.size(); i++) {
-            WorldObject world = worldObjects.get(i);
-            world.render(g);
         }
         for (int i = 0; i < npcs.size(); i++) {
             NPC npc = npcs.get(i);

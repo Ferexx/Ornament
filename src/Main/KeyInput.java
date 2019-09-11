@@ -24,41 +24,34 @@ public class KeyInput extends KeyAdapter {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        for (int i = 0; i < game.handler.objects.size(); i++) {
-            GameObject tempObject = game.handler.objects.get(i);
+        //Key events for the player
 
-            if (tempObject.getID() == ID.Player) {
-                //Key events for the player
+        if (key == KeyEvent.VK_SHIFT && !game.player.isFalling && (game.player.getVelX() < 5 && game.player.getVelX() > -5)) {
+                game.player.setVelX(game.player.getVelX() * 2);
+        }
 
-                if (key == KeyEvent.VK_A) {
-                    tempObject.setVelX(-3);
-                    aDown = true;
-                }
+        if (key == KeyEvent.VK_A) {
+            game.player.setVelX(-3);
+            aDown = true;
+        }
 
-                if (key == KeyEvent.VK_D) {
-                    tempObject.setVelX(+3);
-                    dDown = true;
-                }
+        if (key == KeyEvent.VK_D) {
+            game.player.setVelX(+3);
+            dDown = true;
+        }
 
-                if (key == KeyEvent.VK_LEFT && !leftDown) {
-                    leftAttack = true;
-                    leftDown = true;
-                }
+        if (key == KeyEvent.VK_LEFT && !leftDown) {
+            leftAttack = true;
+            leftDown = true;
+        }
 
-                if (key == KeyEvent.VK_RIGHT && !rightDown) {
-                    rightAttack = true;
-                    rightDown = true;
-                }
+        if (key == KeyEvent.VK_RIGHT && !rightDown) {
+            rightAttack = true;
+            rightDown = true;
+        }
 
-                if (key == KeyEvent.VK_SPACE && game.gameState != STATE.Cutscene) {
-                    game.player.jump();
-                }
-
-                if (key == KeyEvent.VK_SHIFT) {
-                    if (!game.player.isFalling && tempObject.getVelX() < 5 && tempObject.getVelX() > -5)
-                        tempObject.setVelX(tempObject.getVelX() * 2);
-                }
-            }
+        if (key == KeyEvent.VK_SPACE && game.gameState != STATE.Cutscene) {
+            game.player.jump();
         }
 
         //mainly exit menu and exit game type stuff
@@ -207,21 +200,13 @@ public class KeyInput extends KeyAdapter {
                 }
 
                 if (key == KeyEvent.VK_LEFT) {
-                    if(game.characterType == 1 || game.characterType == 2) {
-                        leftDown = false;
-                    } else {
-                        game.player.isAttacking = false;
-                        leftDown = false;
-                    }
+                    game.player.isAttacking = false;
+                    leftDown = false;
                 }
 
                 if (key == KeyEvent.VK_RIGHT) {
-                    if(game.characterType == 1 || game.characterType == 2) {
-                        rightDown = false;
-                    } else {
-                        game.player.isAttacking = false;
-                        rightDown = false;
-                    }
+                    game.player.isAttacking = false;
+                    rightDown = false;
                 }
 
                 if (key == KeyEvent.VK_SPACE) {

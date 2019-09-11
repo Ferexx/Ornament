@@ -1,21 +1,17 @@
 package Main;
 
 
-import Enemies.WeakMinion;
+import Enemies.Goblin;
 import Powerups.DoubleJumpPowerup;
 import Powerups.HealthPowerup;
 import Powerups.MagicPowerup;
 import UI.Background;
-import UI.Notif;
 import World.Door;
 import World.Ground;
-import World.NPCs.NPC;
 import World.NPCs.Villager;
 import World.Platform;
 
 import java.io.*;
-
-import static Main.ID.NPC;
 
 public class Level {
 
@@ -79,8 +75,8 @@ public class Level {
             while((line = br.readLine())!=null) {
                 String[] values = line.split(",");
                 switch(values[0]) {
-                    case "ID.WeakMinion":
-                        handler.addEnemy(new WeakMinion(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.WeakMinion, game));
+                    case "ID.Goblin":
+                        handler.addEnemy(new Goblin(Integer.parseInt(values[1]), Integer.parseInt(values[2]), ID.WeakMinion, game));
                 }
             }
         }

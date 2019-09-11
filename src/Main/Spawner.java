@@ -1,6 +1,6 @@
 package Main;
 
-import Enemies.WeakMinion;
+import Enemies.Goblin;
 import Powerups.DoubleJumpPowerup;
 import Powerups.HealthPowerup;
 import Powerups.MagicPowerup;
@@ -38,7 +38,7 @@ public class Spawner {
 
         handler.addPowerup(new DoubleJumpPowerup(Game.WIDTH / 2, 530, ID.DoubleJumpPowerup, game));
         for (int i = 600; i < 5601; i = i + 500) {
-            handler.addEnemy(new WeakMinion(i, 580, ID.WeakMinion, game));
+            handler.addEnemy(new Goblin(i, 580, ID.WeakMinion, game));
             handler.addPowerup(new HealthPowerup(i, 530, ID.HealthPowerup, game));
             handler.addPowerup(new MagicPowerup(i+100, 530, ID.MagicPowerup, game));
         }

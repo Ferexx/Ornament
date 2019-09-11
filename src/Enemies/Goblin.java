@@ -11,11 +11,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class WeakMinion extends Enemy {
+public class Goblin extends Enemy {
 
     private BufferedImage minionImage;
 
-    public WeakMinion(int x, int y, ID id, Game game) {
+    public Goblin(int x, int y, ID id, Game game) {
         super(x, y, id, game, 100);
 
         velX = 1;
@@ -30,7 +30,7 @@ public class WeakMinion extends Enemy {
         x += velX;
         y += velY;
 
-        //Changes the direction of the WeakMinion when "they" (gender neutral) hit the edge of the screen
+        //Changes the direction of the Goblin when "they" (gender neutral) hit the edge of the screen
         if (y <= 0 || y >= Game.HEIGHT - 140) velY *= -1;
 
         if (x <= 0 || x >= Game.WIDTH - 42) velX *= -1;
@@ -39,7 +39,7 @@ public class WeakMinion extends Enemy {
 
     public void render(Graphics g) {
         try {
-            minionImage = ImageIO.read(new File("assets/WeakMinion.png"));
+            minionImage = ImageIO.read(new File("assets//Enemies/Goblin.png"));
         } catch (IOException e) {
             System.out.println("File not found");
             e.printStackTrace();

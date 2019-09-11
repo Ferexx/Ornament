@@ -25,9 +25,8 @@ public class KeyInput extends KeyAdapter {
         int key = e.getKeyCode();
 
         //Key events for the player
-
         if (key == KeyEvent.VK_SHIFT && !game.player.isFalling && (game.player.getVelX() < 5 && game.player.getVelX() > -5)) {
-                game.player.setVelX(game.player.getVelX() * 2);
+            game.player.setVelX(game.player.getVelX() * 2);
         }
 
         if (key == KeyEvent.VK_A) {
@@ -181,43 +180,31 @@ public class KeyInput extends KeyAdapter {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
-        for (int i = 0; i < game.handler.objects.size(); i++) {
-            GameObject tempObject = game.handler.objects.get(i);
-
-            if (tempObject.getID() == ID.Player) {
-                //Key events for the player
-
-                if (key == KeyEvent.VK_A) {
-                    if (dDown) tempObject.setVelX(+3);
-                    else tempObject.setVelX(0);
-                    aDown = false;
-                }
-
-                if (key == KeyEvent.VK_D) {
-                    if (aDown) tempObject.setVelX(-3);
-                    else tempObject.setVelX(0);
-                    dDown = false;
-                }
-
-                if (key == KeyEvent.VK_LEFT) {
-                    game.player.isAttacking = false;
-                    leftDown = false;
-                }
-
-                if (key == KeyEvent.VK_RIGHT) {
-                    game.player.isAttacking = false;
-                    rightDown = false;
-                }
-
-                if (key == KeyEvent.VK_SPACE) {
-                }
-
-                if (key == KeyEvent.VK_SHIFT) {
-                    if (!game.player.isFalling && (game.player.getVelX() > 5 || game.player.getVelX() < -5)) tempObject.setVelX(tempObject.getVelX() / 2);
-                }
-            }
+        if (key == KeyEvent.VK_SHIFT && !game.player.isFalling && (game.player.getVelX() > 5 || game.player.getVelX() < -5)) {
+            game.player.setVelX(game.player.getVelX() / 2);
         }
 
+        if (key == KeyEvent.VK_A) {
+            if (dDown) game.player.setVelX(+3);
+            else game.player.setVelX(0);
+            aDown = false;
+        }
+        if (key == KeyEvent.VK_D) {
+            if (aDown) game.player.setVelX(-3);
+            else game.player.setVelX(0);
+            dDown = false;
+        }
+        if (key == KeyEvent.VK_LEFT) {
+            game.player.isAttacking = false;
+            leftDown = false;
+        }
+        if (key == KeyEvent.VK_RIGHT) {
+            game.player.isAttacking = false;
+            rightDown = false;
+        }
+        if (key == KeyEvent.VK_SPACE) {
+
+        }
     }
     public void loopBack() {
         for (int i = 0; i < game.handler.objects.size(); i++) {

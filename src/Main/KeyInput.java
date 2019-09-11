@@ -18,6 +18,7 @@ public class KeyInput extends KeyAdapter {
 
     public KeyInput(Game game) {
         this.game = game;
+        spawn = new Spawner(game);
     }
 
     public void keyPressed(KeyEvent e) {
@@ -108,7 +109,9 @@ public class KeyInput extends KeyAdapter {
                 game.window.frame.add(game.cutscene.jfx);
                 game.stop();
             } else if (game.player.touchingDoor) {
-                loopBack();
+                //loopBack();
+                game.handler.clearAll();
+                spawn.spawn(new File("Levels/Level_1"));
             }
         }
 

@@ -71,8 +71,8 @@ public class IngameOptions extends MouseInputAdapter {
 
             game.handler.changeVolume(game.player.settings.volume);
 
-            game.addMouseMotionListener(game.menu);
-            game.addMouseListener(game.menu);
+            game.addMouseMotionListener(game.pause);
+            game.addMouseListener(game.pause);
         }
     }
 

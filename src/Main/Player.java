@@ -208,7 +208,7 @@ public class Player extends GameObject {
                         }
                         //If player hits underside of object
                         else if (getY() > world.getY() + world.getHeight()) {
-                            setVelY(getVelY() * -1);
+                            setVelY(0);
                         }
                     }
                 }else if (getBounds().intersects(world.getBounds())) {

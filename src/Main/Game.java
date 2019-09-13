@@ -18,13 +18,13 @@ public class Game extends Canvas implements Runnable {
     public Window window;
 
     //UI
-    private HUD hud;
     public UI.Menu menu;
     public UI.Dead dead;
     public UI.ItemMenu itemMenu;
     public UI.Pause pause;
     public IngameOptions inGameOptions;
     public MenuOptions menuOptions;
+    private HUD hud;
 
     //Performance
     private Thread thread;

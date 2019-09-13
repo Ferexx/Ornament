@@ -63,6 +63,8 @@ public class Menu extends MouseAdapter {
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 163, Game.HEIGHT / 2 - 89, 303, 89)) {
             //Play game
+            spawn.spawn(new File("Levels/TestLevel"));
+
             game.gameState = STATE.Game;
 
             game.handler.removeSound("titleMusic");
@@ -70,7 +72,6 @@ public class Menu extends MouseAdapter {
             game.removeMouseListener(this);
             game.removeMouseMotionListener(this);
 
-            spawn.spawn(new File("Levels/TestLevel"));
         }
 
         if (mouseOver(mX, mY, Game.WIDTH / 2 - 131, Game.HEIGHT / 2 + 7, 234, 73)) {

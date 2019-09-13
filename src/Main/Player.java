@@ -139,7 +139,8 @@ public class Player extends GameObject {
             leftAttack();
         }
 
-        System.out.println("\n\nX: " + this.getX() + "\nY: " + this.getY() + "\nVelX: " + this.getVelX() + "\nVelY: " + this.getVelY());
+        //Player movement print for stuff and things
+        //System.out.println("\n\nX: " + this.getX() + "\nY: " + this.getY() + "\nVelX: " + this.getVelX() + "\nVelY: " + this.getVelY());
     }
 
     private void collision() {

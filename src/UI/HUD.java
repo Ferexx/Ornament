@@ -7,7 +7,6 @@ import java.awt.*;
 public class HUD {
     //Green value is a spectrum from green to red in relation to health
     public int greenValue = 255;
-
     private Game game;
 
     public HUD(Game game) {
@@ -15,12 +14,11 @@ public class HUD {
     }
 
     public void tick() {
-        Main.Player player = game.player;
 
-        player.playerHealth = Game.clamp(player.playerHealth, 0, 100);
+        game.player.playerHealth = Game.clamp(game.player.playerHealth, 0, 100);
         greenValue = Game.clamp(greenValue, 0, 255);
 
-        greenValue = player.playerHealth * 2;
+        greenValue = game.player.playerHealth * 2;
     }
 
     public void render(Graphics g) {

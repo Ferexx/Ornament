@@ -23,7 +23,7 @@ public class LightningAttack extends MagicAttack{
     public LightningAttack(int x, int y, Game game, boolean facingRight) {
         super(x, y, lightningAttackDamage, ID.LightningAttack, game, lightningAttackCost);
         height = 16;
-        width = 154;
+        width = 256;
         this.game=game;
         rightFacing=facingRight;
     }
@@ -54,10 +54,10 @@ public class LightningAttack extends MagicAttack{
     public void render(Graphics g) {
         //Standard attack animation
         if (!rightFacing) {
-            attackImage = new ImageIcon("assets/Attacks/lightningAttack.gif").getImage();
+            attackImage = new ImageIcon("assets/Attacks/lightningAttackExtended.gif").getImage();
             g.drawImage(attackImage, game.player.getX() - width, game.player.getY()-38, null);
         } else {
-            attackImage = new ImageIcon("assets/Attacks/lightningAttack.gif").getImage();
+            attackImage = new ImageIcon("assets/Attacks/lightningAttackExtended.gif").getImage();
             g.drawImage(attackImage, game.player.getX() + 25, game.player.getY()-38, null);
         }
     }

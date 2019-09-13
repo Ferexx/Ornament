@@ -19,8 +19,8 @@ public class SwordAttack extends MeleeAttack {
     private Game game;
     private SwordAttack self = this;
 
-    public SwordAttack(int x, int y, Game game, boolean facingRight) {
-        super(x, y, swordDamage, ID.SwordAttack, game, swordCost);
+    public SwordAttack(int x, int y, int level, Game game, boolean facingRight) {
+        super(x, y, swordDamage, level, ID.SwordAttack, game, swordCost);
         height = 50;
         width = 75;
         this.game=game;

@@ -11,11 +11,12 @@ public abstract class Attack {
     protected int dmg;
     protected Main.ID id;
     protected Game game;
+    protected int level;
     public static int height;
     public static int width;
     protected boolean rightFacing;
 
-    public Attack(int x, int y, int dmg, ID id, Game game) {
+    public Attack(int x, int y, int dmg, int level, ID id, Game game) {
         this.x = x;
         this.y = y;
         this.dmg = dmg;

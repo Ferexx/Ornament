@@ -11,8 +11,8 @@ public abstract class MeleeAttack extends Attack{
     protected double velX;
     protected double velY;
 
-    public MeleeAttack(int x, int y, int dmg, ID id, Game game, int staminaCost) {
-        super(x, y, dmg, id, game);
+    public MeleeAttack(int x, int y, int dmg, int level, ID id, Game game, int staminaCost) {
+        super(x, y, dmg, level, id, game);
         this.staminaCost = staminaCost;
     }
     @Override

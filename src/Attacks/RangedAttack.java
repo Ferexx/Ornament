@@ -12,8 +12,8 @@ public abstract class RangedAttack extends Attack {
     protected int range;
     protected boolean rightFacing;
 
-    public RangedAttack(int x, int y, int dmg, ID id, Game game, int range) {
-        super(x, y, dmg, id, game);
+    public RangedAttack(int x, int y, int dmg, int level, ID id, Game game, int range) {
+        super(x, y, dmg, level, id, game);
         this.range = range;
     }
 

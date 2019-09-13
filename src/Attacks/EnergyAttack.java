@@ -15,8 +15,8 @@ public class EnergyAttack extends MagicAttack {
     private Image attackImage;
     private Game game;
 
-    public EnergyAttack(int x, int y, Game game, boolean facingRight) {
-        super(x, y, energyAttackDamage, ID.EnergyAttack, game, energyAttackCost);
+    public EnergyAttack(int x, int y, int level, Game game, boolean facingRight) {
+        super(x, y, energyAttackDamage, level, ID.EnergyAttack, game, energyAttackCost);
         height = 23;
         width = 41;
         this.game=game;

@@ -11,8 +11,8 @@ public abstract class MagicAttack extends Attack {
     protected double velX;
     protected double velY;
 
-    public MagicAttack(int x, int y, int dmg, ID id, Game game, double magicCost) {
-        super(x, y, dmg, id, game);
+    public MagicAttack(int x, int y, int dmg, int level, ID id, Game game, double magicCost) {
+        super(x, y, dmg, level, id, game);
         this.magicCost = magicCost;
     }
     @Override

@@ -25,6 +25,11 @@ public class Player extends GameObject {
     private ImageIcon playerImage;
     private int characterType;
 
+    //Player levels
+    private int playerLightningLevel = 3;
+    private int playerSwordLevel = 1;
+    private int playerEnergyAttackLevel = 1;
+
     //Godmode - infinite health, stamina, mana
     private boolean godMode = false;
 
@@ -361,12 +366,12 @@ public class Player extends GameObject {
     public void rightAttack() {
 
         if (canEnergyAttack && !energyBlocked) {
-            handler.addAttack(new EnergyAttack(x, y - 38, game, true));
+            handler.addAttack(new EnergyAttack(x, y - 38, playerEnergyAttackLevel, game, true));
             playerMagic -= EnergyAttack.energyAttackCost;
         } else if (canSwordAttack) {
-            handler.addAttack(new SwordAttack(SwordAttack.width, y - 38, game, true));
+            handler.addAttack(new SwordAttack(SwordAttack.width, y - 38, playerSwordLevel, game, true));
         } else if (canLightningAttack) {
-            handler.addAttack(new LightningAttack(x + 25, y - 38, game, true));
+            handler.addAttack(new LightningAttack(x + 25, y - 38, playerLightningLevel, game, true));
         } else {
             System.out.println("You cannot attack at this time");
         }
@@ -378,12 +383,12 @@ public class Player extends GameObject {
     public void leftAttack() {
 
         if (canEnergyAttack && !energyBlocked) {
-            handler.addAttack(new EnergyAttack(x - EnergyAttack.width, y - 38, game, false));
+            handler.addAttack(new EnergyAttack(x - EnergyAttack.width, y - 38, playerEnergyAttackLevel, game, false));
             playerMagic -= EnergyAttack.energyAttackCost;
         } else if (canSwordAttack) {
-            handler.addAttack(new SwordAttack(x - SwordAttack.width, y - 38, game, false));
+            handler.addAttack(new SwordAttack(x - SwordAttack.width, y - 38, playerSwordLevel, game, false));
         } else if (canLightningAttack) {
-            handler.addAttack(new LightningAttack(x - LightningAttack.width, y - 32, game, false));
+            handler.addAttack(new LightningAttack(x - LightningAttack.width, y - 32, playerLightningLevel, game, false));
             playerMagic -= LightningAttack.lightningAttackCost;
         } else {
             System.out.println("You cannot attack at this time");

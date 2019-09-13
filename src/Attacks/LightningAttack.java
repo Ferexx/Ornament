@@ -19,11 +19,19 @@ public class LightningAttack extends MagicAttack{
     private Image attackImage;
     private Game game;
     private LightningAttack self = this;
+    private int level;
 
-    public LightningAttack(int x, int y, Game game, boolean facingRight) {
-        super(x, y, lightningAttackDamage, ID.LightningAttack, game, lightningAttackCost);
+    public LightningAttack(int x, int y, int level, Game game, boolean facingRight) {
+        super(x, y, lightningAttackDamage, level, ID.LightningAttack, game, lightningAttackCost);
+        this.level = level;
         height = 16;
-        width = 512;
+        if(level == 1) {
+            width = 154;
+        } else if(level == 2) {
+            width = 256;
+        } else if(level == 3) {
+            width = 512;
+        }
         this.game=game;
         rightFacing=facingRight;
     }
@@ -54,10 +62,24 @@ public class LightningAttack extends MagicAttack{
     public void render(Graphics g) {
         //Standard attack animation
         if (!rightFacing) {
-            attackImage = new ImageIcon("assets/Attacks/lightningAttackMaxLevel.gif").getImage();
+            if(level == 1) {
+                attackImage = new ImageIcon("assets/Attacks/lightningAttack.gif").getImage();
+            } else if(level == 2) {
+                attackImage = new ImageIcon("assets/Attacks/lightningAttackExtended.gif").getImage();
+            } else {
+                attackImage = new ImageIcon("assets/Attacks/lightningAttackMaxLevel.gif").getImage();
+            }
+
             g.drawImage(attackImage, game.player.getX() - width, game.player.getY()-38, null);
         } else {
-            attackImage = new ImageIcon("assets/Attacks/lightningAttackMaxLevel.gif").getImage();
+            if(level == 1) {
+                attackImage = new ImageIcon("assets/Attacks/lightningAttack.gif").getImage();
+            } else if(level == 2) {
+                attackImage = new ImageIcon("assets/Attacks/lightningAttackExtended.gif").getImage();
+            } else {
+                attackImage = new ImageIcon("assets/Attacks/lightningAttackMaxLevel.gif").getImage();
+            }
+
             g.drawImage(attackImage, game.player.getX() + 25, game.player.getY()-38, null);
         }
     }

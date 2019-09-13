@@ -14,7 +14,8 @@ import java.util.TimerTask;
 import static Main.KeyInput.*;
 
 public class LightningAttack extends MagicAttack{
-    public static int lightningAttackDamage = 2;
+    //TODO make these not static and have reference to them from Enemy
+    public static int lightningAttackDamage = 3;
     public static int lightningAttackCost = 1;
     private Image attackImage;
     private Game game;
@@ -26,10 +27,13 @@ public class LightningAttack extends MagicAttack{
         this.level = level;
         height = 16;
         if(level == 1) {
+            lightningAttackDamage = 1;
             width = 154;
         } else if(level == 2) {
+            lightningAttackDamage = 2;
             width = 256;
         } else if(level == 3) {
+            lightningAttackDamage = 3;
             width = 512;
         }
         this.game=game;

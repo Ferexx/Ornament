@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Goblin extends Enemy {
+public class Goblin extends InfernalEnemy {
 
     private BufferedImage minionImage;
 

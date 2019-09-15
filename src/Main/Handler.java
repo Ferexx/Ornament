@@ -76,6 +76,7 @@ public class Handler {
         for (int i = 0; i < npcs.size(); i++) {
             NPC npc = npcs.get(i);
             npc.render(g);
+            game.player.render(g);
         }
     }
 
